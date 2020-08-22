@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -10,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Creacion de la base de datos...
     qDebug()<<"Aplicacion iniciada...";
     QString  nombre;
-    nombre.append("badeDeDatos1.sqlite");
+    nombre.append("baseDeDatos1.sqlite");
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(nombre);
     if(db.open())  {
@@ -19,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
     else{
         qDebug()<<"ERROR! No se ha conectado a la base de datos.";
     }
-
     CrearTablaUsuarios();
     mostrarDatos();
 }
@@ -69,7 +69,7 @@ void MainWindow::insertarUsuario()
     QSqlQuery insertar;
     insertar.prepare(consulta);
 
-   if( insertar.exec()   ){            //Devuelte un booleano
+   if( insertar.exec()   ){            //Devuelve un booleano
        qDebug()<<"El usuario existe o se ha insertado correctamente";
    }
    else{
@@ -84,10 +84,10 @@ void MainWindow::mostrarDatos()
     QString consulta;
     consulta.append("SELECT * FROM  usuarios");
 
-    QSqlQuery consultar;
+    QSqlQuery consultar(db);
     consultar.prepare(consulta);
 
-   if( consultar.exec()   ){            //Devuelte un booleano
+   if( consultar.exec()   ){            //Devuelve un booleano
        qDebug()<<"Se ha consultado correctamente";
    }
    else{
@@ -100,11 +100,13 @@ void MainWindow::mostrarDatos()
    while(consultar.next()){ //hasta que el string este vacio
        ui->tableWidget_Datos->insertRow(fila);                //Agrego una fila
 
-       ui->tableWidget_Datos->setItem(fila , 0 ,new QTableWidgetItem(consultar.value(1).toByteArray().constData()) );
+       for (int i=0; i<4; i++){
+            ui->tableWidget_Datos->setItem(fila , i ,new QTableWidgetItem(consultar.value(i+1).toByteArray().constData()) );
+       }
+       /*ui->tableWidget_Datos->setItem(fila , 0 ,new QTableWidgetItem(consultar.value(1).toByteArray().constData()) );
        ui->tableWidget_Datos->setItem(fila , 1 ,new QTableWidgetItem(consultar.value(2).toByteArray().constData()) );
        ui->tableWidget_Datos->setItem(fila , 2 ,new QTableWidgetItem(consultar.value(3).toByteArray().constData()) );
-       ui->tableWidget_Datos->setItem(fila , 3 ,new QTableWidgetItem(consultar.value(4).toByteArray().constData()) );
-
+       ui->tableWidget_Datos->setItem(fila , 3 ,new QTableWidgetItem(consultar.value(4).toByteArray().constData()) );*/
        fila++;
    }
 }
@@ -114,4 +116,43 @@ void MainWindow::on_pushButton_Agregar_clicked()
 {
     insertarUsuario();
     mostrarDatos();
+}
+
+void MainWindow::on_tableWidget_Datos_itemSelectionChanged()
+{
+    if (isEnabled) {
+        ui->pushButton_Borrar->setEnabled(isEnabled=false);
+    }
+    else {
+        ui->pushButton_Borrar->setEnabled(isEnabled=true);
+    }
+}
+
+void MainWindow::on_tableWidget_Datos_cellChanged(int row, int column)
+{
+    QString consulta("UPDATE usuarios"
+                     "SET"
+                     "WHERE id = "+QString::number(row+1)+";");
+    //ui->tableWidget_Datos->item(row, column)->text();
+}
+
+void MainWindow::on_pushButton_Borrar_clicked()
+{
+    int n=ui->tableWidget_Datos->selectionModel()->currentIndex().row();
+    QString consulta("DELETE FROM usuarios WHERE id = ");
+    consulta.append(QString::number(n));
+
+    QSqlQuery consultar(db);
+    consultar.prepare(consulta);
+
+   if( consultar.exec()   ){            //Devuelve un booleano
+       qDebug()<<"Se borro con exito";
+       ui->tableWidget_Datos->removeRow(ui->tableWidget_Datos->selectionModel()->currentIndex().row());
+   }
+   else{
+       qDebug()<<"No se pudo eliminar";
+       qDebug()<<"ERROR!"<<consultar.lastError();
+       QMessageBox::critical(NULL,"Error","No se pudo borrar el elemento seleccionado");
+   }
+
 }

@@ -27,8 +27,15 @@ public:
 private slots:
     void on_pushButton_Agregar_clicked();
 
+    void on_tableWidget_Datos_itemSelectionChanged();
+
+    void on_tableWidget_Datos_cellChanged(int row, int column);
+
+    void on_pushButton_Borrar_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
+        bool isEnabled= false;
 };
 #endif // MAINWINDOW_H
