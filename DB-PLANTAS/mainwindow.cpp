@@ -41,8 +41,10 @@ void MainWindow::CrearTablaUsuarios()
                     "clase INTEGRER NOT NULL"
                     ");");
     QSqlQuery crear;
-    crear.prepare(consulta);
-
+    if(!crear.prepare(consulta))
+    {
+        QMessageBox::critical(NULL, "Base de Datos", "No se pudo preparar la consulta de nombres");
+    }
    if( crear.exec()   ){            //Devuelte un booleano
        qDebug()<<"La tabla usuarios existe o se ha creado correctamente";
    }
@@ -61,15 +63,17 @@ void MainWindow::insertarUsuario()
                     "edad ,"
                     "clase )"
                     "VALUES("
-                    "    '     "+ ui->lineEdit_Nombre->text()+"     ' ,     "               //Toma los datos del lineedit
-                     "   '     "+ ui->lineEdit_Apellido->text()+"     ',    "
-                    "        "+ ui->lineEdit_Edad->text()+"   ,   "
-                    "          "+ ui->lineEdit_Clase->text()+"    "
+                    "  '"+ ui->lineEdit_Nombre->text()   +  "'  , " //Toma los datos del lineedit
+                    "  '"+ ui->lineEdit_Apellido->text() +  "'  , "
+                    "  '"+ ui->lineEdit_Edad->text()     +  "'  , "
+                    "  '"+ ui->lineEdit_Clase->text()    +  "'    "
                     ");");
+
     QSqlQuery insertar;
     insertar.prepare(consulta);
 
-   if( insertar.exec()   ){            //Devuelve un booleano
+   if(insertar.exec())//Devuelve un booleano
+   {
        qDebug()<<"El usuario existe o se ha insertado correctamente";
    }
    else{
@@ -80,6 +84,8 @@ void MainWindow::insertarUsuario()
 
 void MainWindow::mostrarDatos()
 {
+    int fila=0;
+
     //Mostramos los datos...
     QString consulta;
     consulta.append("SELECT * FROM  usuarios");
@@ -94,19 +100,17 @@ void MainWindow::mostrarDatos()
        qDebug()<<"No se ha consultado correctamente";
        qDebug()<<"ERROR!"<<consultar.lastError();
    }
-   int fila=0;
 
    ui->tableWidget_Datos->setRowCount(0);
-   while(consultar.next()){ //hasta que el string este vacio
-       ui->tableWidget_Datos->insertRow(fila);                //Agrego una fila
+   while(consultar.next())//hasta que el string este vacio
+   {
+       ui->tableWidget_Datos->insertRow(fila);//Agrego una fila
 
-       for (int i=0; i<4; i++){
-            ui->tableWidget_Datos->setItem(fila , i ,new QTableWidgetItem(consultar.value(i+1).toByteArray().constData()) );
+       for (int i=0; i<5; i++)
+       {
+            ui->tableWidget_Datos->setItem(fila , i ,
+            new QTableWidgetItem(consultar.value(i/*+1*/).toByteArray().constData()) );
        }
-       /*ui->tableWidget_Datos->setItem(fila , 0 ,new QTableWidgetItem(consultar.value(1).toByteArray().constData()) );
-       ui->tableWidget_Datos->setItem(fila , 1 ,new QTableWidgetItem(consultar.value(2).toByteArray().constData()) );
-       ui->tableWidget_Datos->setItem(fila , 2 ,new QTableWidgetItem(consultar.value(3).toByteArray().constData()) );
-       ui->tableWidget_Datos->setItem(fila , 3 ,new QTableWidgetItem(consultar.value(4).toByteArray().constData()) );*/
        fila++;
    }
 }
@@ -139,14 +143,18 @@ void MainWindow::on_tableWidget_Datos_cellChanged(int row, int column)
 void MainWindow::on_pushButton_Borrar_clicked()
 {
     int n=ui->tableWidget_Datos->selectionModel()->currentIndex().row();
+    int id = ui->tableWidget_Datos->item(n,0)->data(0).toInt();
+    //Obtiene el valor de la celda seleccionada que es el id de la db
+
     QString consulta("DELETE FROM usuarios WHERE id = ");
-    consulta.append(QString::number(n));
+    consulta.append(QString::number(id));
 
     QSqlQuery consultar(db);
     consultar.prepare(consulta);
 
-   if( consultar.exec()   ){            //Devuelve un booleano
-       qDebug()<<"Se borro con exito";
+   if(consultar.exec())//Devuelve un booleano
+   {
+       qDebug()<<"Se borro con exito" << id;
        ui->tableWidget_Datos->removeRow(ui->tableWidget_Datos->selectionModel()->currentIndex().row());
    }
    else{

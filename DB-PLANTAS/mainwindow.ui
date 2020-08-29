@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>765</width>
     <height>500</height>
    </rect>
   </property>
@@ -50,13 +50,18 @@
      <rect>
       <x>70</x>
       <y>10</y>
-      <width>651</width>
+      <width>501</width>
       <height>401</height>
      </rect>
     </property>
     <attribute name="verticalHeaderVisible">
      <bool>false</bool>
     </attribute>
+    <column>
+     <property name="text">
+      <string>ID</string>
+     </property>
+    </column>
     <column>
      <property name="text">
       <string>Nombre</string>
@@ -84,10 +89,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>60</y>
-      <width>51</width>
-      <height>21</height>
+      <x>670</x>
+      <y>20</y>
+      <width>71</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -100,7 +105,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>765</width>
      <height>22</height>
     </rect>
    </property>
