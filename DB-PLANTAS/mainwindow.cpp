@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tableWidget_Datos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // Creacion de la base de datos...
     qDebug()<<"Aplicacion iniciada...";
     QString  nombre;
@@ -122,11 +123,6 @@ void MainWindow::on_pushButton_Agregar_clicked()
     mostrarDatos();
 }
 
-void MainWindow::on_tableWidget_Datos_cellClicked(int, int)
-{
-    ui->pushButton_Borrar->setEnabled(isEnabled=true);
-}
-
 void MainWindow::on_pushButton_Borrar_clicked()
 {
     int n=ui->tableWidget_Datos->selectionModel()->currentIndex().row();
@@ -169,10 +165,13 @@ void MainWindow::on_tableWidget_Datos_cellChanged(int row, int column)
 
 void MainWindow::on_tableWidget_Datos_itemSelectionChanged()
 {
-    if (isEnabled) {
+    static QModelIndex IndiceAnterior;
+    qDebug() << ui->tableWidget_Datos->currentIndex();
+    if (IndiceAnterior==ui->tableWidget_Datos->currentIndex()){
         ui->pushButton_Borrar->setEnabled(isEnabled=false);
     }
     else {
          ui->pushButton_Borrar->setEnabled(isEnabled=true);
     }
+    IndiceAnterior = ui->tableWidget_Datos->currentIndex();
 }
