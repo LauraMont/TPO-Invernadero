@@ -120,30 +120,35 @@ void MainWindow::on_pushButton_Agregar_clicked()
 {
     insertarUsuario();
     mostrarDatos();
+    ui->lineEdit_Nombre->clear();
+    ui->lineEdit_Nombre->echoMode();
+    ui->lineEdit_Nombre->setText("Nombre");
+//    ui->lineEdit_Nombre->setPlaceholderText();
+
+
+
+
+
+//    ui->lineEdit_Apellido->clear();
+//    ui->lineEdit_Edad->clear();
+//    ui->lineEdit_Clase->clear();
+
 }
 
-void MainWindow::on_tableWidget_Datos_itemSelectionChanged()
+void MainWindow::on_tableWidget_Datos_cellClicked(int row, int column)
 {
-    if (isEnabled) {
-        ui->pushButton_Borrar->setEnabled(isEnabled=false);
-    }
-    else {
+   if (isEnabled) {
+       ui->pushButton_Borrar->setEnabled(isEnabled=false);
+   }
+   else {
         ui->pushButton_Borrar->setEnabled(isEnabled=true);
-    }
-}
-
-void MainWindow::on_tableWidget_Datos_cellChanged(int row, int column)
-{
-    QString consulta("UPDATE usuarios"
-                     "SET"
-                     "WHERE id = "+QString::number(row+1)+";");
-    //ui->tableWidget_Datos->item(row, column)->text();
+   }
 }
 
 void MainWindow::on_pushButton_Borrar_clicked()
 {
     int n=ui->tableWidget_Datos->selectionModel()->currentIndex().row();
-    int id = ui->tableWidget_Datos->item(n,0)->data(0).toInt();
+    int id = ui->tableWidget_Datos->item(n,0)->text().toInt();
     //Obtiene el valor de la celda seleccionada que es el id de la db
 
     QString consulta("DELETE FROM usuarios WHERE id = ");
@@ -163,4 +168,24 @@ void MainWindow::on_pushButton_Borrar_clicked()
        QMessageBox::critical(NULL,"Error","No se pudo borrar el elemento seleccionado");
    }
 
+}
+void MainWindow::on_tableWidget_Datos_cellDoubleClicked(int row, int column)
+{
+    ui->pushButton_Guardar->setEnabled(true);
+    fila = row;
+    columna = column;
+}
+
+void MainWindow::on_pushButton_Guardar_clicked()
+{
+    QString value = ui->tableWidget_Datos->item(fila, columna)->text();//Obtengo el contenido de la celda
+    int ID = ui->tableWidget_Datos->item(fila,0)->text().toInt();//Obtengo el id
+
+    QSqlQuery qry;
+    qry.prepare( "UPDATE usuarios SET apellido = 'Johnson' WHERE id = 8" );
+    if( !qry.exec() )
+      qDebug() << qry.lastError();
+    else
+      qDebug( "Updated!" );
+    ui->pushButton_Guardar->setEnabled(false);
 }

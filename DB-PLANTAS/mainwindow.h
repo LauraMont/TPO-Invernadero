@@ -2,10 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtSql/QSqlDatabase>          //Contiene los recursos  para el manejo de bases de datos
-#include <QSqlQuery>                            //Consultas y requerimientos a la base de datos
-#include <QSqlError>                             //Nos permite conocer los tipos de errores en las bases de datos
-
+#include <QtSql/QSqlDatabase>//Contiene los recursos  para el manejo de bases de datos
+#include <QSqlQuery>//Consultas y requerimientos a la base de datos
+#include <QSqlError>//Nos permite conocer los tipos de errores en las bases de datos
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -27,15 +26,20 @@ public:
 private slots:
     void on_pushButton_Agregar_clicked();
 
-    void on_tableWidget_Datos_itemSelectionChanged();
-
-    void on_tableWidget_Datos_cellChanged(int row, int column);
-
     void on_pushButton_Borrar_clicked();
+
+    void on_tableWidget_Datos_cellClicked(int row, int column);
+
+    void on_pushButton_Guardar_clicked();
+
+    void on_tableWidget_Datos_cellDoubleClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
-        bool isEnabled= false;
+    bool isEnabled= false;
+    bool guardar = false;
+    int fila;
+    int columna;
 };
 #endif // MAINWINDOW_H
