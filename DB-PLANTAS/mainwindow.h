@@ -28,11 +28,11 @@ private slots:
 
     void on_pushButton_Borrar_clicked();
 
-    void on_tableWidget_Datos_cellClicked(int row, int column);
+    void on_tableWidget_Datos_cellClicked(int, int);
 
-    void on_pushButton_Guardar_clicked();
+    void on_tableWidget_Datos_cellChanged(int row, int column);
 
-    void on_tableWidget_Datos_cellDoubleClicked(int row, int column);
+    void on_tableWidget_Datos_itemSelectionChanged();
 
 private:
     Ui::MainWindow *ui;

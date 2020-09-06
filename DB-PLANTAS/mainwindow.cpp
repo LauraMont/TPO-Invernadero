@@ -120,29 +120,11 @@ void MainWindow::on_pushButton_Agregar_clicked()
 {
     insertarUsuario();
     mostrarDatos();
-    ui->lineEdit_Nombre->clear();
-    ui->lineEdit_Nombre->echoMode();
-    ui->lineEdit_Nombre->setText("Nombre");
-//    ui->lineEdit_Nombre->setPlaceholderText();
-
-
-
-
-
-//    ui->lineEdit_Apellido->clear();
-//    ui->lineEdit_Edad->clear();
-//    ui->lineEdit_Clase->clear();
-
 }
 
-void MainWindow::on_tableWidget_Datos_cellClicked(int row, int column)
+void MainWindow::on_tableWidget_Datos_cellClicked(int, int)
 {
-   if (isEnabled) {
-       ui->pushButton_Borrar->setEnabled(isEnabled=false);
-   }
-   else {
-        ui->pushButton_Borrar->setEnabled(isEnabled=true);
-   }
+    ui->pushButton_Borrar->setEnabled(isEnabled=true);
 }
 
 void MainWindow::on_pushButton_Borrar_clicked()
@@ -161,6 +143,7 @@ void MainWindow::on_pushButton_Borrar_clicked()
    {
        qDebug()<<"Se borro con exito" << id;
        ui->tableWidget_Datos->removeRow(ui->tableWidget_Datos->selectionModel()->currentIndex().row());
+       ui->pushButton_Borrar->setEnabled(isEnabled=false);
    }
    else{
        qDebug()<<"No se pudo eliminar";
@@ -168,24 +151,28 @@ void MainWindow::on_pushButton_Borrar_clicked()
        QMessageBox::critical(NULL,"Error","No se pudo borrar el elemento seleccionado");
    }
 
-}
-void MainWindow::on_tableWidget_Datos_cellDoubleClicked(int row, int column)
-{
-    ui->pushButton_Guardar->setEnabled(true);
-    fila = row;
-    columna = column;
+
 }
 
-void MainWindow::on_pushButton_Guardar_clicked()
+void MainWindow::on_tableWidget_Datos_cellChanged(int row, int column)
 {
-    QString value = ui->tableWidget_Datos->item(fila, columna)->text();//Obtengo el contenido de la celda
-    int ID = ui->tableWidget_Datos->item(fila,0)->text().toInt();//Obtengo el id
+    int ID = ui->tableWidget_Datos->item(row,0)->text().toInt();//Obtengo el id
+    qDebug() << ui->tableWidget_Datos->horizontalHeaderItem(column)->text();
 
     QSqlQuery qry;
-    qry.prepare( "UPDATE usuarios SET apellido = 'Johnson' WHERE id = 8" );
+    qry.prepare( "UPDATE usuarios SET "+ui->tableWidget_Datos->horizontalHeaderItem(column)->text()+" = '"+ui->tableWidget_Datos->item(row, column)->text()+"' WHERE id ="+QString::number(ID)+"");
     if( !qry.exec() )
       qDebug() << qry.lastError();
     else
       qDebug( "Updated!" );
-    ui->pushButton_Guardar->setEnabled(false);
+}
+
+void MainWindow::on_tableWidget_Datos_itemSelectionChanged()
+{
+    if (isEnabled) {
+        ui->pushButton_Borrar->setEnabled(isEnabled=false);
+    }
+    else {
+         ui->pushButton_Borrar->setEnabled(isEnabled=true);
+    }
 }

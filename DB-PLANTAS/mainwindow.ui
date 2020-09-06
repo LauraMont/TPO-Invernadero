@@ -64,22 +64,22 @@
     </column>
     <column>
      <property name="text">
-      <string>Nombre</string>
+      <string>nombre</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Apellido</string>
+      <string>apellido</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Edad</string>
+      <string>edad</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Clase</string>
+      <string>clase</string>
      </property>
     </column>
    </widget>
@@ -97,22 +97,6 @@
     </property>
     <property name="text">
      <string>Borrar</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_Guardar">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>90</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Guardar cambios</string>
     </property>
    </widget>
   </widget>
