@@ -3,33 +3,44 @@
 #include <QDebug>
 #include <QMessageBox>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+/**
+    \fn  	MainWindow(QWidget *parent)
+    \brief	Constructor
+*/
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->tableWidget_Datos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    // Creacion de la base de datos...
-    qDebug()<<"Aplicacion iniciada...";
+    qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     QString  nombre;
-    nombre.append("baseDeDatos1.sqlite");
+    nombre.append("../Base de Datos/baseDeDatos1.sqlite");
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(nombre);
-    if(db.open())  {
+    if(db.open())
+    {
         qDebug()<<"Se ha conectado a la base de datos.";
     }
-    else{
+    else
+    {
         qDebug()<<"ERROR! No se ha conectado a la base de datos.";
     }
     CrearTablaUsuarios();
     mostrarDatos();
 }
 
+/**
+    \fn  	~MainWindow()
+    \brief	Destructor
+*/
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/**
+    \fn  	CrearTablaUsuarios()
+    \brief	Crea la tabla en SQL
+*/
 void MainWindow::CrearTablaUsuarios()
 {
     //Creacion de tabla...
@@ -42,18 +53,24 @@ void MainWindow::CrearTablaUsuarios()
                     "clase INTEGRER NOT NULL"
                     ");");
     QSqlQuery crear;
-    if(!crear.prepare(consulta))
-    {
-        QMessageBox::critical(NULL, "Base de Datos", "No se pudo preparar la consulta de nombres");
-    }
-   if( crear.exec()   ){            //Devuelte un booleano
+   if(!crear.prepare(consulta))
+   {
+       QMessageBox::critical(NULL, "Base de Datos", "No se pudo preparar la consulta de nombres");
+   }
+   if (crear.exec()) //Devuelte un booleano
+   {
        qDebug()<<"La tabla usuarios existe o se ha creado correctamente";
    }
-   else{
+   else
+   {
        qDebug()<<"ERROR!"<<crear.lastError();
    }
 }
 
+/**
+    \fn  	insertarUsuario()
+    \brief	Agrega una nueva fila a la tabla
+*/
 void MainWindow::insertarUsuario()
 {
     //Agregamos un registro
@@ -83,6 +100,10 @@ void MainWindow::insertarUsuario()
    }
 }
 
+/**
+    \fn  	mostrarDatos()
+    \brief	Muestra el contenido de la base de datos en la tabla
+*/
 void MainWindow::mostrarDatos()
 {
     int fila=0;
@@ -94,35 +115,49 @@ void MainWindow::mostrarDatos()
     QSqlQuery consultar(db);
     consultar.prepare(consulta);
 
-   if( consultar.exec()   ){            //Devuelve un booleano
-       qDebug()<<"Se ha consultado correctamente";
-   }
-   else{
-       qDebug()<<"No se ha consultado correctamente";
-       qDebug()<<"ERROR!"<<consultar.lastError();
-   }
+    if(consultar.exec()) //Devuelve un booleano
+    {
+        qDebug()<<"Se ha consultado correctamente";
+    }
+    else
+    {
+        qDebug()<<"No se ha consultado correctamente";
+        qDebug()<<"ERROR!"<<consultar.lastError();
+    }
 
-   ui->tableWidget_Datos->setRowCount(0);
-   while(consultar.next())//hasta que el string este vacio
-   {
-       ui->tableWidget_Datos->insertRow(fila);//Agrego una fila
+    ui->tableWidget_Datos->setRowCount(0);
+    while(consultar.next())//hasta que el string este vacio
+    {
+        ui->tableWidget_Datos->insertRow(fila);//Agrego una fila
 
-       for (int i=0; i<5; i++)
-       {
-            ui->tableWidget_Datos->setItem(fila , i ,
-            new QTableWidgetItem(consultar.value(i/*+1*/).toByteArray().constData()) );
-       }
-       fila++;
+        for (int i=0; i<5; i++)
+        {
+             ui->tableWidget_Datos->setItem(fila , i ,
+             new QTableWidgetItem(consultar.value(i).toByteArray().constData()) );
+        }
+        fila++;
    }
 }
 
-
+/**
+    \fn  	on_pushButton_Agregar_clicked()
+    \brief  se activa al presionar el botón de agregar y agrega la nueva fila
+*/
 void MainWindow::on_pushButton_Agregar_clicked()
 {
     insertarUsuario();
     mostrarDatos();
+
+    ui->lineEdit_Edad->clear();
+    ui->lineEdit_Nombre->clear();
+    ui->lineEdit_Apellido->clear();
+    ui->lineEdit_Clase->clear();
 }
 
+/**
+    \fn  	on_pushButton_Borrar_clicked()
+    \brief  se activa al presionar el botón de borrar y borra la fila elegida
+*/
 void MainWindow::on_pushButton_Borrar_clicked()
 {
     int n=ui->tableWidget_Datos->selectionModel()->currentIndex().row();
@@ -141,37 +176,47 @@ void MainWindow::on_pushButton_Borrar_clicked()
        ui->tableWidget_Datos->removeRow(ui->tableWidget_Datos->selectionModel()->currentIndex().row());
        ui->pushButton_Borrar->setEnabled(isEnabled=false);
    }
-   else{
+   else
+   {
        qDebug()<<"No se pudo eliminar";
        qDebug()<<"ERROR!"<<consultar.lastError();
        QMessageBox::critical(NULL,"Error","No se pudo borrar el elemento seleccionado");
    }
-
-
 }
 
+/**
+    \fn  	on_tableWidget_Datos_cellChanged(int row, int column)
+    \brief  cuando se cambia el contenido de una celda actualiza el valor de la base
+*/
 void MainWindow::on_tableWidget_Datos_cellChanged(int row, int column)
 {
-    int ID = ui->tableWidget_Datos->item(row,0)->text().toInt();//Obtengo el id
-    qDebug() << ui->tableWidget_Datos->horizontalHeaderItem(column)->text();
+    QString ID = ui->tableWidget_Datos->item(row,0)->text(); //Obtengo el id
+    QString columneta = ui->tableWidget_Datos->horizontalHeaderItem(column)->text();//Campo de la columna
+    QString value = ui->tableWidget_Datos->item(row, column)->text();//Contenido de la celda
+//    qDebug() << ui->tableWidget_Datos->horizontalHeaderItem(column)->text();
 
     QSqlQuery qry;
-    qry.prepare( "UPDATE usuarios SET "+ui->tableWidget_Datos->horizontalHeaderItem(column)->text()+" = '"+ui->tableWidget_Datos->item(row, column)->text()+"' WHERE id ="+QString::number(ID)+"");
+    qry.prepare( "UPDATE usuarios SET "+columneta+" = '"+value+"' WHERE id ="+ID+"");
+
     if( !qry.exec() )
       qDebug() << qry.lastError();
     else
       qDebug( "Updated!" );
 }
 
+/**
+    \fn  	on_tableWidget_Datos_itemSelectionChanged()
+    \brief  cuando se cambia la selección del mouse se activa/desactica
+            la opcion de borrar
+*/
 void MainWindow::on_tableWidget_Datos_itemSelectionChanged()
 {
     static QModelIndex IndiceAnterior;
-    qDebug() << ui->tableWidget_Datos->currentIndex();
-    if (IndiceAnterior==ui->tableWidget_Datos->currentIndex()){
+    //qDebug() << ui->tableWidget_Datos->currentIndex();
+
+    if (IndiceAnterior==ui->tableWidget_Datos->currentIndex())
         ui->pushButton_Borrar->setEnabled(isEnabled=false);
-    }
-    else {
+    else
          ui->pushButton_Borrar->setEnabled(isEnabled=true);
-    }
     IndiceAnterior = ui->tableWidget_Datos->currentIndex();
 }
