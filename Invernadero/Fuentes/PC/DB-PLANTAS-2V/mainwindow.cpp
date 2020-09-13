@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->tableWidget_Datos->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     QString  nombre;
-    nombre.append("../Base de Datos/BDPALANTAS.sqlite");
+    nombre.append("../Base de Datos/BDPLANTAS.sqlite");
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(nombre);
     if(db.open())
@@ -49,13 +49,13 @@ void MainWindow::CrearTablaUsuarios()
     consulta.append("CREATE TABLE IF NOT EXISTS   usuarios  (   "
                     "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
                     "planta VARCHAR(100),"
-                    "t_max VARCHAR(100),"
-                    "t_min VARCHAR(100),"
+                    "temp_max VARCHAR(100),"
+                    "temp_min VARCHAR(100),"
                     "nivel_riego VARCHAR(100),"
                     "nivel_luz VARCHAR(100),"
                     "precaucion VARCHAR(100)"
                     ");");
-    QSqlQuery crear;
+    QSqlQuery crear(db);
    if(!crear.prepare(consulta))
    {
        QMessageBox::critical(NULL, "Base de Datos", "No se pudo preparar la consulta de nombres");
@@ -162,7 +162,7 @@ void MainWindow::on_tableWidget_Datos_cellChanged(int row, int column)
     QString ID = ui->tableWidget_Datos->item(row,0)->text(); //Obtengo el id
     QString columneta = ui->tableWidget_Datos->horizontalHeaderItem(column)->text();//Campo de la columna
     QString value = ui->tableWidget_Datos->item(row, column)->text();//Contenido de la celda
-//    qDebug() << ui->tableWidget_Datos->horizontalHeaderItem(column)->text();
+    qDebug() << ui->tableWidget_Datos->horizontalHeaderItem(column)->text();
 
     QSqlQuery qry;
     qry.prepare( "UPDATE usuarios SET "+columneta+" = '"+value+"' WHERE id ="+ID+"");

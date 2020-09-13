@@ -44,12 +44,12 @@
         </column>
         <column>
          <property name="text">
-          <string>nivel de riego</string>
+          <string>nivel_riego</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>nivel de luz</string>
+          <string>nivel_luz</string>
          </property>
         </column>
         <column>

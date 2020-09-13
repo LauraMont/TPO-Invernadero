@@ -52,7 +52,7 @@ void MainWindow::CrearTablaUsuarios()
                     "edad INTEGRER NOT NULL,"
                     "clase INTEGRER NOT NULL"
                     ");");
-    QSqlQuery crear;
+    QSqlQuery crear(db);
    if(!crear.prepare(consulta))
    {
        QMessageBox::critical(NULL, "Base de Datos", "No se pudo preparar la consulta de nombres");

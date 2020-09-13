@@ -27,8 +27,8 @@ void Datos::insertarUsuario()
     QString consulta;
     consulta.append("INSERT INTO  usuarios  (   "
                     "planta ,"
-                    "temp_max ,"
-                    "temp_min ,"
+                    "t_max ,"
+                    "t_min ,"
                     "nivel_riego, "
                     "nivel_luz ,"
                     "precaucion)"
