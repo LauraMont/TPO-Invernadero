@@ -78,11 +78,18 @@ void MainWindow::cargarPlantas()
 {
     QSqlQuery consultar(db);
     QString planta;
+
+    /*consultar.prepare("SELECT COUNT(*) FROM plantas");            NO FUNCIONA :(
+    consultar.first();
+    int count = consultar.value(0).toInt();
+    qDebug() << count;*/
     consultar.prepare("SELECT planta FROM plantas");
 
     if(!consultar.exec()) //Devuelve un booleano
         qDebug()<<"ERROR EN LA CONSULTA!"<<consultar.lastError();
-
+    ui->comboBox->clear();
+    ui->comboBox->addItem("--Elija una planta--");
+    cargarDefault();
     while(consultar.next())//hasta que el string este vacio
     {
         for (int i=0; i<5; i++)

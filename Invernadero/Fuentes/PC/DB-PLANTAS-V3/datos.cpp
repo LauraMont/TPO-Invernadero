@@ -38,16 +38,16 @@ void Datos::insertarPlanta()
                     "temp_min ,"
                     "nivel_riego, "
                     "nivel_luz ,"
-                    "precaucion )"
-//                    "ruta_imagen )"
+                    "precaucion ,"
+                    "ruta_imagen )"
                     "VALUES("//Toma los datos del lineedit
                     "  '"+ ui->lineEdit_planta->text()      + "' , "
                     "  '"+ ui->lineEdit_t_max->text()       + "' , "
                     "  '"+ ui->lineEdit_t_min->text()       + "' , "
                     "  '"+ ui->lineEdit_nivel_riego->text() + "' , "
                     "  '"+ ui->lineEdit_nivel_luz->text()   + "' , "
-                    "  '"+ ui->lineEdit_precaucion->text()  + "'   "
-//                    "  '"+ ui->lineEdit_foto->text()        + "'   "
+                    "  '"+ ui->lineEdit_precaucion->text()  + "' , "
+                    "  '"+ ui->lineEdit_foto->text()        + "'   "
                     ")");
    QSqlQuery insertar;
    insertar.prepare(consulta);
