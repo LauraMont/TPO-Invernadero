@@ -6,101 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>516</width>
-    <height>338</height>
+    <width>515</width>
+    <height>397</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>40</y>
-     <width>182</width>
-     <height>251</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_planta">
-      <property name="text">
-       <string>Planta :</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_t_max">
-      <property name="text">
-       <string>Temperatura minima :</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>Temperatura maxima :</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Nivel de Riego :</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>Nivel de luz :</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>Precacucion :</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>40</y>
-     <width>281</width>
-     <height>251</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QLineEdit" name="lineEdit_planta"/>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEdit_t_min"/>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEdit_t_max"/>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEdit_nivel_riego"/>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEdit_nivel_luz"/>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEdit_precaucion"/>
-    </item>
-   </layout>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>210</x>
      <y>10</y>
      <width>101</width>
      <height>20</height>
@@ -113,8 +29,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>300</y>
+     <x>170</x>
+     <y>340</y>
      <width>180</width>
      <height>27</height>
     </rect>
@@ -159,6 +75,100 @@
        <string>Cancelar</string>
       </property>
      </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>41</y>
+     <width>154</width>
+     <height>271</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label_planta">
+      <property name="text">
+       <string>Planta :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_t_max">
+      <property name="text">
+       <string>Temperatura minima :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Temperatura maxima :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Nivel de Riego :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Nivel de luz :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Precacucion :</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Cargar Foto</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>223</x>
+     <y>40</y>
+     <width>221</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QLineEdit" name="lineEdit_planta"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_t_min"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_t_max"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_nivel_riego"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_nivel_luz"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_precaucion"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_foto"/>
     </item>
    </layout>
   </widget>
