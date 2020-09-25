@@ -32,9 +32,12 @@ public:
 private slots:
     void on_comboBox_activated(const QString &arg1);
 
-    void on_pushButton_clicked();
+    void on_configuraciones_clicked();
+
+    void on_iniciar_clicked();
 
 private:
     Ui::MainWindow *ui;
+    QString eleccion;
 };
 #endif // MAINWINDOW_H

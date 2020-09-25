@@ -2,7 +2,6 @@
 #include "ui_tabla.h"
 
 extern QSqlDatabase db;
-extern bool huboCambios;
 
 /**
     \fn  	Tabla::Tabla(QWidget *parent)
@@ -35,7 +34,7 @@ void Tabla::MostrarDatos()
 
     //Mostramos los datos...
     QString consulta;
-    consulta.append("SELECT * FROM  plantas");
+    consulta.append("SELECT * FROM  plantas ORDER BY planta ASC");//Lo ordena alfabeticamente
 
     QSqlQuery consultar(db);
     consultar.prepare(consulta);
@@ -111,7 +110,6 @@ void Tabla::on_tableWidget_Datos_cellChanged(int row, int column)
             qDebug() << qry.lastError();
         else
             qDebug() << "Updated " << campo << "!";
-        huboCambios = true;
     }
     dobleClick = false;
 }

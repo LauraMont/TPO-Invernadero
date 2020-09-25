@@ -3,8 +3,7 @@
 
 QSqlDatabase db; //Variable global para que la pueda tomar la otra aplicación como extern
 QString rutaFotos = RUTA_FOTOS;
-bool huboCambios = false;//Sirve para indicar si hubo cambios en los
-                         //datos de la planta que esta cargada
+QString elijaPlanta = "--Elija una planta--";
 
 /**
     \fn  	MainWindow(QWidget *parent)
@@ -22,7 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_invernadero->resize(128,128);
     ui->label_invernadero->setPixmap(*MiPixMap);
     ui->label_invernadero->setScaledContents(true);
-    ui->comboBox->addItem("--Elija una planta--");
     cargarPlantas();
 }
 
@@ -76,26 +74,24 @@ void MainWindow::crearTablaPlantas()
 */
 void MainWindow::cargarPlantas()
 {
-    QSqlQuery consultar(db);
+    QSqlQuery consultar(db), cantidad(db);
     QString planta;
+    int cant;
+    ui->comboBox->addItem(elijaPlanta);
+    consultar.prepare("SELECT planta FROM plantas ORDER by planta ASC");
+    cantidad.prepare("SELECT COUNT(*) FROM plantas");//Cuento cuantas hay
 
-    /*consultar.prepare("SELECT COUNT(*) FROM plantas");            NO FUNCIONA :(
-    consultar.first();
-    int count = consultar.value(0).toInt();
-    qDebug() << count;*/
-    consultar.prepare("SELECT planta FROM plantas");
+    if(!consultar.exec() || !cantidad.exec()) //Devuelve un booleano
+        qDebug()<<"ERROR EN LA CONSULTA!"<< consultar.lastError() << cantidad.lastError();
 
-    if(!consultar.exec()) //Devuelve un booleano
-        qDebug()<<"ERROR EN LA CONSULTA!"<<consultar.lastError();
-    ui->comboBox->clear();
-    ui->comboBox->addItem("--Elija una planta--");
-    cargarDefault();
+    cantidad.next();
+    cant = cantidad.value(0).toInt();//Cantidad de registros en la base
     while(consultar.next())//hasta que el string este vacio
     {
-        for (int i=0; i<5; i++)
+        for (int i=0; i<cant; i++)
         {
             planta = consultar.value(i).toString();//Elemento leido de la BD
-            if(planta.length() && !yaExiste(planta))
+            if(planta.length())
                 ui->comboBox->addItem(planta);
         }
       /*La consulta devuelve valores en blanco, por eso chequeo la longitud y
@@ -122,12 +118,11 @@ void MainWindow::cargarDatos()
     consultar.next();
     //Como tomo toda la fila también estan el id y el nombre de la planta,
     //por eso arranca desde el 2
-    ui->label_TMAX->setText(consultar.value(2).toString());
-    ui->label_TMIN->setText(consultar.value(3).toString());
-    ui->label_NRIEGO->setText(consultar.value(4).toString());
-    ui->label_NLUZ->setText(consultar.value(5).toString());
+    ui->label_TMAX->setText(consultar.value(2).toString() + " °C");
+    ui->label_TMIN->setText(consultar.value(3).toString() + " °C");
+    ui->label_NRIEGO->setText(consultar.value(4).toString() + " %");
+    ui->label_NLUZ->setText(consultar.value(5).toString() + " %");
     ui->label_PREC->setText(consultar.value(6).toString());
-//    qDebug() << consultar.value(7).toString();
     imagen = consultar.value(7).toString();
     if(imagen.length()) //Si tiene una imagen asociada la cargo, sino cargo la default
     {
@@ -185,22 +180,48 @@ bool MainWindow::yaExiste(QString &planta)
 */
 void MainWindow::on_comboBox_activated(const QString &arg1)
 {
-    if(arg1 == "--Elija una planta--")
+    eleccion = arg1;//Guardo la eleccion del usuario
+    if(arg1 == elijaPlanta)
         cargarDefault();
     else
         cargarDatos();
 }
 
 /**
-    \fn  	void MainWindow::on_pushButton_clicked()
-    \brief	Slot de botón de configuración
+    \fn  	void MainWindow::on_configuraciones_clicked()
+    \brief	Abre la ventana para editar/agregar plantas
 */
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_configuraciones_clicked()
 {
     //Abro la segunda ventana
     Tabla tabla;
     tabla.setModal(true);
     tabla.exec();
+    ui->comboBox->clear();
     cargarPlantas();//Vuelve a cargar las plantas en el combo box por si se agrego una
-    if(huboCambios) cargarDatos(); //Para que recargue datos solo si se cambio alguno
+    if(ui->comboBox->findText(eleccion) < 0)//Si se borró la eleccion cargo la default
+        eleccion = elijaPlanta;
+    ui->comboBox->setCurrentText(eleccion);
+    emit on_comboBox_activated(eleccion);//Envio la señal para que cargue los datos
+    qDebug() << "Te mando el elemento: " << ui->comboBox->currentIndex();
+}
+
+/**
+    \fn  	void MainWindow::on_iniciar_clicked()
+    \brief	Inicia el cuidado, bloqueando el combo box y las configuraciones
+*/
+void MainWindow::on_iniciar_clicked()
+{
+    if(ui->iniciar->text() == "INICIAR")
+    {
+        ui->iniciar->setText("DETENER");
+        ui->comboBox->setEnabled(false);
+        ui->configuraciones->setEnabled(false);
+    }
+    else
+    {
+        ui->iniciar->setText("INICIAR");
+        ui->comboBox->setEnabled(true);
+        ui->configuraciones->setEnabled(true);
+    }
 }
