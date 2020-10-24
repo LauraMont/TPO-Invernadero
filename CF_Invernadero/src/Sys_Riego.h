@@ -39,10 +39,10 @@
  *** PROTOTIPOS DE FUNCIONES GLOBALES
  **********************************************************************************************************************************/
 
-int Get_N_agua();
-void Set_N_agua(int);
+unsigned int Get_N_agua();
+void Set_N_Agua(int);
 
-int Get_Humedad();
+unsigned int Get_Humedad();
 void Set_Humedad(int);
 
 void Encender_Riego();

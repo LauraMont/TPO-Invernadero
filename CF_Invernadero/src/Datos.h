@@ -1,7 +1,7 @@
 /*******************************************************************************************************************************//**
  *
  * @file		${file_name}
- * @brief
+ * @brief		Prototipo de funciones manejan los datos del proyecto
  * @date		${date}
  * @author
  *
@@ -45,11 +45,13 @@
 
 void Cargar_Datos_Referencia();			//Ingreso los datos de la base de datos de la planta
 
-bool Comparo_N_agua();					//La comparacion es con los valores de referencia
-bool Comparo_Temperatura();
-bool Comparo_Humedad();
+int Comparo_N_agua();					//La comparacion es con los valores de referencia
+int Comparo_Temperatura();
+int Comparo_Humedad();
 void Set_Valores(unsigned int ,unsigned int,unsigned int);
 
 void Pedir_Datos(unsigned int*,unsigned int*,unsigned int*);	//Pido los datos de las variables del proyecto
 void Sys_Control();						//Comparo los datos de las variables del proyecto
+
+
 #endif /* DATOS_H_ */

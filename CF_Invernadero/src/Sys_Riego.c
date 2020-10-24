@@ -54,3 +54,4 @@ static unsigned int HUMEDAD = 0;
  	\date ${date}
  	\param [in] parametros de entrada
  	\param [out] parametros de salida
+ 	**/

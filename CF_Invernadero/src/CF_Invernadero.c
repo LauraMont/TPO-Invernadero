@@ -15,11 +15,7 @@
 #include <cr_section_macros.h>
 
 #include <stdio.h>
-
-// TODO: insert other include files here
-
-// TODO: insert other definitions and declarations here
-
+#include "Datos.h"
 #include "DR_tipos.h"
 #include "DR_SYSTICK.h"
 
@@ -30,8 +26,14 @@ int main(void)
 
 	Inicializar_systick();
 
+	Cargar_Datos_Referencia();
+
 	while(1)
 	{
-
+		if(get_ticks == 100)	//Entra cada segundo
+		{
+			Sys_Control();		//Invoca al systema de control
+			reset_ticks();		//Reseteamos el contador
+		}
 	}
 }
