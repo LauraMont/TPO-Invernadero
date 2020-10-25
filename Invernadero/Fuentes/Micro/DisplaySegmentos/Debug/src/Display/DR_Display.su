@@ -1,0 +1,3 @@
+DR_Display.c:11:6:IniciarDisplay	8	static
+DR_Display.c:28:6:BarridoDisplay	16	static
+DR_Display.c:72:6:Apagar	8	static

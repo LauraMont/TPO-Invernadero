@@ -1,0 +1,3 @@
+PR_Display.c:5:6:Display	24	static
+PR_Display.c:22:6:Display1	16	static
+PR_Display.c:27:6:ApagarDisplay	8	static

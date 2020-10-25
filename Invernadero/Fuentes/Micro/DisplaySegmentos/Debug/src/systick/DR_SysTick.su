@@ -1,0 +1,2 @@
+DR_SysTick.c:57:6:InicializarSysTick	4	static
+DR_SysTick.c:67:6:SysTick_Handler	8	static

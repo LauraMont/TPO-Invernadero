@@ -1,0 +1,5 @@
+DR_I2C.c:68:6:Init_I2C1	8	static
+DR_I2C.c:103:6:I2C1_IRQHandler	16	static
+DR_I2C.c:229:9:I2CStop	4	static
+DR_I2C.c:249:6:ClearFlags	4	static
+DR_I2C.c:273:9:I2CEngine	4	static

@@ -1,0 +1,7 @@
+DR_GPIO.c:68:6:SetPINSEL	24	static
+DR_GPIO.c:90:6:SetDIR	24	static
+DR_GPIO.c:110:6:SetPIN	24	static
+DR_GPIO.c:131:9:GetPIN	24	static
+DR_GPIO.c:152:6:SetPINMODE	24	static
+DR_GPIO.c:174:6:SetPINMODE_OD	24	static
+DR_GPIO.c:193:6:SetTOGGLE	24	static
