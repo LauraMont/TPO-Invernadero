@@ -14,14 +14,14 @@
 /***********************************************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
  **********************************************************************************************************************************/
-#define Encender_Lampara
-#define Apagar_Lampara
+#define Encender_Lampara		F(1,2)
+#define Apagar_Lampara			&F(1,2)
 
-#define Encender_Valvula
-#define Apagar_Valvula
+#define Encender_Valvula		F(1,2)
+#define Apagar_Valvula			&F(1,2)
 
-#define Encender_Ventilador
-#define Apagar_Ventilador
+#define Encender_Ventilador		F(1,2)
+#define Apagar_Ventilador		&F(1,2)
 /***********************************************************************************************************************************
  *** MACROS PRIVADAS AL MODULO
  **********************************************************************************************************************************/
@@ -82,12 +82,21 @@ void Set_Humedad_A(int32_t humedad_a)
 
 //Los sytemas utilizan el vector de temporizadores
 void Sys_Ventilacion()
-{}
+{
+	Encender_Ventilador;
+	TimerStart ( 1 , 1 , Apagar_Ventilador, MIN );		//Revisa los datos cada minuto
+}
 
 void Sys_Iluminacion()
-{}
+{
+	Encender_Lampara;
+	TimerStart ( 1 , 1 , Apagar_Lampara, MIN );		//Revisa los datos cada minuto
+}
 
 void Sys_Riego()
-{}
+{
+	Encender_Valvula;
+	TimerStart ( 1 , 1 , Apagar_Valvula, MIN );		//Revisa los datos cada minuto
+}
 
 

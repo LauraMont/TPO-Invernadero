@@ -8,6 +8,7 @@
 #include "PR_BMP280.h"
 #include "RTC_Reloj.h"
 #include "F_Datos.h"
+#include "PR_Temporizadores.h"
 
 
 
@@ -45,13 +46,7 @@ void main(void)
 			Sys_Riego();
 			f_HUMEDAD_T = ALTA;
 		}
-
-		if(get_ticks == 100)	//Entra cada segundo
-		{
-			Sys_Control();		//Invoca al systema de control
-			reset_ticks();		//Reseteamos el contador
-		}
-
+		TimerStart ( 1 , 1 , &Sys_Control(), MIN );		//Revisa los datos cada minuto
 	}
 }
 

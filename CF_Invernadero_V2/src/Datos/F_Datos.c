@@ -17,6 +17,8 @@
  **********************************************************************************************************************************/
 #define	BAJO	1
 #define	ALTO	0
+#define Led_ON
+#define Led_OFF
 /***********************************************************************************************************************************
  *** MACROS PRIVADAS AL MODULO
  **********************************************************************************************************************************/
@@ -69,16 +71,16 @@ void Sys_Control()
 	Pedir_Datos(&N_AGUA_AUX ,&TEMPERATURA_AUX,&HUMEDAD_T_AUX ,&HUMEDAD_T_AUX);
 	if (N_AGUA_AUX == BAJO)		//Si el sensor no esta activado (no toca el agua)
 	{
-		Led_ON();//Se enciende Led avisando que el nivel de agua esta bajo
+		Led_ON;//Se enciende Led avisando que el nivel de agua esta bajo
 	}
 	else if(N_AGUA_AUX == ALTO)
 	{
-		Led_OFF();//Apagamos Led
+		Led_OFF;//Apagamos Led
 	}
 
 	if ( Comparo_Temperatura(TEMPERATURA_AUX) )
 	{
-		if (TEMPERATURA >= T_MAX) //Ejemplo : si la temperatura esta 1 °c mas que la referencia entro
+		if (TEMPERATURA >= T_MAX)
 		{
 			Sys_Ventilacion();	//Dejo actuar el sys ventilacion x cantidad fija de tiempo previamente determinada
 		}
@@ -133,7 +135,4 @@ uint32_t Comparo_Humedad_A(uint32_t HUMEDAD_A_AUX)		//Comparo si sobrepasa la ma
 {
 	return (( HUMEDAD_A_AUX >= HUMEDAD_A_R )?: 1 , 0 );
 }
-uint32_t Comparo_Humedad_T(uint32_t HUMEDAD_T_AUX)		//Comparo si sobrepasa la maxima
-{
-	return (( HUMEDAD_T_AUX > HUMEDAD_T_R )?: 1 , 0 );
-}
+
