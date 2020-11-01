@@ -1,6 +1,0 @@
-Datos.c:61:6:Sys_Control	24	static
-Datos.c:92:6:Set_Valores	24	static
-Datos.c:99:6:Pedir_Datos	24	static
-Datos.c:106:6:Cargar_Datos_Referencia	4	static
-Datos.c:110:5:Comparo_Temperatura	24	static
-Datos.c:116:5:Comparo_Humedad	16	static
