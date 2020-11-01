@@ -10,8 +10,6 @@
 #include "F_Datos.h"
 #include "PR_Temporizadores.h"
 
-
-
 extern volatile uint8_t  I2CMasterBuffer[BUFSIZE];
 void AagarRGB(void);
 void main(void)

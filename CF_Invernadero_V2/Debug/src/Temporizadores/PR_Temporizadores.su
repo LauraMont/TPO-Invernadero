@@ -1,0 +1,8 @@
+PR_Temporizadores.c:66:8:TimerStart	32	static
+PR_Temporizadores.c:89:6:TimerDescount	16	static
+PR_Temporizadores.c:106:6:TimerEvent	16	static
+PR_Temporizadores.c:121:8:TimerPause	24	static
+PR_Temporizadores.c:134:8:TimerGet	24	static
+PR_Temporizadores.c:155:8:TimerSet	24	static
+PR_Temporizadores.c:176:8:TimerStop	24	static
+PR_Temporizadores.c:190:6:TimerClose	16	static

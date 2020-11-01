@@ -11,6 +11,7 @@
  *** INCLUDES
  **********************************************************************************************************************************/
 #include "F_Datos.h"
+#include "PR_Temporizadores.h"
 /***********************************************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
  **********************************************************************************************************************************/
@@ -84,19 +85,19 @@ void Set_Humedad_A(int32_t humedad_a)
 void Sys_Ventilacion()
 {
 	Encender_Ventilador;
-	TimerStart ( 1 , 1 , Apagar_Ventilador, MIN );		//Revisa los datos cada minuto
+	TimerStart ( 2 , 1 , Apagar_Ventilador, MIN );		//Revisa los datos cada minuto
 }
 
 void Sys_Iluminacion()
 {
 	Encender_Lampara;
-	TimerStart ( 1 , 1 , Apagar_Lampara, MIN );		//Revisa los datos cada minuto
+	TimerStart ( 3 , 1 , Apagar_Lampara, MIN );		//Revisa los datos cada minuto
 }
 
 void Sys_Riego()
 {
 	Encender_Valvula;
-	TimerStart ( 1 , 1 , Apagar_Valvula, MIN );		//Revisa los datos cada minuto
+	TimerStart ( 4 , 1 , Apagar_Valvula, MIN );		//Revisa los datos cada minuto
 }
 
 
