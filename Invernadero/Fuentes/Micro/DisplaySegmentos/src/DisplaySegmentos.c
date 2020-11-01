@@ -8,14 +8,31 @@
 #include "../Temporizadores/PR_Temporizadores.h"
 
 void AagarRGB(void);
+
 void main(void)
 {
+	int adc = 0;
 	InicializarPLL();
-	SetDIR(IN0, ENTRADA);
+	IniciarDisplay();
+	InicializarSysTick();
+	ADC_init();
+
+	AagarRGB();
+
+	SetDIR(RELAY0, SALIDA);
 	SetDIR(RELAY1, SALIDA);
+	SetDIR(RELAY2, SALIDA);
+	SetPIN(RELAY0,OFF);
+	SetPIN(RELAY2,OFF);
+
+	SetDIR(IN0, ENTRADA);
+
 	while(1)
 	{
-		if(GetPIN(IN0,ALTO))
+		TimerEvent();
+		adc = ADC_get_average();
+		Display(adc);
+		if(GetPIN(IN0,BAJO))
 		{
 			SetPIN(RELAY1,ON);
 		}
@@ -25,40 +42,6 @@ void main(void)
 		}
 	}
 }
-
-//void main(void)
-//{
-//	int adc = 0;
-//	InicializarPLL();
-//	IniciarDisplay();
-//	InicializarSysTick();
-//	ADC_init();
-//
-//	AagarRGB();
-//
-//	SetDIR(RELAY0, SALIDA);
-//	SetDIR(RELAY1, SALIDA);
-//	SetDIR(RELAY2, SALIDA);
-//	SetPIN(RELAY0,OFF);
-//	SetPIN(RELAY2,OFF);
-//
-//	SetDIR(IN0, ENTRADA);
-//
-//	while(1)
-//	{
-//		TimerEvent();
-//		adc = ADC_get_average();
-//		Display(adc);
-//		if(GetPIN(IN0,ALTO))
-//		{
-//			SetPIN(RELAY1,ON);
-//		}
-//		else
-//		{
-//			SetPIN(RELAY1,OFF);
-//		}
-//	}
-//}
 
 
 void AagarRGB(void)

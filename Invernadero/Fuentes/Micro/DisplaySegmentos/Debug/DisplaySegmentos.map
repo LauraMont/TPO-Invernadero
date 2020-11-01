@@ -22,8 +22,6 @@ Discarded input sections
                 0x0000000000000000        0x4 ./src/systick/DR_SysTick.o
  .bss.ADC_average
                 0x0000000000000000        0x4 ./src/systick/DR_SysTick.o
- .text.InicializarSysTick
-                0x0000000000000000       0x48 ./src/systick/DR_SysTick.o
  .group         0x0000000000000000        0xc ./src/pll/DR_PLL.o
  .group         0x0000000000000000        0xc ./src/pll/DR_PLL.o
  .group         0x0000000000000000        0xc ./src/pll/DR_PLL.o
@@ -39,8 +37,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./src/gpio/DR_GPIO.o
  .data          0x0000000000000000        0x0 ./src/gpio/DR_GPIO.o
  .bss           0x0000000000000000        0x0 ./src/gpio/DR_GPIO.o
- .text.SetPINSEL
-                0x0000000000000000       0xa0 ./src/gpio/DR_GPIO.o
  .text.SetPINMODE
                 0x0000000000000000       0xa0 ./src/gpio/DR_GPIO.o
  .text.SetPINMODE_OD
@@ -69,41 +65,17 @@ Discarded input sections
                 0x0000000000000000       0x18 ./src/Temporizadores/AP_Temporizadores.o
  .text.Ev_Estado2
                 0x0000000000000000       0x18 ./src/Temporizadores/AP_Temporizadores.o
- .text.Ev_Display
-                0x0000000000000000        0xc ./src/Temporizadores/AP_Temporizadores.o
  .bss.modulo.3738
                 0x0000000000000000        0x1 ./src/Temporizadores/AP_Temporizadores.o
- .debug_info    0x0000000000000000      0x18a ./src/Temporizadores/AP_Temporizadores.o
- .debug_abbrev  0x0000000000000000       0xdf ./src/Temporizadores/AP_Temporizadores.o
- .debug_aranges
-                0x0000000000000000       0x38 ./src/Temporizadores/AP_Temporizadores.o
- .debug_ranges  0x0000000000000000       0x28 ./src/Temporizadores/AP_Temporizadores.o
- .debug_macro   0x0000000000000000       0x67 ./src/Temporizadores/AP_Temporizadores.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/Temporizadores/AP_Temporizadores.o
  .debug_macro   0x0000000000000000       0x1c ./src/Temporizadores/AP_Temporizadores.o
- .debug_macro   0x0000000000000000       0xd6 ./src/Temporizadores/AP_Temporizadores.o
- .debug_macro   0x0000000000000000       0x4c ./src/Temporizadores/AP_Temporizadores.o
- .debug_macro   0x0000000000000000       0x8e ./src/Temporizadores/AP_Temporizadores.o
  .debug_macro   0x0000000000000000       0x5e ./src/Temporizadores/AP_Temporizadores.o
- .debug_line    0x0000000000000000      0x2d2 ./src/Temporizadores/AP_Temporizadores.o
- .debug_str     0x0000000000000000     0x3419 ./src/Temporizadores/AP_Temporizadores.o
- .comment       0x0000000000000000       0x7a ./src/Temporizadores/AP_Temporizadores.o
- .debug_frame   0x0000000000000000       0x88 ./src/Temporizadores/AP_Temporizadores.o
- .ARM.attributes
-                0x0000000000000000       0x2d ./src/Temporizadores/AP_Temporizadores.o
  .group         0x0000000000000000        0xc ./src/Temporizadores/PR_Temporizadores.o
  .group         0x0000000000000000        0xc ./src/Temporizadores/PR_Temporizadores.o
  .group         0x0000000000000000        0xc ./src/Temporizadores/PR_Temporizadores.o
  .text          0x0000000000000000        0x0 ./src/Temporizadores/PR_Temporizadores.o
  .data          0x0000000000000000        0x0 ./src/Temporizadores/PR_Temporizadores.o
  .bss           0x0000000000000000        0x0 ./src/Temporizadores/PR_Temporizadores.o
- .bss.TmrFunciones
-                0x0000000000000000       0x78 ./src/Temporizadores/PR_Temporizadores.o
- .bss.TmrBase   0x0000000000000000       0x1e ./src/Temporizadores/PR_Temporizadores.o
- .text.TimerStart
-                0x0000000000000000       0xac ./src/Temporizadores/PR_Temporizadores.o
- .text.TimerEvent
-                0x0000000000000000       0x48 ./src/Temporizadores/PR_Temporizadores.o
  .text.TimerPause
                 0x0000000000000000       0x38 ./src/Temporizadores/PR_Temporizadores.o
  .text.TimerGet
@@ -136,8 +108,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x1c ./src/Inicializacion/DR_Inicializacion.o
  .debug_macro   0x0000000000000000      0x112 ./src/Inicializacion/DR_Inicializacion.o
  .debug_macro   0x0000000000000000       0x3a ./src/Inicializacion/DR_Inicializacion.o
- .debug_line    0x0000000000000000      0x160 ./src/Inicializacion/DR_Inicializacion.o
- .debug_str     0x0000000000000000     0x34eb ./src/Inicializacion/DR_Inicializacion.o
+ .debug_line    0x0000000000000000      0x1b4 ./src/Inicializacion/DR_Inicializacion.o
+ .debug_str     0x0000000000000000     0x3515 ./src/Inicializacion/DR_Inicializacion.o
  .comment       0x0000000000000000       0x7a ./src/Inicializacion/DR_Inicializacion.o
  .debug_frame   0x0000000000000000       0x2c ./src/Inicializacion/DR_Inicializacion.o
  .ARM.attributes
@@ -151,34 +123,12 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./src/Display/DR_Display.o
  .data          0x0000000000000000        0x0 ./src/Display/DR_Display.o
  .bss           0x0000000000000000        0x0 ./src/Display/DR_Display.o
- .bss.MSG_DSP   0x0000000000000000        0x6 ./src/Display/DR_Display.o
- .data.Tabla_Digitos_BCD_7seg
-                0x0000000000000000        0xa ./src/Display/DR_Display.o
- .text.IniciarDisplay
-                0x0000000000000000       0x8a ./src/Display/DR_Display.o
- .text.BarridoDisplay
-                0x0000000000000000      0x150 ./src/Display/DR_Display.o
- .text.Apagar   0x0000000000000000       0x44 ./src/Display/DR_Display.o
- .data.IndiceDisplay.3767
-                0x0000000000000000        0x1 ./src/Display/DR_Display.o
- .debug_info    0x0000000000000000      0x1ab ./src/Display/DR_Display.o
- .debug_abbrev  0x0000000000000000       0xda ./src/Display/DR_Display.o
- .debug_aranges
-                0x0000000000000000       0x30 ./src/Display/DR_Display.o
- .debug_ranges  0x0000000000000000       0x20 ./src/Display/DR_Display.o
- .debug_macro   0x0000000000000000       0x84 ./src/Display/DR_Display.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/Display/DR_Display.o
  .debug_macro   0x0000000000000000       0x1c ./src/Display/DR_Display.o
  .debug_macro   0x0000000000000000       0xd6 ./src/Display/DR_Display.o
  .debug_macro   0x0000000000000000       0x46 ./src/Display/DR_Display.o
  .debug_macro   0x0000000000000000       0x5e ./src/Display/DR_Display.o
  .debug_macro   0x0000000000000000       0x3a ./src/Display/DR_Display.o
- .debug_line    0x0000000000000000      0x3fa ./src/Display/DR_Display.o
- .debug_str     0x0000000000000000     0x33e5 ./src/Display/DR_Display.o
- .comment       0x0000000000000000       0x7a ./src/Display/DR_Display.o
- .debug_frame   0x0000000000000000       0x6c ./src/Display/DR_Display.o
- .ARM.attributes
-                0x0000000000000000       0x2d ./src/Display/DR_Display.o
  .group         0x0000000000000000        0xc ./src/Display/PR_Display.o
  .group         0x0000000000000000        0xc ./src/Display/PR_Display.o
  .group         0x0000000000000000        0xc ./src/Display/PR_Display.o
@@ -186,27 +136,14 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./src/Display/PR_Display.o
  .data          0x0000000000000000        0x0 ./src/Display/PR_Display.o
  .bss           0x0000000000000000        0x0 ./src/Display/PR_Display.o
- .text.Display  0x0000000000000000       0x5c ./src/Display/PR_Display.o
  .text.Display1
                 0x0000000000000000       0x16 ./src/Display/PR_Display.o
  .text.ApagarDisplay
                 0x0000000000000000        0xc ./src/Display/PR_Display.o
- .debug_info    0x0000000000000000      0x195 ./src/Display/PR_Display.o
- .debug_abbrev  0x0000000000000000       0xf4 ./src/Display/PR_Display.o
- .debug_aranges
-                0x0000000000000000       0x30 ./src/Display/PR_Display.o
- .debug_ranges  0x0000000000000000       0x20 ./src/Display/PR_Display.o
- .debug_macro   0x0000000000000000       0x6b ./src/Display/PR_Display.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/Display/PR_Display.o
  .debug_macro   0x0000000000000000       0x1c ./src/Display/PR_Display.o
  .debug_macro   0x0000000000000000       0xd6 ./src/Display/PR_Display.o
  .debug_macro   0x0000000000000000       0x46 ./src/Display/PR_Display.o
- .debug_line    0x0000000000000000      0x2a1 ./src/Display/PR_Display.o
- .debug_str     0x0000000000000000     0x3237 ./src/Display/PR_Display.o
- .comment       0x0000000000000000       0x7a ./src/Display/PR_Display.o
- .debug_frame   0x0000000000000000       0x78 ./src/Display/PR_Display.o
- .ARM.attributes
-                0x0000000000000000       0x2d ./src/Display/PR_Display.o
  .group         0x0000000000000000        0xc ./src/ADC/DR_ADC.o
  .group         0x0000000000000000        0xc ./src/ADC/DR_ADC.o
  .group         0x0000000000000000        0xc ./src/ADC/DR_ADC.o
@@ -215,10 +152,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./src/ADC/DR_ADC.o
  .data          0x0000000000000000        0x0 ./src/ADC/DR_ADC.o
  .bss           0x0000000000000000        0x0 ./src/ADC/DR_ADC.o
- .text.ADC_init
-                0x0000000000000000       0xe8 ./src/ADC/DR_ADC.o
- .text.ADC_get_average
-                0x0000000000000000       0x14 ./src/ADC/DR_ADC.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/ADC/DR_ADC.o
  .debug_macro   0x0000000000000000       0x1c ./src/ADC/DR_ADC.o
  .debug_macro   0x0000000000000000      0x112 ./src/ADC/DR_ADC.o
@@ -243,8 +176,6 @@ Discarded input sections
                 0x0000000000000000        0x4 ./src/DisplaySegmentos.o
  .bss.ADC_average
                 0x0000000000000000        0x4 ./src/DisplaySegmentos.o
- .text.AagarRGB
-                0x0000000000000000       0x44 ./src/DisplaySegmentos.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/DisplaySegmentos.o
  .debug_macro   0x0000000000000000       0x1c ./src/DisplaySegmentos.o
  .debug_macro   0x0000000000000000       0xd6 ./src/DisplaySegmentos.o
@@ -321,7 +252,7 @@ END GROUP
                 0x0000000020084000                __top_RamAHB32 = 0x20084000
                 0x0000000020084000                __top_RAM2 = 0x20084000
 
-.text           0x0000000000000000      0x63c
+.text           0x0000000000000000      0xc34
  FILL mask 0xff
                 0x0000000000000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -330,16 +261,16 @@ END GROUP
                 0x00000000000000cc                . = ALIGN (0x4)
                 0x00000000000000cc                __section_table_start = .
                 0x00000000000000cc                __data_section_table = .
-                0x00000000000000cc        0x4 LONG 0x63c LOADADDR (.data)
+                0x00000000000000cc        0x4 LONG 0xc34 LOADADDR (.data)
                 0x00000000000000d0        0x4 LONG 0x10000000 ADDR (.data)
-                0x00000000000000d4        0x4 LONG 0x4 SIZEOF (.data)
-                0x00000000000000d8        0x4 LONG 0x63c LOADADDR (.data_RAM2)
+                0x00000000000000d4        0x4 LONG 0x10 SIZEOF (.data)
+                0x00000000000000d8        0x4 LONG 0xc34 LOADADDR (.data_RAM2)
                 0x00000000000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x00000000000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x00000000000000e4                __data_section_table_end = .
                 0x00000000000000e4                __bss_section_table = .
-                0x00000000000000e4        0x4 LONG 0x10000004 ADDR (.bss)
-                0x00000000000000e8        0x4 LONG 0x148 SIZEOF (.bss)
+                0x00000000000000e4        0x4 LONG 0x10000010 ADDR (.bss)
+                0x00000000000000e8        0x4 LONG 0x1e8 SIZEOF (.bss)
                 0x00000000000000ec        0x4 LONG 0x2007c000 ADDR (.bss_RAM2)
                 0x00000000000000f0        0x4 LONG 0x0 SIZEOF (.bss_RAM2)
                 0x00000000000000f4                __bss_section_table_end = .
@@ -394,64 +325,100 @@ END GROUP
                 0x000000000000021a                MCPWM_IRQHandler
                 0x000000000000021a                ENET_IRQHandler
  *(.text*)
+ .text.InicializarSysTick
+                0x0000000000000220       0x48 ./src/systick/DR_SysTick.o
+                0x0000000000000220                InicializarSysTick
  .text.SysTick_Handler
-                0x0000000000000220       0x44 ./src/systick/DR_SysTick.o
-                0x0000000000000220                SysTick_Handler
+                0x0000000000000268       0x44 ./src/systick/DR_SysTick.o
+                0x0000000000000268                SysTick_Handler
  .text.InicializarPLL
-                0x0000000000000264      0x140 ./src/pll/DR_PLL.o
-                0x0000000000000264                InicializarPLL
- .text.SetDIR   0x00000000000003a4       0x70 ./src/gpio/DR_GPIO.o
-                0x00000000000003a4                SetDIR
- .text.SetPIN   0x0000000000000414       0x74 ./src/gpio/DR_GPIO.o
-                0x0000000000000414                SetPIN
- .text.GetPIN   0x0000000000000488       0x58 ./src/gpio/DR_GPIO.o
-                0x0000000000000488                GetPIN
+                0x00000000000002ac      0x140 ./src/pll/DR_PLL.o
+                0x00000000000002ac                InicializarPLL
+ .text.SetPINSEL
+                0x00000000000003ec       0xa0 ./src/gpio/DR_GPIO.o
+                0x00000000000003ec                SetPINSEL
+ .text.SetDIR   0x000000000000048c       0x70 ./src/gpio/DR_GPIO.o
+                0x000000000000048c                SetDIR
+ .text.SetPIN   0x00000000000004fc       0x74 ./src/gpio/DR_GPIO.o
+                0x00000000000004fc                SetPIN
+ .text.GetPIN   0x0000000000000570       0x58 ./src/gpio/DR_GPIO.o
+                0x0000000000000570                GetPIN
+ .text.Ev_Display
+                0x00000000000005c8        0xc ./src/Temporizadores/AP_Temporizadores.o
+                0x00000000000005c8                Ev_Display
+ .text.TimerStart
+                0x00000000000005d4       0xac ./src/Temporizadores/PR_Temporizadores.o
+                0x00000000000005d4                TimerStart
  .text.TimerDescount
-                0x00000000000004e0       0x70 ./src/Temporizadores/PR_Temporizadores.o
-                0x00000000000004e0                TimerDescount
+                0x0000000000000680       0x70 ./src/Temporizadores/PR_Temporizadores.o
+                0x0000000000000680                TimerDescount
+ .text.TimerEvent
+                0x00000000000006f0       0x48 ./src/Temporizadores/PR_Temporizadores.o
+                0x00000000000006f0                TimerEvent
+ .text.IniciarDisplay
+                0x0000000000000738       0x8a ./src/Display/DR_Display.o
+                0x0000000000000738                IniciarDisplay
+ *fill*         0x00000000000007c2        0x2 ff
+ .text.BarridoDisplay
+                0x00000000000007c4      0x150 ./src/Display/DR_Display.o
+                0x00000000000007c4                BarridoDisplay
+ .text.Apagar   0x0000000000000914       0x44 ./src/Display/DR_Display.o
+                0x0000000000000914                Apagar
+ .text.Display  0x0000000000000958       0x5c ./src/Display/PR_Display.o
+                0x0000000000000958                Display
+ .text.ADC_init
+                0x00000000000009b4       0xe8 ./src/ADC/DR_ADC.o
+                0x00000000000009b4                ADC_init
  .text.ADC_start_conversion
-                0x0000000000000550       0x20 ./src/ADC/DR_ADC.o
-                0x0000000000000550                ADC_start_conversion
+                0x0000000000000a9c       0x20 ./src/ADC/DR_ADC.o
+                0x0000000000000a9c                ADC_start_conversion
+ .text.ADC_get_average
+                0x0000000000000abc       0x14 ./src/ADC/DR_ADC.o
+                0x0000000000000abc                ADC_get_average
  .text.ADC_IRQHandler
-                0x0000000000000570       0x84 ./src/ADC/DR_ADC.o
-                0x0000000000000570                ADC_IRQHandler
- .text.main     0x00000000000005f4       0x44 ./src/DisplaySegmentos.o
-                0x00000000000005f4                main
+                0x0000000000000ad0       0x84 ./src/ADC/DR_ADC.o
+                0x0000000000000ad0                ADC_IRQHandler
+ .text.main     0x0000000000000b54       0x96 ./src/DisplaySegmentos.o
+                0x0000000000000b54                main
+ .text.AagarRGB
+                0x0000000000000bea       0x44 ./src/DisplaySegmentos.o
+                0x0000000000000bea                AagarRGB
  .text.__weak_main
-                0x0000000000000638        0x4 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
-                0x0000000000000638                __main
-                0x0000000000000638                __weak_main
+                0x0000000000000c2e        0x4 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+                0x0000000000000c2e                __main
+                0x0000000000000c2e                __weak_main
  *(.rodata .rodata.* .constdata .constdata.*)
-                0x000000000000063c                . = ALIGN (0x4)
+                0x0000000000000c34                . = ALIGN (0x4)
+ *fill*         0x0000000000000c32        0x2 ff
 
-.glue_7         0x000000000000063c        0x0
- .glue_7        0x000000000000063c        0x0 linker stubs
+.glue_7         0x0000000000000c34        0x0
+ .glue_7        0x0000000000000c34        0x0 linker stubs
 
-.glue_7t        0x000000000000063c        0x0
- .glue_7t       0x000000000000063c        0x0 linker stubs
+.glue_7t        0x0000000000000c34        0x0
+ .glue_7t       0x0000000000000c34        0x0 linker stubs
 
-.vfp11_veneer   0x000000000000063c        0x0
- .vfp11_veneer  0x000000000000063c        0x0 linker stubs
+.vfp11_veneer   0x0000000000000c34        0x0
+ .vfp11_veneer  0x0000000000000c34        0x0 linker stubs
 
-.v4_bx          0x000000000000063c        0x0
- .v4_bx         0x000000000000063c        0x0 linker stubs
+.v4_bx          0x0000000000000c34        0x0
+ .v4_bx         0x0000000000000c34        0x0 linker stubs
 
-.iplt           0x000000000000063c        0x0
- .iplt          0x000000000000063c        0x0 ./src/systick/DR_SysTick.o
+.iplt           0x0000000000000c34        0x0
+ .iplt          0x0000000000000c34        0x0 ./src/systick/DR_SysTick.o
 
-.rel.dyn        0x000000000000063c        0x0
- .rel.iplt      0x000000000000063c        0x0 ./src/systick/DR_SysTick.o
+.rel.dyn        0x0000000000000c34        0x0
+ .rel.iplt      0x0000000000000c34        0x0 ./src/systick/DR_SysTick.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x000000000000063c        0x0
-                0x000000000000063c                __exidx_start = .
+.ARM.exidx      0x0000000000000c34        0x0
+                0x0000000000000c34                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x000000000000063c                __exidx_end = .
-                0x000000000000063c                _etext = .
+                0x0000000000000c34                __exidx_end = .
+                0x0000000000000c34                _etext = .
 
-.data_RAM2      0x000000002007c000        0x0 load address 0x000000000000063c
+.data_RAM2      0x000000002007c000        0x0 load address 0x0000000000000c34
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM2 = .)
                 [!provide]                        PROVIDE (__start_data_RamAHB32 = .)
@@ -472,7 +439,7 @@ END GROUP
                 0x0000000010000000                . = ALIGN (0x4)
                 0x0000000010000000                _end_uninit_RESERVED = .
 
-.data           0x0000000010000000        0x4 load address 0x000000000000063c
+.data           0x0000000010000000       0x10 load address 0x0000000000000c34
  FILL mask 0xff
                 0x0000000010000000                _data = .
                 [!provide]                        PROVIDE (__start_data_RAM = .)
@@ -483,14 +450,20 @@ END GROUP
  *(DataQuickAccess)
  *(RamFunction)
  *(.data*)
- .data.ADC      0x0000000010000000        0x4 ./src/ADC/DR_ADC.o
-                0x0000000010000004                . = ALIGN (0x4)
-                0x0000000010000004                _edata = .
+ .data.Tabla_Digitos_BCD_7seg
+                0x0000000010000000        0xa ./src/Display/DR_Display.o
+                0x0000000010000000                Tabla_Digitos_BCD_7seg
+ .data.IndiceDisplay.3767
+                0x000000001000000a        0x1 ./src/Display/DR_Display.o
+ *fill*         0x000000001000000b        0x1 ff
+ .data.ADC      0x000000001000000c        0x4 ./src/ADC/DR_ADC.o
+                0x0000000010000010                . = ALIGN (0x4)
+                0x0000000010000010                _edata = .
                 [!provide]                        PROVIDE (__end_data_RAM = .)
                 [!provide]                        PROVIDE (__end_data_RamLoc32 = .)
 
-.igot.plt       0x0000000010000004        0x0 load address 0x0000000000000640
- .igot.plt      0x0000000010000004        0x0 ./src/systick/DR_SysTick.o
+.igot.plt       0x0000000010000010        0x0 load address 0x0000000000000c44
+ .igot.plt      0x0000000010000010        0x0 ./src/systick/DR_SysTick.o
 
 .bss_RAM2       0x000000002007c000        0x0
                 [!provide]                        PROVIDE (__start_bss_RAM2 = .)
@@ -503,32 +476,41 @@ END GROUP
                 [!provide]                        PROVIDE (__end_bss_RAM2 = .)
                 [!provide]                        PROVIDE (__end_bss_RamAHB32 = .)
 
-.bss            0x0000000010000004      0x148
-                0x0000000010000004                _bss = .
+.bss            0x0000000010000010      0x1e8
+                0x0000000010000010                _bss = .
                 [!provide]                        PROVIDE (__start_bss_RAM = .)
                 [!provide]                        PROVIDE (__start_bss_RamLoc32 = .)
  *(.bss*)
  .bss.adc_counter.3821
-                0x0000000010000004        0x4 ./src/systick/DR_SysTick.o
- .bss.TmrRun    0x0000000010000008       0x78 ./src/Temporizadores/PR_Temporizadores.o
-                0x0000000010000008                TmrRun
- .bss.TmrFlag   0x0000000010000080       0x1e ./src/Temporizadores/PR_Temporizadores.o
-                0x0000000010000080                TmrFlag
- *fill*         0x000000001000009e        0x2 
- .bss.TmrPause  0x00000000100000a0       0x1e ./src/Temporizadores/PR_Temporizadores.o
-                0x00000000100000a0                TmrPause
- *fill*         0x00000000100000be        0x2 
+                0x0000000010000010        0x4 ./src/systick/DR_SysTick.o
+ .bss.TmrRun    0x0000000010000014       0x78 ./src/Temporizadores/PR_Temporizadores.o
+                0x0000000010000014                TmrRun
+ .bss.TmrFunciones
+                0x000000001000008c       0x78 ./src/Temporizadores/PR_Temporizadores.o
+                0x000000001000008c                TmrFunciones
+ .bss.TmrFlag   0x0000000010000104       0x1e ./src/Temporizadores/PR_Temporizadores.o
+                0x0000000010000104                TmrFlag
+ *fill*         0x0000000010000122        0x2 
+ .bss.TmrPause  0x0000000010000124       0x1e ./src/Temporizadores/PR_Temporizadores.o
+                0x0000000010000124                TmrPause
+ *fill*         0x0000000010000142        0x2 
+ .bss.TmrBase   0x0000000010000144       0x1e ./src/Temporizadores/PR_Temporizadores.o
+                0x0000000010000144                TmrBase
+ *fill*         0x0000000010000162        0x2 
+ .bss.MSG_DSP   0x0000000010000164        0x6 ./src/Display/DR_Display.o
+                0x0000000010000164                MSG_DSP
+ *fill*         0x000000001000016a        0x2 
  .bss.ADC_buffer
-                0x00000000100000c0       0x80 ./src/ADC/DR_ADC.o
+                0x000000001000016c       0x80 ./src/ADC/DR_ADC.o
  .bss.ADC_buffer_index
-                0x0000000010000140        0x4 ./src/ADC/DR_ADC.o
+                0x00000000100001ec        0x4 ./src/ADC/DR_ADC.o
  .bss.ADC_average
-                0x0000000010000144        0x4 ./src/ADC/DR_ADC.o
+                0x00000000100001f0        0x4 ./src/ADC/DR_ADC.o
  .bss.acummulator.3779
-                0x0000000010000148        0x4 ./src/ADC/DR_ADC.o
+                0x00000000100001f4        0x4 ./src/ADC/DR_ADC.o
  *(COMMON)
-                0x000000001000014c                . = ALIGN (0x4)
-                0x000000001000014c                _ebss = .
+                0x00000000100001f8                . = ALIGN (0x4)
+                0x00000000100001f8                _ebss = .
                 [!provide]                        PROVIDE (__end_bss_RAM = .)
                 [!provide]                        PROVIDE (__end_bss_RamLoc32 = .)
                 [!provide]                        PROVIDE (end = .)
@@ -544,42 +526,48 @@ END GROUP
                 [!provide]                        PROVIDE (__end_noinit_RAM2 = .)
                 [!provide]                        PROVIDE (__end_noinit_RamAHB32 = .)
 
-.noinit         0x000000001000014c        0x0
-                0x000000001000014c                _noinit = .
+.noinit         0x00000000100001f8        0x0
+                0x00000000100001f8                _noinit = .
                 [!provide]                        PROVIDE (__start_noinit_RAM = .)
                 [!provide]                        PROVIDE (__start_noinit_RamLoc32 = .)
  *(.noinit*)
-                0x000000001000014c                . = ALIGN (0x4)
-                0x000000001000014c                _end_noinit = .
+                0x00000000100001f8                . = ALIGN (0x4)
+                0x00000000100001f8                _end_noinit = .
                 [!provide]                        PROVIDE (__end_noinit_RAM = .)
                 [!provide]                        PROVIDE (__end_noinit_RamLoc32 = .)
                 [!provide]                        PROVIDE (_pvHeapStart = DEFINED (__user_heap_base)?__user_heap_base:.)
                 0x0000000010008000                PROVIDE (_vStackTop = DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc32 - 0x0))
                 0xffffffffefff74da                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
                 0x0000000000000000                _image_start = LOADADDR (.text)
-                0x0000000000000640                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x0000000000000640                _image_size = (_image_end - _image_start)
+                0x0000000000000c44                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x0000000000000c44                _image_size = (_image_end - _image_start)
 OUTPUT(DisplaySegmentos.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x1b64
+.debug_info     0x0000000000000000     0x203e
  .debug_info    0x0000000000000000      0x6d3 ./src/systick/DR_SysTick.o
  .debug_info    0x00000000000006d3       0x72 ./src/pll/DR_PLL.o
  .debug_info    0x0000000000000745      0x2e7 ./src/gpio/DR_GPIO.o
- .debug_info    0x0000000000000a2c      0x30b ./src/Temporizadores/PR_Temporizadores.o
- .debug_info    0x0000000000000d37      0x5b7 ./src/ADC/DR_ADC.o
- .debug_info    0x00000000000012ee      0x604 ./src/DisplaySegmentos.o
- .debug_info    0x00000000000018f2      0x272 ./src/cr_startup_lpc175x_6x.o
+ .debug_info    0x0000000000000a2c      0x18a ./src/Temporizadores/AP_Temporizadores.o
+ .debug_info    0x0000000000000bb6      0x30b ./src/Temporizadores/PR_Temporizadores.o
+ .debug_info    0x0000000000000ec1      0x1ab ./src/Display/DR_Display.o
+ .debug_info    0x000000000000106c      0x195 ./src/Display/PR_Display.o
+ .debug_info    0x0000000000001201      0x5b7 ./src/ADC/DR_ADC.o
+ .debug_info    0x00000000000017b8      0x614 ./src/DisplaySegmentos.o
+ .debug_info    0x0000000000001dcc      0x272 ./src/cr_startup_lpc175x_6x.o
 
-.debug_abbrev   0x0000000000000000      0x72b
+.debug_abbrev   0x0000000000000000      0x9f2
  .debug_abbrev  0x0000000000000000      0x14c ./src/systick/DR_SysTick.o
  .debug_abbrev  0x000000000000014c       0x56 ./src/pll/DR_PLL.o
  .debug_abbrev  0x00000000000001a2      0x100 ./src/gpio/DR_GPIO.o
- .debug_abbrev  0x00000000000002a2      0x136 ./src/Temporizadores/PR_Temporizadores.o
- .debug_abbrev  0x00000000000003d8      0x13a ./src/ADC/DR_ADC.o
- .debug_abbrev  0x0000000000000512      0x102 ./src/DisplaySegmentos.o
- .debug_abbrev  0x0000000000000614      0x117 ./src/cr_startup_lpc175x_6x.o
+ .debug_abbrev  0x00000000000002a2       0xdf ./src/Temporizadores/AP_Temporizadores.o
+ .debug_abbrev  0x0000000000000381      0x136 ./src/Temporizadores/PR_Temporizadores.o
+ .debug_abbrev  0x00000000000004b7       0xda ./src/Display/DR_Display.o
+ .debug_abbrev  0x0000000000000591       0xf4 ./src/Display/PR_Display.o
+ .debug_abbrev  0x0000000000000685      0x13a ./src/ADC/DR_ADC.o
+ .debug_abbrev  0x00000000000007bf      0x11c ./src/DisplaySegmentos.o
+ .debug_abbrev  0x00000000000008db      0x117 ./src/cr_startup_lpc175x_6x.o
 
-.debug_aranges  0x0000000000000000      0x1d0
+.debug_aranges  0x0000000000000000      0x268
  .debug_aranges
                 0x0000000000000000       0x28 ./src/systick/DR_SysTick.o
  .debug_aranges
@@ -587,24 +575,33 @@ OUTPUT(DisplaySegmentos.axf elf32-littlearm)
  .debug_aranges
                 0x0000000000000048       0x50 ./src/gpio/DR_GPIO.o
  .debug_aranges
-                0x0000000000000098       0x58 ./src/Temporizadores/PR_Temporizadores.o
+                0x0000000000000098       0x38 ./src/Temporizadores/AP_Temporizadores.o
  .debug_aranges
-                0x00000000000000f0       0x38 ./src/ADC/DR_ADC.o
+                0x00000000000000d0       0x58 ./src/Temporizadores/PR_Temporizadores.o
  .debug_aranges
-                0x0000000000000128       0x28 ./src/DisplaySegmentos.o
+                0x0000000000000128       0x30 ./src/Display/DR_Display.o
  .debug_aranges
-                0x0000000000000150       0x80 ./src/cr_startup_lpc175x_6x.o
+                0x0000000000000158       0x30 ./src/Display/PR_Display.o
+ .debug_aranges
+                0x0000000000000188       0x38 ./src/ADC/DR_ADC.o
+ .debug_aranges
+                0x00000000000001c0       0x28 ./src/DisplaySegmentos.o
+ .debug_aranges
+                0x00000000000001e8       0x80 ./src/cr_startup_lpc175x_6x.o
 
-.debug_ranges   0x0000000000000000      0x160
+.debug_ranges   0x0000000000000000      0x1c8
  .debug_ranges  0x0000000000000000       0x18 ./src/systick/DR_SysTick.o
  .debug_ranges  0x0000000000000018       0x10 ./src/pll/DR_PLL.o
  .debug_ranges  0x0000000000000028       0x40 ./src/gpio/DR_GPIO.o
- .debug_ranges  0x0000000000000068       0x48 ./src/Temporizadores/PR_Temporizadores.o
- .debug_ranges  0x00000000000000b0       0x28 ./src/ADC/DR_ADC.o
- .debug_ranges  0x00000000000000d8       0x18 ./src/DisplaySegmentos.o
- .debug_ranges  0x00000000000000f0       0x70 ./src/cr_startup_lpc175x_6x.o
+ .debug_ranges  0x0000000000000068       0x28 ./src/Temporizadores/AP_Temporizadores.o
+ .debug_ranges  0x0000000000000090       0x48 ./src/Temporizadores/PR_Temporizadores.o
+ .debug_ranges  0x00000000000000d8       0x20 ./src/Display/DR_Display.o
+ .debug_ranges  0x00000000000000f8       0x20 ./src/Display/PR_Display.o
+ .debug_ranges  0x0000000000000118       0x28 ./src/ADC/DR_ADC.o
+ .debug_ranges  0x0000000000000140       0x18 ./src/DisplaySegmentos.o
+ .debug_ranges  0x0000000000000158       0x70 ./src/cr_startup_lpc175x_6x.o
 
-.debug_macro    0x0000000000000000      0xec2
+.debug_macro    0x0000000000000000     0x11c8
  .debug_macro   0x0000000000000000       0x75 ./src/systick/DR_SysTick.o
  .debug_macro   0x0000000000000075      0xaa8 ./src/systick/DR_SysTick.o
  .debug_macro   0x0000000000000b1d       0x1c ./src/systick/DR_SysTick.o
@@ -615,34 +612,49 @@ OUTPUT(DisplaySegmentos.axf elf32-littlearm)
  .debug_macro   0x0000000000000d29       0x16 ./src/systick/DR_SysTick.o
  .debug_macro   0x0000000000000d3f       0x29 ./src/pll/DR_PLL.o
  .debug_macro   0x0000000000000d68       0x29 ./src/gpio/DR_GPIO.o
- .debug_macro   0x0000000000000d91       0x29 ./src/Temporizadores/PR_Temporizadores.o
- .debug_macro   0x0000000000000dba       0x4f ./src/ADC/DR_ADC.o
- .debug_macro   0x0000000000000e09       0x9c ./src/DisplaySegmentos.o
- .debug_macro   0x0000000000000ea5       0x1d ./src/cr_startup_lpc175x_6x.o
+ .debug_macro   0x0000000000000d91       0x67 ./src/Temporizadores/AP_Temporizadores.o
+ .debug_macro   0x0000000000000df8       0xd6 ./src/Temporizadores/AP_Temporizadores.o
+ .debug_macro   0x0000000000000ece       0x4c ./src/Temporizadores/AP_Temporizadores.o
+ .debug_macro   0x0000000000000f1a       0x8e ./src/Temporizadores/AP_Temporizadores.o
+ .debug_macro   0x0000000000000fa8       0x29 ./src/Temporizadores/PR_Temporizadores.o
+ .debug_macro   0x0000000000000fd1       0x84 ./src/Display/DR_Display.o
+ .debug_macro   0x0000000000001055       0x6b ./src/Display/PR_Display.o
+ .debug_macro   0x00000000000010c0       0x4f ./src/ADC/DR_ADC.o
+ .debug_macro   0x000000000000110f       0x9c ./src/DisplaySegmentos.o
+ .debug_macro   0x00000000000011ab       0x1d ./src/cr_startup_lpc175x_6x.o
 
-.debug_line     0x0000000000000000     0x11a3
- .debug_line    0x0000000000000000      0x297 ./src/systick/DR_SysTick.o
- .debug_line    0x0000000000000297      0x199 ./src/pll/DR_PLL.o
- .debug_line    0x0000000000000430      0x26c ./src/gpio/DR_GPIO.o
- .debug_line    0x000000000000069c      0x2b7 ./src/Temporizadores/PR_Temporizadores.o
- .debug_line    0x0000000000000953      0x225 ./src/ADC/DR_ADC.o
- .debug_line    0x0000000000000b78      0x4cc ./src/DisplaySegmentos.o
- .debug_line    0x0000000000001044      0x15f ./src/cr_startup_lpc175x_6x.o
+.debug_line     0x0000000000000000     0x1fe8
+ .debug_line    0x0000000000000000      0x2eb ./src/systick/DR_SysTick.o
+ .debug_line    0x00000000000002eb      0x199 ./src/pll/DR_PLL.o
+ .debug_line    0x0000000000000484      0x26c ./src/gpio/DR_GPIO.o
+ .debug_line    0x00000000000006f0      0x37a ./src/Temporizadores/AP_Temporizadores.o
+ .debug_line    0x0000000000000a6a      0x2b7 ./src/Temporizadores/PR_Temporizadores.o
+ .debug_line    0x0000000000000d21      0x4f6 ./src/Display/DR_Display.o
+ .debug_line    0x0000000000001217      0x2f5 ./src/Display/PR_Display.o
+ .debug_line    0x000000000000150c      0x279 ./src/ADC/DR_ADC.o
+ .debug_line    0x0000000000001785      0x704 ./src/DisplaySegmentos.o
+ .debug_line    0x0000000000001e89      0x15f ./src/cr_startup_lpc175x_6x.o
 
-.debug_str      0x0000000000000000     0x3fce
- .debug_str     0x0000000000000000     0x386c ./src/systick/DR_SysTick.o
-                                       0x38f3 (size before relaxing)
- .debug_str     0x000000000000386c       0x23 ./src/pll/DR_PLL.o
+.debug_str      0x0000000000000000     0x416f
+ .debug_str     0x0000000000000000     0x3896 ./src/systick/DR_SysTick.o
+                                       0x391d (size before relaxing)
+ .debug_str     0x0000000000003896       0x54 ./src/pll/DR_PLL.o
                                        0x33bc (size before relaxing)
- .debug_str     0x000000000000388f       0x8f ./src/gpio/DR_GPIO.o
+ .debug_str     0x00000000000038ea       0x8f ./src/gpio/DR_GPIO.o
                                        0x2f9e (size before relaxing)
- .debug_str     0x000000000000391e       0x91 ./src/Temporizadores/PR_Temporizadores.o
+ .debug_str     0x0000000000003979      0x46f ./src/Temporizadores/AP_Temporizadores.o
+                                       0x3443 (size before relaxing)
+ .debug_str     0x0000000000003de8       0x91 ./src/Temporizadores/PR_Temporizadores.o
                                        0x2fbb (size before relaxing)
- .debug_str     0x00000000000039af       0x63 ./src/ADC/DR_ADC.o
-                                       0x36c1 (size before relaxing)
- .debug_str     0x0000000000003a12      0x3f6 ./src/DisplaySegmentos.o
-                                       0x3c2f (size before relaxing)
- .debug_str     0x0000000000003e08      0x1c6 ./src/cr_startup_lpc175x_6x.o
+ .debug_str     0x0000000000003e79       0x6d ./src/Display/DR_Display.o
+                                       0x340f (size before relaxing)
+ .debug_str     0x0000000000003ee6       0x38 ./src/Display/PR_Display.o
+                                       0x3261 (size before relaxing)
+ .debug_str     0x0000000000003f1e       0x63 ./src/ADC/DR_ADC.o
+                                       0x36eb (size before relaxing)
+ .debug_str     0x0000000000003f81       0x28 ./src/DisplaySegmentos.o
+                                       0x3c59 (size before relaxing)
+ .debug_str     0x0000000000003fa9      0x1c6 ./src/cr_startup_lpc175x_6x.o
                                        0x2fc9 (size before relaxing)
 
 .comment        0x0000000000000000       0x79
@@ -650,7 +662,10 @@ OUTPUT(DisplaySegmentos.axf elf32-littlearm)
                                          0x7a (size before relaxing)
  .comment       0x0000000000000079       0x7a ./src/pll/DR_PLL.o
  .comment       0x0000000000000079       0x7a ./src/gpio/DR_GPIO.o
+ .comment       0x0000000000000079       0x7a ./src/Temporizadores/AP_Temporizadores.o
  .comment       0x0000000000000079       0x7a ./src/Temporizadores/PR_Temporizadores.o
+ .comment       0x0000000000000079       0x7a ./src/Display/DR_Display.o
+ .comment       0x0000000000000079       0x7a ./src/Display/PR_Display.o
  .comment       0x0000000000000079       0x7a ./src/ADC/DR_ADC.o
  .comment       0x0000000000000079       0x7a ./src/DisplaySegmentos.o
  .comment       0x0000000000000079       0x7a ./src/cr_startup_lpc175x_6x.o
@@ -665,31 +680,42 @@ OUTPUT(DisplaySegmentos.axf elf32-littlearm)
  .ARM.attributes
                 0x000000000000005a       0x2d ./src/gpio/DR_GPIO.o
  .ARM.attributes
-                0x0000000000000087       0x2d ./src/Temporizadores/PR_Temporizadores.o
+                0x0000000000000087       0x2d ./src/Temporizadores/AP_Temporizadores.o
  .ARM.attributes
-                0x00000000000000b4       0x2d ./src/ADC/DR_ADC.o
+                0x00000000000000b4       0x2d ./src/Temporizadores/PR_Temporizadores.o
  .ARM.attributes
-                0x00000000000000e1       0x2d ./src/DisplaySegmentos.o
+                0x00000000000000e1       0x2d ./src/Display/DR_Display.o
  .ARM.attributes
-                0x000000000000010e       0x2d ./src/cr_startup_lpc175x_6x.o
+                0x000000000000010e       0x2d ./src/Display/PR_Display.o
  .ARM.attributes
-                0x000000000000013b       0x2d /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+                0x000000000000013b       0x2d ./src/ADC/DR_ADC.o
+ .ARM.attributes
+                0x0000000000000168       0x2d ./src/DisplaySegmentos.o
+ .ARM.attributes
+                0x0000000000000195       0x2d ./src/cr_startup_lpc175x_6x.o
+ .ARM.attributes
+                0x00000000000001c2       0x2d /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 
-.debug_frame    0x0000000000000000      0x534
+.debug_frame    0x0000000000000000      0x6a4
  .debug_frame   0x0000000000000000       0x4c ./src/systick/DR_SysTick.o
  .debug_frame   0x000000000000004c       0x30 ./src/pll/DR_PLL.o
  .debug_frame   0x000000000000007c      0x124 ./src/gpio/DR_GPIO.o
- .debug_frame   0x00000000000001a0      0x148 ./src/Temporizadores/PR_Temporizadores.o
- .debug_frame   0x00000000000002e8       0x94 ./src/ADC/DR_ADC.o
- .debug_frame   0x000000000000037c       0x48 ./src/DisplaySegmentos.o
- .debug_frame   0x00000000000003c4      0x170 ./src/cr_startup_lpc175x_6x.o
+ .debug_frame   0x00000000000001a0       0x88 ./src/Temporizadores/AP_Temporizadores.o
+ .debug_frame   0x0000000000000228      0x148 ./src/Temporizadores/PR_Temporizadores.o
+ .debug_frame   0x0000000000000370       0x6c ./src/Display/DR_Display.o
+ .debug_frame   0x00000000000003dc       0x78 ./src/Display/PR_Display.o
+ .debug_frame   0x0000000000000454       0x94 ./src/ADC/DR_ADC.o
+ .debug_frame   0x00000000000004e8       0x4c ./src/DisplaySegmentos.o
+ .debug_frame   0x0000000000000534      0x170 ./src/cr_startup_lpc175x_6x.o
 
 Cross Reference Table
 
 Symbol                                            File
 ADC_IRQHandler                                    ./src/ADC/DR_ADC.o
 ADC_get_average                                   ./src/ADC/DR_ADC.o
+                                                  ./src/DisplaySegmentos.o
 ADC_init                                          ./src/ADC/DR_ADC.o
+                                                  ./src/DisplaySegmentos.o
 ADC_start_conversion                              ./src/ADC/DR_ADC.o
                                                   ./src/systick/DR_SysTick.o
 AagarRGB                                          ./src/DisplaySegmentos.o
@@ -707,6 +733,7 @@ CRP_WORD                                          ./src/crp.o
 DMA_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
 DebugMon_Handler                                  ./src/cr_startup_lpc175x_6x.o
 Display                                           ./src/Display/PR_Display.o
+                                                  ./src/DisplaySegmentos.o
 Display1                                          ./src/Display/PR_Display.o
 EINT0_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
 EINT1_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
@@ -730,8 +757,10 @@ InicializarPLL                                    ./src/pll/DR_PLL.o
                                                   ./src/DisplaySegmentos.o
                                                   ./src/Inicializacion/DR_Inicializacion.o
 InicializarSysTick                                ./src/systick/DR_SysTick.o
+                                                  ./src/DisplaySegmentos.o
                                                   ./src/Inicializacion/DR_Inicializacion.o
 IniciarDisplay                                    ./src/Display/DR_Display.o
+                                                  ./src/DisplaySegmentos.o
 IntDefaultHandler                                 ./src/cr_startup_lpc175x_6x.o
 MCPWM_IRQHandler                                  ./src/cr_startup_lpc175x_6x.o
 MSG_DSP                                           ./src/Display/DR_Display.o
@@ -771,6 +800,7 @@ TimerClose                                        ./src/Temporizadores/PR_Tempor
 TimerDescount                                     ./src/Temporizadores/PR_Temporizadores.o
                                                   ./src/systick/DR_SysTick.o
 TimerEvent                                        ./src/Temporizadores/PR_Temporizadores.o
+                                                  ./src/DisplaySegmentos.o
 TimerGet                                          ./src/Temporizadores/PR_Temporizadores.o
 TimerPause                                        ./src/Temporizadores/PR_Temporizadores.o
 TimerSet                                          ./src/Temporizadores/PR_Temporizadores.o

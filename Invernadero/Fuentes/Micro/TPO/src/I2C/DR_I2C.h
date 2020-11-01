@@ -33,6 +33,7 @@
 #define BUFSIZE             64
 #define TRUE				1
 #define FALSE				0
+#define I2C_PORT_NUM        3
 
 #define I2C_IDLE              0
 #define I2C_STARTED           1
@@ -47,47 +48,67 @@
 #define I2C_ARBITRATION_LOST  10
 #define I2C_TIME_OUT          11
 #define I2C_OK                12
+
+#define I2CONSET_I2EN       (0x1<<6)  /* I2C Control Set Register */
+#define I2CONSET_AA         (0x1<<2)
+#define I2CONSET_SI         (0x1<<3)
+#define I2CONSET_STO        (0x1<<4)
+#define I2CONSET_STA        (0x1<<5)
+
+#define I2CONCLR_AAC        (0x1<<2)  /* I2C Control clear Register */
+#define I2CONCLR_SIC        (0x1<<3)
+#define I2CONCLR_STAC       (0x1<<5)
+#define I2CONCLR_I2ENC      (0x1<<6)
 /***********************************************************************************************************************************
  *** MACROS GLOBALES
  **********************************************************************************************************************************/
-#define			ISER0		(*(uint32_t *)(0xE000E100))
+#define	ISER0 (*(uint32_t *)0xE000E100UL)
 
-#define I2C ((I2C_t*)0x4001C000)
-
-#define I2CONSET		I2C->_I2CONSET
-#define I2STAT			I2C->_I2STAT
-#define I2DAT			I2C->_I2DAT
-#define I2ADR0			I2C->_I2ADR0
-#define I2SCLH			I2C->_I2SCLH
-#define I2SCLL			I2C->_I2SCLL
-#define I2CONCLR		I2C->_I2CONCLR
-#define I2MMCTRL		I2C->_I2MMCTRL
-#define I2DATA_BUFFER	I2C->_I2DATA_BUFFER
-#define I2ADR1			I2C->_I2ADR1
-#define I2ADR2			I2C->_I2ADR2
-#define I2ADR3			I2C->_I2ADR3
-#define I2MASK0			I2C->_I2MASK0
-#define I2MASK1			I2C->_I2MASK1
-#define I2MASK2			I2C->_I2MASK2
-#define I2MASK3			I2C->_I2MASK3
-
-//#define 	SYSTICK		( (systick_t *) 0xE000E010UL )
-//
-//#define		STCTRL		SYSTICK->_STCTRL
-//
-//	#define	ENABLE			SYSTICK->bits._ENABLE
-//	#define	TICKINT			SYSTICK->bits._TICKINT
-//	#define	CLKSOURCE		SYSTICK->bits._CLKSOURCE
-//	#define	COUNTFLAG		SYSTICK->bits._COUNTFLAG
-//
-//#define		STRELOAD	SYSTICK->_STRELOAD
-//#define		STCURR		SYSTICK->_STCURR
-//#define		STCALIB		SYSTICK->_STCALIB
-
+#define I2C0 ((I2C_t*)0x4001C000UL)
+#define I2C1 ((I2C_t*)0x4005C000UL)
+#define I2C2 ((I2C_t*)0x400A0000UL)
 
 /***********************************************************************************************************************************
  *** TIPO DE DATOS GLOBALES
  **********************************************************************************************************************************/
+typedef struct
+{
+  __RW uint32_t CONSET;                     /*!< Offset: 0x000 (R/W)  I2C Control Set Register */
+  __R  uint32_t STAT;                       /*!< Offset: 0x004 (R/ )  I2C Status Register */
+  __RW uint32_t DAT;                        /*!< Offset: 0x008 (R/W)  I2C Data Register */
+  __RW uint32_t ADR0;                       /*!< Offset: 0x00C (R/W)  I2C Slave Address Register 0 */
+  __RW uint32_t SCLH;                       /*!< Offset: 0x010 (R/W)  SCH Duty Cycle Register High Half Word */
+  __RW uint32_t SCLL;                       /*!< Offset: 0x014 (R/W)  SCL Duty Cycle Register Low Half Word */
+  __RW uint32_t CONCLR;                     /*!< Offset: 0x018 (R/W)  I2C Control Clear Register */
+  __RW uint32_t MMCTRL;                     /*!< Offset: 0x01C (R/W)  Monitor mode control register */
+  __RW uint32_t ADR1;                       /*!< Offset: 0x020 (R/W)  I2C Slave Address Register 1 */
+  __RW uint32_t ADR2;                       /*!< Offset: 0x024 (R/W)  I2C Slave Address Register 2 */
+  __RW uint32_t ADR3;                       /*!< Offset: 0x028 (R/W)  I2C Slave Address Register 3 */
+  __R  uint32_t DATA_BUFFER;                /*!< Offset: 0x02C (R/ )  Data buffer Register */
+  __RW uint32_t MASK0;                      /*!< Offset: 0x030 (R/W)  I2C Slave address mask register 0 */
+  __RW uint32_t MASK1;                      /*!< Offset: 0x034 (R/W)  I2C Slave address mask register 1 */
+  __RW uint32_t MASK2;                      /*!< Offset: 0x038 (R/W)  I2C Slave address mask register 2 */
+  __RW uint32_t MASK3;                      /*!< Offset: 0x03C (R/W)  I2C Slave address mask register 3 */
+} I2C_t;
+
+
+
+/***********************************************************************************************************************************
+ *** VARIABLES GLOBALES
+ **********************************************************************************************************************************/
+// extern type nombreVariable;
+static I2C_t* I2C[3] = { I2C0, I2C1, I2C2 };
+
+/***********************************************************************************************************************************
+ *** PROTOTIPOS DE FUNCIONES GLOBALES
+ **********************************************************************************************************************************/
+void Init_I2C1(void);
+uint8_t I2CStop( uint32_t portNum );
+uint8_t I2CEngine();
+uint32_t I2CStart( uint32_t portNum );
+extern void I2C1_IRQHandler( void );
+
+/*
 typedef struct
 {
 	struct
@@ -99,39 +120,39 @@ typedef struct
 		__RW uint32_t STA:1;  //START flag
 		__RW uint32_t I2EN:1; //I2C interface enable
 		__RW uint32_t RESERVED1:25;
-	}_I2CONSET;//I2C Control Set Register
+	}_I2CCONSET;//I2C Control Set Register
 
 	struct
 	{
 		__RW uint32_t UNUSED:3;
-		__RW uint32_t STATUS:5;//Actual status information about the I2C interface
+		__W uint32_t  STATUS:5;//Actual status information about the I2C interface
 		__RW uint32_t RESERVED0:24;
-	}_I2STAT;
+	}_I2CSTAT;
 
 	struct
 	{
 		__RW uint32_t DATA:8; //Data to be received or transmitted
 		__RW uint32_t RESERVED0:24;
-	}_I2DAT;
+	}_I2CDAT;
 
 	struct
 	{
 		__RW uint32_t GC:1; // General Call enable bit.
 		__RW uint32_t ADDRESS:7;// The I2C device address for slave mode.
 		__RW uint32_t RESERVED0:24;
-	}_I2ADR0;//Contains the 7-bit slave address
+	}_I2CADR0;//Contains the 7-bit slave address
 
 	struct
 	{
 		__RW uint16_t SCLH:16;// Count for SCL HIGH time period selection.
 		__RW uint16_t RESERVED0:16;
-	}_I2SCLH;
+	}_I2CSCLH;
 
 	struct
 	{
 		__RW uint16_t SCLL:16;// Count for SCL HIGH time period selection.
 		__RW uint16_t RESERVED0:16;
-	}_I2SCLL;
+	}_I2CSCLL;
 
 	struct
 	{
@@ -143,7 +164,7 @@ typedef struct
 		__RW uint32_t I2ENC:1;      //I2C interface Disable bit.le
 		__RW uint32_t RESERVED2:25;
 
-	}_I2CONCLR;
+	}_I2CCONCLR;
 
 	struct
 	{
@@ -151,7 +172,7 @@ typedef struct
 		__RW uint32_t ENA_SCL:1;//Actual status information about the I2C interface
 		__RW uint32_t MATCH_ALL:24;
 		__RW uint32_t RESERVED0:24;
-	}_I2MMCTRL;
+	}_I2CMMCTRL;
 
 	__RW uint32_t _I2ADR1;//Contains the 7-bit slave address
 	__RW uint32_t _I2ADR2;//Contains the 7-bit slave address
@@ -161,7 +182,7 @@ typedef struct
 	{
 		__RW uint32_t DATA:8; //Data to be received or transmitted
 		__RW uint32_t RESERVED0:24;
-	}_I2DATA_BUFFER;;
+	}_I2CDATA_BUFFER;;
 
 	__RW uint32_t _I2MASK0;//Mask register associated with I2ADR0
 	__RW uint32_t _I2MASK1;//Mask register associated with I2ADR1
@@ -169,19 +190,6 @@ typedef struct
 	__RW uint32_t _I2MASK3;//Mask register associated with I2ADR3
 }I2C_t;
 
-
-/***********************************************************************************************************************************
- *** VARIABLES GLOBALES
- **********************************************************************************************************************************/
-// extern type nombreVariable;
-
-/***********************************************************************************************************************************
- *** PROTOTIPOS DE FUNCIONES GLOBALES
- **********************************************************************************************************************************/
-void Init_I2C1(void);
-void ClearFlags(void);
-uint8_t I2CStop( void );
-uint8_t I2CEngine();
-extern void I2C1_IRQHandler( void );
+*/
 
 #endif /* I2C_DR_I2C_H_ */
