@@ -8,6 +8,12 @@
 #define BMP280_PR_BMP280_H_
 
 
+#include "DR_I2C.h"
+#include "tipos.h"
+#include "bmp280_defs.h"
+
+#define CANT_DATA_REGS 6
+#define CANT_CALIB_PARAMS 25
 #define BMP280_ADDR 0x77
 #define RD_BIT 0x01
 #define WR_BIT 0x00
@@ -26,6 +32,20 @@
 #define MIN_OSRS_T (0x01 << 5)
 #define MIN_OSRS_P (0x01 << 2)
 
-void BMP280Config(void);
+void BMP280_init(uint32_t portNum);
+void BMP280_get_calib_data(uint32_t portNum);
+void BMP280_get_meas_values(uint32_t portNum);
+void BMP280_set_params(uint32_t portNum);
+
+void BMP280_get_measure(uint8_t * data);
+void bmp280_get_uncomp_data(struct bmp280_uncomp_data *uncomp_data, uint8_t * data);
+
+void get_comp_temp(int32_t *comp_temp, int32_t uncomp_temp, struct bmp280_dev *dev);
+void get_comp_pres(uint32_t *comp_pres, uint32_t uncomp_pres, const struct bmp280_dev *dev);
+
+int32_t get_temp(void);
+uint32_t get_pres(void);
+
+void set_calib_param(struct bmp280_dev *dev);
 
 #endif /* BMP280_PR_BMP280_H_ */

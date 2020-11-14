@@ -93,6 +93,11 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
  .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
  .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
+ .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
+ .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
+ .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
+ .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
+ .group         0x0000000000000000        0xc ./src/I2C/DR_I2C.o
  .text          0x0000000000000000        0x0 ./src/I2C/DR_I2C.o
  .data          0x0000000000000000        0x0 ./src/I2C/DR_I2C.o
  .bss           0x0000000000000000        0x0 ./src/I2C/DR_I2C.o
@@ -102,8 +107,8 @@ Discarded input sections
  .bss.WrIndex0  0x0000000000000000        0x4 ./src/I2C/DR_I2C.o
  .bss.WrIndex2  0x0000000000000000        0x4 ./src/I2C/DR_I2C.o
  .text.I2CStop  0x0000000000000000       0x44 ./src/I2C/DR_I2C.o
- .text.I2CEngine
-                0x0000000000000000       0x88 ./src/I2C/DR_I2C.o
+ .text.I2CStart
+                0x0000000000000000       0x78 ./src/I2C/DR_I2C.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/I2C/DR_I2C.o
  .debug_macro   0x0000000000000000       0x1c ./src/I2C/DR_I2C.o
  .debug_macro   0x0000000000000000       0x5e ./src/I2C/DR_I2C.o
@@ -146,17 +151,26 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
  .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
  .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
+ .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
+ .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
+ .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
+ .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
+ .group         0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
  .text          0x0000000000000000        0x0 ./src/BMP280/PR_BMP280.o
  .data          0x0000000000000000        0x0 ./src/BMP280/PR_BMP280.o
  .bss           0x0000000000000000        0x0 ./src/BMP280/PR_BMP280.o
- .data.I2C      0x0000000000000000        0xc ./src/BMP280/PR_BMP280.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/BMP280/PR_BMP280.o
- .debug_macro   0x0000000000000000       0x58 ./src/BMP280/PR_BMP280.o
  .debug_macro   0x0000000000000000       0x1c ./src/BMP280/PR_BMP280.o
  .debug_macro   0x0000000000000000       0x5e ./src/BMP280/PR_BMP280.o
  .debug_macro   0x0000000000000000      0x112 ./src/BMP280/PR_BMP280.o
  .debug_macro   0x0000000000000000       0xd6 ./src/BMP280/PR_BMP280.o
  .debug_macro   0x0000000000000000       0xca ./src/BMP280/PR_BMP280.o
+ .debug_macro   0x0000000000000000       0x10 ./src/BMP280/PR_BMP280.o
+ .debug_macro   0x0000000000000000      0x12e ./src/BMP280/PR_BMP280.o
+ .debug_macro   0x0000000000000000      0x5b8 ./src/BMP280/PR_BMP280.o
+ .debug_macro   0x0000000000000000       0x16 ./src/BMP280/PR_BMP280.o
+ .debug_macro   0x0000000000000000      0x4a5 ./src/BMP280/PR_BMP280.o
+ .debug_macro   0x0000000000000000       0x5e ./src/BMP280/PR_BMP280.o
  .group         0x0000000000000000        0xc ./src/cr_startup_lpc175x_6x.o
  .text          0x0000000000000000        0x0 ./src/cr_startup_lpc175x_6x.o
  .data          0x0000000000000000        0x0 ./src/cr_startup_lpc175x_6x.o
@@ -189,13 +203,22 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./src/main.o
  .group         0x0000000000000000        0xc ./src/main.o
  .group         0x0000000000000000        0xc ./src/main.o
+ .group         0x0000000000000000        0xc ./src/main.o
+ .group         0x0000000000000000        0xc ./src/main.o
+ .group         0x0000000000000000        0xc ./src/main.o
+ .group         0x0000000000000000        0xc ./src/main.o
+ .group         0x0000000000000000        0xc ./src/main.o
  .text          0x0000000000000000        0x0 ./src/main.o
  .data          0x0000000000000000        0x0 ./src/main.o
  .bss           0x0000000000000000        0x0 ./src/main.o
- .data.I2C      0x0000000000000000        0xc ./src/main.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/main.o
  .debug_macro   0x0000000000000000       0x1c ./src/main.o
- .debug_macro   0x0000000000000000       0x58 ./src/main.o
+ .debug_macro   0x0000000000000000       0x10 ./src/main.o
+ .debug_macro   0x0000000000000000      0x12e ./src/main.o
+ .debug_macro   0x0000000000000000      0x5b8 ./src/main.o
+ .debug_macro   0x0000000000000000       0x16 ./src/main.o
+ .debug_macro   0x0000000000000000      0x4a5 ./src/main.o
+ .debug_macro   0x0000000000000000       0x5e ./src/main.o
  .debug_macro   0x0000000000000000       0x5e ./src/main.o
  .debug_macro   0x0000000000000000      0x112 ./src/main.o
  .debug_macro   0x0000000000000000       0xd6 ./src/main.o
@@ -247,7 +270,7 @@ END GROUP
                 0x0000000020084000                __top_RamAHB32 = 0x20084000
                 0x0000000020084000                __top_RAM2 = 0x20084000
 
-.text           0x0000000000000000     0x1038
+.text           0x0000000000000000     0x15e4
  FILL mask 0xff
                 0x0000000000000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -256,16 +279,16 @@ END GROUP
                 0x00000000000000cc                . = ALIGN (0x4)
                 0x00000000000000cc                __section_table_start = .
                 0x00000000000000cc                __data_section_table = .
-                0x00000000000000cc        0x4 LONG 0x1038 LOADADDR (.data)
+                0x00000000000000cc        0x4 LONG 0x15e4 LOADADDR (.data)
                 0x00000000000000d0        0x4 LONG 0x10000000 ADDR (.data)
                 0x00000000000000d4        0x4 LONG 0x18 SIZEOF (.data)
-                0x00000000000000d8        0x4 LONG 0x1038 LOADADDR (.data_RAM2)
+                0x00000000000000d8        0x4 LONG 0x15e4 LOADADDR (.data_RAM2)
                 0x00000000000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x00000000000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x00000000000000e4                __data_section_table_end = .
                 0x00000000000000e4                __bss_section_table = .
                 0x00000000000000e4        0x4 LONG 0x10000018 ADDR (.bss)
-                0x00000000000000e8        0x4 LONG 0x3d0 SIZEOF (.bss)
+                0x00000000000000e8        0x4 LONG 0x3fc SIZEOF (.bss)
                 0x00000000000000ec        0x4 LONG 0x2007c000 ADDR (.bss_RAM2)
                 0x00000000000000f0        0x4 LONG 0x0 SIZEOF (.bss_RAM2)
                 0x00000000000000f4                __bss_section_table_end = .
@@ -362,63 +385,94 @@ END GROUP
  .text.I2C1_IRQHandler
                 0x0000000000000868      0x374 ./src/I2C/DR_I2C.o
                 0x0000000000000868                I2C1_IRQHandler
- .text.I2CStart
-                0x0000000000000bdc       0x78 ./src/I2C/DR_I2C.o
-                0x0000000000000bdc                I2CStart
+ .text.I2CEngine
+                0x0000000000000bdc       0x88 ./src/I2C/DR_I2C.o
+                0x0000000000000bdc                I2CEngine
  .text.IniciarDisplay
-                0x0000000000000c54       0x8a ./src/Display/DR_Display.o
-                0x0000000000000c54                IniciarDisplay
- *fill*         0x0000000000000cde        0x2 ff
+                0x0000000000000c64       0x8a ./src/Display/DR_Display.o
+                0x0000000000000c64                IniciarDisplay
+ *fill*         0x0000000000000cee        0x2 ff
  .text.BarridoDisplay
-                0x0000000000000ce0      0x150 ./src/Display/DR_Display.o
-                0x0000000000000ce0                BarridoDisplay
- .text.Apagar   0x0000000000000e30       0x44 ./src/Display/DR_Display.o
-                0x0000000000000e30                Apagar
- .text.Display  0x0000000000000e74       0x5c ./src/Display/PR_Display.o
-                0x0000000000000e74                Display
- .text.BMP280Config
-                0x0000000000000ed0       0x48 ./src/BMP280/PR_BMP280.o
-                0x0000000000000ed0                BMP280Config
- .text.main     0x0000000000000f18       0x88 ./src/main.o
-                0x0000000000000f18                main
+                0x0000000000000cf0      0x150 ./src/Display/DR_Display.o
+                0x0000000000000cf0                BarridoDisplay
+ .text.Apagar   0x0000000000000e40       0x44 ./src/Display/DR_Display.o
+                0x0000000000000e40                Apagar
+ .text.Display  0x0000000000000e84       0x5c ./src/Display/PR_Display.o
+                0x0000000000000e84                Display
+ .text.BMP280_start
+                0x0000000000000ee0       0x28 ./src/BMP280/PR_BMP280.o
+                0x0000000000000ee0                BMP280_start
+ .text.BMP280_get_calib_data
+                0x0000000000000f08       0x7c ./src/BMP280/PR_BMP280.o
+                0x0000000000000f08                BMP280_get_calib_data
+ .text.BMP280_get_meas_values
+                0x0000000000000f84       0x70 ./src/BMP280/PR_BMP280.o
+                0x0000000000000f84                BMP280_get_meas_values
+ .text.BMP280_set_params
+                0x0000000000000ff4       0x68 ./src/BMP280/PR_BMP280.o
+                0x0000000000000ff4                BMP280_set_params
+ .text.BMP280_get_measure
+                0x000000000000105c       0x4c ./src/BMP280/PR_BMP280.o
+                0x000000000000105c                BMP280_get_measure
+ .text.get_temp
+                0x00000000000010a8       0x14 ./src/BMP280/PR_BMP280.o
+                0x00000000000010a8                get_temp
+ .text.get_pres
+                0x00000000000010bc       0x14 ./src/BMP280/PR_BMP280.o
+                0x00000000000010bc                get_pres
+ .text.bmp280_get_uncomp_data
+                0x00000000000010d0       0x56 ./src/BMP280/PR_BMP280.o
+                0x00000000000010d0                bmp280_get_uncomp_data
+ .text.get_comp_temp
+                0x0000000000001126       0xb0 ./src/BMP280/PR_BMP280.o
+                0x0000000000001126                get_comp_temp
+ .text.get_comp_pres
+                0x00000000000011d6      0x1ca ./src/BMP280/PR_BMP280.o
+                0x00000000000011d6                get_comp_pres
+ .text.get_calib_param
+                0x00000000000013a0      0x124 ./src/BMP280/PR_BMP280.o
+                0x00000000000013a0                get_calib_param
+ .text.main     0x00000000000014c4       0x86 ./src/main.o
+                0x00000000000014c4                main
  .text.ApagarLuces
-                0x0000000000000fa0       0x94 ./src/main.o
-                0x0000000000000fa0                ApagarLuces
+                0x000000000000154a       0x94 ./src/main.o
+                0x000000000000154a                ApagarLuces
  .text.__weak_main
-                0x0000000000001034        0x4 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
-                0x0000000000001034                __main
-                0x0000000000001034                __weak_main
+                0x00000000000015de        0x4 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+                0x00000000000015de                __main
+                0x00000000000015de                __weak_main
  *(.rodata .rodata.* .constdata .constdata.*)
-                0x0000000000001038                . = ALIGN (0x4)
+                0x00000000000015e4                . = ALIGN (0x4)
+ *fill*         0x00000000000015e2        0x2 ff
 
-.glue_7         0x0000000000001038        0x0
- .glue_7        0x0000000000001038        0x0 linker stubs
+.glue_7         0x00000000000015e4        0x0
+ .glue_7        0x00000000000015e4        0x0 linker stubs
 
-.glue_7t        0x0000000000001038        0x0
- .glue_7t       0x0000000000001038        0x0 linker stubs
+.glue_7t        0x00000000000015e4        0x0
+ .glue_7t       0x00000000000015e4        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000001038        0x0
- .vfp11_veneer  0x0000000000001038        0x0 linker stubs
+.vfp11_veneer   0x00000000000015e4        0x0
+ .vfp11_veneer  0x00000000000015e4        0x0 linker stubs
 
-.v4_bx          0x0000000000001038        0x0
- .v4_bx         0x0000000000001038        0x0 linker stubs
+.v4_bx          0x00000000000015e4        0x0
+ .v4_bx         0x00000000000015e4        0x0 linker stubs
 
-.iplt           0x0000000000001038        0x0
- .iplt          0x0000000000001038        0x0 ./src/systick/DR_SysTick.o
+.iplt           0x00000000000015e4        0x0
+ .iplt          0x00000000000015e4        0x0 ./src/systick/DR_SysTick.o
 
-.rel.dyn        0x0000000000001038        0x0
- .rel.iplt      0x0000000000001038        0x0 ./src/systick/DR_SysTick.o
+.rel.dyn        0x00000000000015e4        0x0
+ .rel.iplt      0x00000000000015e4        0x0 ./src/systick/DR_SysTick.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x0000000000001038        0x0
-                0x0000000000001038                __exidx_start = .
+.ARM.exidx      0x00000000000015e4        0x0
+                0x00000000000015e4                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000000001038                __exidx_end = .
-                0x0000000000001038                _etext = .
+                0x00000000000015e4                __exidx_end = .
+                0x00000000000015e4                _etext = .
 
-.data_RAM2      0x000000002007c000        0x0 load address 0x0000000000001038
+.data_RAM2      0x000000002007c000        0x0 load address 0x00000000000015e4
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM2 = .)
                 [!provide]                        PROVIDE (__start_data_RamAHB32 = .)
@@ -439,7 +493,7 @@ END GROUP
                 0x0000000010000000                . = ALIGN (0x4)
                 0x0000000010000000                _end_uninit_RESERVED = .
 
-.data           0x0000000010000000       0x18 load address 0x0000000000001038
+.data           0x0000000010000000       0x18 load address 0x00000000000015e4
  FILL mask 0xff
                 0x0000000010000000                _data = .
                 [!provide]                        PROVIDE (__start_data_RAM = .)
@@ -462,7 +516,7 @@ END GROUP
                 [!provide]                        PROVIDE (__end_data_RAM = .)
                 [!provide]                        PROVIDE (__end_data_RamLoc32 = .)
 
-.igot.plt       0x0000000010000018        0x0 load address 0x0000000000001050
+.igot.plt       0x0000000010000018        0x0 load address 0x00000000000015fc
  .igot.plt      0x0000000010000018        0x0 ./src/systick/DR_SysTick.o
 
 .bss_RAM2       0x000000002007c000        0x0
@@ -476,7 +530,7 @@ END GROUP
                 [!provide]                        PROVIDE (__end_bss_RAM2 = .)
                 [!provide]                        PROVIDE (__end_bss_RamAHB32 = .)
 
-.bss            0x0000000010000018      0x3d0
+.bss            0x0000000010000018      0x3fc
                 0x0000000010000018                _bss = .
                 [!provide]                        PROVIDE (__start_bss_RAM = .)
                 [!provide]                        PROVIDE (__start_bss_RamLoc32 = .)
@@ -521,10 +575,18 @@ END GROUP
                 0x00000000100003dc                WrIndex1
  .bss.MSG_DSP   0x00000000100003e0        0x6 ./src/Display/DR_Display.o
                 0x00000000100003e0                MSG_DSP
- *(COMMON)
-                0x00000000100003e8                . = ALIGN (0x4)
  *fill*         0x00000000100003e6        0x2 
-                0x00000000100003e8                _ebss = .
+ .bss.calib_data
+                0x00000000100003e8       0x19 ./src/BMP280/PR_BMP280.o
+ *fill*         0x0000000010000401        0x3 
+ .bss.meas_data
+                0x0000000010000404        0x6 ./src/BMP280/PR_BMP280.o
+ *fill*         0x000000001000040a        0x2 
+ .bss.pres      0x000000001000040c        0x4 ./src/BMP280/PR_BMP280.o
+ .bss.temp      0x0000000010000410        0x4 ./src/BMP280/PR_BMP280.o
+ *(COMMON)
+                0x0000000010000414                . = ALIGN (0x4)
+                0x0000000010000414                _ebss = .
                 [!provide]                        PROVIDE (__end_bss_RAM = .)
                 [!provide]                        PROVIDE (__end_bss_RamLoc32 = .)
                 [!provide]                        PROVIDE (end = .)
@@ -540,52 +602,52 @@ END GROUP
                 [!provide]                        PROVIDE (__end_noinit_RAM2 = .)
                 [!provide]                        PROVIDE (__end_noinit_RamAHB32 = .)
 
-.noinit         0x00000000100003e8        0x0
-                0x00000000100003e8                _noinit = .
+.noinit         0x0000000010000414        0x0
+                0x0000000010000414                _noinit = .
                 [!provide]                        PROVIDE (__start_noinit_RAM = .)
                 [!provide]                        PROVIDE (__start_noinit_RamLoc32 = .)
  *(.noinit*)
-                0x00000000100003e8                . = ALIGN (0x4)
-                0x00000000100003e8                _end_noinit = .
+                0x0000000010000414                . = ALIGN (0x4)
+                0x0000000010000414                _end_noinit = .
                 [!provide]                        PROVIDE (__end_noinit_RAM = .)
                 [!provide]                        PROVIDE (__end_noinit_RamLoc32 = .)
                 [!provide]                        PROVIDE (_pvHeapStart = DEFINED (__user_heap_base)?__user_heap_base:.)
                 0x0000000010008000                PROVIDE (_vStackTop = DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc32 - 0x0))
                 0xffffffffefff74da                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
                 0x0000000000000000                _image_start = LOADADDR (.text)
-                0x0000000000001050                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x0000000000001050                _image_size = (_image_end - _image_start)
+                0x00000000000015fc                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x00000000000015fc                _image_size = (_image_end - _image_start)
 OUTPUT(TPO.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x17a8
+.debug_info     0x0000000000000000     0x1bb5
  .debug_info    0x0000000000000000      0x1dc ./src/systick/DR_SysTick.o
  .debug_info    0x00000000000001dc       0x72 ./src/pll/DR_PLL.o
  .debug_info    0x000000000000024e      0x2e7 ./src/gpio/DR_GPIO.o
  .debug_info    0x0000000000000535      0x18a ./src/Temporizadores/AP_Temporizadores.o
  .debug_info    0x00000000000006bf      0x30b ./src/Temporizadores/PR_Temporizadores.o
  .debug_info    0x00000000000009ca       0x66 ./src/Inicializacion/DR_Inicializacion.o
- .debug_info    0x0000000000000a30      0x3a8 ./src/I2C/DR_I2C.o
- .debug_info    0x0000000000000dd8      0x1ab ./src/Display/DR_Display.o
- .debug_info    0x0000000000000f83      0x195 ./src/Display/PR_Display.o
- .debug_info    0x0000000000001118      0x208 ./src/BMP280/PR_BMP280.o
- .debug_info    0x0000000000001320      0x272 ./src/cr_startup_lpc175x_6x.o
- .debug_info    0x0000000000001592      0x216 ./src/main.o
+ .debug_info    0x0000000000000a30      0x403 ./src/I2C/DR_I2C.o
+ .debug_info    0x0000000000000e33      0x1ab ./src/Display/DR_Display.o
+ .debug_info    0x0000000000000fde      0x195 ./src/Display/PR_Display.o
+ .debug_info    0x0000000000001173      0x664 ./src/BMP280/PR_BMP280.o
+ .debug_info    0x00000000000017d7      0x272 ./src/cr_startup_lpc175x_6x.o
+ .debug_info    0x0000000000001a49      0x16c ./src/main.o
 
-.debug_abbrev   0x0000000000000000      0xaed
+.debug_abbrev   0x0000000000000000      0xbe8
  .debug_abbrev  0x0000000000000000      0x111 ./src/systick/DR_SysTick.o
  .debug_abbrev  0x0000000000000111       0x56 ./src/pll/DR_PLL.o
  .debug_abbrev  0x0000000000000167      0x100 ./src/gpio/DR_GPIO.o
  .debug_abbrev  0x0000000000000267       0xdf ./src/Temporizadores/AP_Temporizadores.o
  .debug_abbrev  0x0000000000000346      0x136 ./src/Temporizadores/PR_Temporizadores.o
  .debug_abbrev  0x000000000000047c       0x47 ./src/Inicializacion/DR_Inicializacion.o
- .debug_abbrev  0x00000000000004c3      0x183 ./src/I2C/DR_I2C.o
- .debug_abbrev  0x0000000000000646       0xda ./src/Display/DR_Display.o
- .debug_abbrev  0x0000000000000720       0xf4 ./src/Display/PR_Display.o
- .debug_abbrev  0x0000000000000814       0xd4 ./src/BMP280/PR_BMP280.o
- .debug_abbrev  0x00000000000008e8      0x117 ./src/cr_startup_lpc175x_6x.o
- .debug_abbrev  0x00000000000009ff       0xee ./src/main.o
+ .debug_abbrev  0x00000000000004c3      0x1a2 ./src/I2C/DR_I2C.o
+ .debug_abbrev  0x0000000000000665       0xda ./src/Display/DR_Display.o
+ .debug_abbrev  0x000000000000073f       0xf4 ./src/Display/PR_Display.o
+ .debug_abbrev  0x0000000000000833      0x1af ./src/BMP280/PR_BMP280.o
+ .debug_abbrev  0x00000000000009e2      0x117 ./src/cr_startup_lpc175x_6x.o
+ .debug_abbrev  0x0000000000000af9       0xef ./src/main.o
 
-.debug_aranges  0x0000000000000000      0x2b0
+.debug_aranges  0x0000000000000000      0x300
  .debug_aranges
                 0x0000000000000000       0x28 ./src/systick/DR_SysTick.o
  .debug_aranges
@@ -605,13 +667,13 @@ OUTPUT(TPO.axf elf32-littlearm)
  .debug_aranges
                 0x00000000000001b8       0x30 ./src/Display/PR_Display.o
  .debug_aranges
-                0x00000000000001e8       0x20 ./src/BMP280/PR_BMP280.o
+                0x00000000000001e8       0x70 ./src/BMP280/PR_BMP280.o
  .debug_aranges
-                0x0000000000000208       0x80 ./src/cr_startup_lpc175x_6x.o
+                0x0000000000000258       0x80 ./src/cr_startup_lpc175x_6x.o
  .debug_aranges
-                0x0000000000000288       0x28 ./src/main.o
+                0x00000000000002d8       0x28 ./src/main.o
 
-.debug_ranges   0x0000000000000000      0x1f0
+.debug_ranges   0x0000000000000000      0x240
  .debug_ranges  0x0000000000000000       0x18 ./src/systick/DR_SysTick.o
  .debug_ranges  0x0000000000000018       0x10 ./src/pll/DR_PLL.o
  .debug_ranges  0x0000000000000028       0x40 ./src/gpio/DR_GPIO.o
@@ -621,11 +683,11 @@ OUTPUT(TPO.axf elf32-littlearm)
  .debug_ranges  0x00000000000000e8       0x30 ./src/I2C/DR_I2C.o
  .debug_ranges  0x0000000000000118       0x20 ./src/Display/DR_Display.o
  .debug_ranges  0x0000000000000138       0x20 ./src/Display/PR_Display.o
- .debug_ranges  0x0000000000000158       0x10 ./src/BMP280/PR_BMP280.o
- .debug_ranges  0x0000000000000168       0x70 ./src/cr_startup_lpc175x_6x.o
- .debug_ranges  0x00000000000001d8       0x18 ./src/main.o
+ .debug_ranges  0x0000000000000158       0x60 ./src/BMP280/PR_BMP280.o
+ .debug_ranges  0x00000000000001b8       0x70 ./src/cr_startup_lpc175x_6x.o
+ .debug_ranges  0x0000000000000228       0x18 ./src/main.o
 
-.debug_macro    0x0000000000000000     0x136d
+.debug_macro    0x0000000000000000     0x201c
  .debug_macro   0x0000000000000000       0x3c ./src/systick/DR_SysTick.o
  .debug_macro   0x000000000000003c      0xaa8 ./src/systick/DR_SysTick.o
  .debug_macro   0x0000000000000ae4       0x1c ./src/systick/DR_SysTick.o
@@ -641,30 +703,35 @@ OUTPUT(TPO.axf elf32-littlearm)
  .debug_macro   0x0000000000000ecb       0x8e ./src/Temporizadores/AP_Temporizadores.o
  .debug_macro   0x0000000000000f59       0x29 ./src/Temporizadores/PR_Temporizadores.o
  .debug_macro   0x0000000000000f82       0x3c ./src/Inicializacion/DR_Inicializacion.o
- .debug_macro   0x0000000000000fbe       0x69 ./src/I2C/DR_I2C.o
- .debug_macro   0x0000000000001027       0x58 ./src/I2C/DR_I2C.o
- .debug_macro   0x000000000000107f       0xca ./src/I2C/DR_I2C.o
- .debug_macro   0x0000000000001149       0x84 ./src/Display/DR_Display.o
- .debug_macro   0x00000000000011cd       0x6b ./src/Display/PR_Display.o
- .debug_macro   0x0000000000001238       0x73 ./src/BMP280/PR_BMP280.o
- .debug_macro   0x00000000000012ab       0x1d ./src/cr_startup_lpc175x_6x.o
- .debug_macro   0x00000000000012c8       0xa5 ./src/main.o
+ .debug_macro   0x0000000000000fbe       0xc0 ./src/I2C/DR_I2C.o
+ .debug_macro   0x000000000000107e       0x10 ./src/I2C/DR_I2C.o
+ .debug_macro   0x000000000000108e      0x12e ./src/I2C/DR_I2C.o
+ .debug_macro   0x00000000000011bc      0x5b8 ./src/I2C/DR_I2C.o
+ .debug_macro   0x0000000000001774       0x16 ./src/I2C/DR_I2C.o
+ .debug_macro   0x000000000000178a      0x4a5 ./src/I2C/DR_I2C.o
+ .debug_macro   0x0000000000001c2f       0x5e ./src/I2C/DR_I2C.o
+ .debug_macro   0x0000000000001c8d       0xca ./src/I2C/DR_I2C.o
+ .debug_macro   0x0000000000001d57       0x84 ./src/Display/DR_Display.o
+ .debug_macro   0x0000000000001ddb       0x6b ./src/Display/PR_Display.o
+ .debug_macro   0x0000000000001e46       0xc6 ./src/BMP280/PR_BMP280.o
+ .debug_macro   0x0000000000001f0c       0x1d ./src/cr_startup_lpc175x_6x.o
+ .debug_macro   0x0000000000001f29       0xf3 ./src/main.o
 
-.debug_line     0x0000000000000000     0x2518
+.debug_line     0x0000000000000000     0x2d01
  .debug_line    0x0000000000000000      0x1b7 ./src/systick/DR_SysTick.o
  .debug_line    0x00000000000001b7      0x199 ./src/pll/DR_PLL.o
  .debug_line    0x0000000000000350      0x26c ./src/gpio/DR_GPIO.o
  .debug_line    0x00000000000005bc      0x346 ./src/Temporizadores/AP_Temporizadores.o
  .debug_line    0x0000000000000902      0x2b7 ./src/Temporizadores/PR_Temporizadores.o
  .debug_line    0x0000000000000bb9      0x134 ./src/Inicializacion/DR_Inicializacion.o
- .debug_line    0x0000000000000ced      0x5d2 ./src/I2C/DR_I2C.o
- .debug_line    0x00000000000012bf      0x4a8 ./src/Display/DR_Display.o
- .debug_line    0x0000000000001767      0x2db ./src/Display/PR_Display.o
- .debug_line    0x0000000000001a42      0x3fa ./src/BMP280/PR_BMP280.o
- .debug_line    0x0000000000001e3c      0x15f ./src/cr_startup_lpc175x_6x.o
- .debug_line    0x0000000000001f9b      0x57d ./src/main.o
+ .debug_line    0x0000000000000ced      0x785 ./src/I2C/DR_I2C.o
+ .debug_line    0x0000000000001472      0x4a8 ./src/Display/DR_Display.o
+ .debug_line    0x000000000000191a      0x2db ./src/Display/PR_Display.o
+ .debug_line    0x0000000000001bf5      0x8d0 ./src/BMP280/PR_BMP280.o
+ .debug_line    0x00000000000024c5      0x15f ./src/cr_startup_lpc175x_6x.o
+ .debug_line    0x0000000000002624      0x6dd ./src/main.o
 
-.debug_str      0x0000000000000000     0x43f5
+.debug_str      0x0000000000000000     0x75b7
  .debug_str     0x0000000000000000     0x3080 ./src/systick/DR_SysTick.o
                                        0x3107 (size before relaxing)
  .debug_str     0x0000000000003080      0x55b ./src/pll/DR_PLL.o
@@ -677,18 +744,18 @@ OUTPUT(TPO.axf elf32-littlearm)
                                        0x2fd8 (size before relaxing)
  .debug_str     0x0000000000003bf6       0x3d ./src/Inicializacion/DR_Inicializacion.o
                                        0x3508 (size before relaxing)
- .debug_str     0x0000000000003c33      0x4e9 ./src/I2C/DR_I2C.o
-                                       0x3b97 (size before relaxing)
- .debug_str     0x000000000000411c       0x6d ./src/Display/DR_Display.o
+ .debug_str     0x0000000000003c33     0x34aa ./src/I2C/DR_I2C.o
+                                       0x6b99 (size before relaxing)
+ .debug_str     0x00000000000070dd       0x6d ./src/Display/DR_Display.o
                                        0x3402 (size before relaxing)
- .debug_str     0x0000000000004189       0x38 ./src/Display/PR_Display.o
+ .debug_str     0x000000000000714a       0x38 ./src/Display/PR_Display.o
                                        0x3254 (size before relaxing)
- .debug_str     0x00000000000041c1       0x3c ./src/BMP280/PR_BMP280.o
-                                       0x3b14 (size before relaxing)
- .debug_str     0x00000000000041fd      0x1c6 ./src/cr_startup_lpc175x_6x.o
+ .debug_str     0x0000000000007182      0x232 ./src/BMP280/PR_BMP280.o
+                                       0x6d06 (size before relaxing)
+ .debug_str     0x00000000000073b4      0x1c6 ./src/cr_startup_lpc175x_6x.o
                                        0x2fe6 (size before relaxing)
- .debug_str     0x00000000000043c3       0x32 ./src/main.o
-                                       0x3d7c (size before relaxing)
+ .debug_str     0x000000000000757a       0x3d ./src/main.o
+                                       0x6d1e (size before relaxing)
 
 .comment        0x0000000000000000       0x79
  .comment       0x0000000000000000       0x79 ./src/systick/DR_SysTick.o
@@ -735,7 +802,7 @@ OUTPUT(TPO.axf elf32-littlearm)
  .ARM.attributes
                 0x000000000000021c       0x2d /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 
-.debug_frame    0x0000000000000000      0x738
+.debug_frame    0x0000000000000000      0x8b0
  .debug_frame   0x0000000000000000       0x4c ./src/systick/DR_SysTick.o
  .debug_frame   0x000000000000004c       0x30 ./src/pll/DR_PLL.o
  .debug_frame   0x000000000000007c      0x124 ./src/gpio/DR_GPIO.o
@@ -745,9 +812,9 @@ OUTPUT(TPO.axf elf32-littlearm)
  .debug_frame   0x000000000000039c       0xcc ./src/I2C/DR_I2C.o
  .debug_frame   0x0000000000000468       0x6c ./src/Display/DR_Display.o
  .debug_frame   0x00000000000004d4       0x78 ./src/Display/PR_Display.o
- .debug_frame   0x000000000000054c       0x30 ./src/BMP280/PR_BMP280.o
- .debug_frame   0x000000000000057c      0x170 ./src/cr_startup_lpc175x_6x.o
- .debug_frame   0x00000000000006ec       0x4c ./src/main.o
+ .debug_frame   0x000000000000054c      0x1a8 ./src/BMP280/PR_BMP280.o
+ .debug_frame   0x00000000000006f4      0x170 ./src/cr_startup_lpc175x_6x.o
+ .debug_frame   0x0000000000000864       0x4c ./src/main.o
 
 Cross Reference Table
 
@@ -757,7 +824,11 @@ Apagar                                            ./src/Display/DR_Display.o
                                                   ./src/Display/PR_Display.o
 ApagarDisplay                                     ./src/Display/PR_Display.o
 ApagarLuces                                       ./src/main.o
-BMP280Config                                      ./src/BMP280/PR_BMP280.o
+BMP280_get_calib_data                             ./src/BMP280/PR_BMP280.o
+BMP280_get_meas_values                            ./src/BMP280/PR_BMP280.o
+BMP280_get_measure                                ./src/BMP280/PR_BMP280.o
+BMP280_set_params                                 ./src/BMP280/PR_BMP280.o
+BMP280_start                                      ./src/BMP280/PR_BMP280.o
                                                   ./src/main.o
 BOD_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
 BarridoDisplay                                    ./src/Display/DR_Display.o
@@ -790,16 +861,16 @@ I2C1_IRQHandler                                   ./src/I2C/DR_I2C.o
 I2C2_IRQHandler                                   ./src/cr_startup_lpc175x_6x.o
 I2CCount                                          ./src/I2C/DR_I2C.o
 I2CEngine                                         ./src/I2C/DR_I2C.o
+                                                  ./src/BMP280/PR_BMP280.o
 I2CMasterBuffer                                   ./src/I2C/DR_I2C.o
                                                   ./src/BMP280/PR_BMP280.o
 I2CMasterState                                    ./src/I2C/DR_I2C.o
 I2CReadLength                                     ./src/I2C/DR_I2C.o
                                                   ./src/BMP280/PR_BMP280.o
 I2CSlaveBuffer                                    ./src/I2C/DR_I2C.o
+                                                  ./src/BMP280/PR_BMP280.o
 I2CStart                                          ./src/I2C/DR_I2C.o
-                                                  ./src/main.o
 I2CStatusBuffer                                   ./src/I2C/DR_I2C.o
-                                                  ./src/main.o
 I2CStop                                           ./src/I2C/DR_I2C.o
 I2CWriteLength                                    ./src/I2C/DR_I2C.o
                                                   ./src/BMP280/PR_BMP280.o
@@ -889,11 +960,19 @@ __main                                            /usr/local/mcuxpressoide-11.2.
 __valid_user_code_checksum                        ./src/cr_startup_lpc175x_6x.o
 __weak_main                                       /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 _vStackTop                                        ./src/cr_startup_lpc175x_6x.o
+bmp280_get_uncomp_data                            ./src/BMP280/PR_BMP280.o
 bss_init                                          ./src/cr_startup_lpc175x_6x.o
 data_init                                         ./src/cr_startup_lpc175x_6x.o
 fEventoTiempo_1                                   ./src/Temporizadores/AP_Temporizadores.o
 fEventoTiempo_2                                   ./src/Temporizadores/AP_Temporizadores.o
 g_pfnVectors                                      ./src/cr_startup_lpc175x_6x.o
+get_calib_param                                   ./src/BMP280/PR_BMP280.o
+get_comp_pres                                     ./src/BMP280/PR_BMP280.o
+get_comp_temp                                     ./src/BMP280/PR_BMP280.o
+get_pres                                          ./src/BMP280/PR_BMP280.o
+                                                  ./src/main.o
+get_temp                                          ./src/BMP280/PR_BMP280.o
+                                                  ./src/main.o
 main                                              ./src/main.o
                                                   /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 timeout                                           ./src/I2C/DR_I2C.o

@@ -3,7 +3,6 @@
 #include "DR_GPIO.h"
 #include "DR_Inicializacion.h"
 #include "Infotronic.h"
-#include "DR_Display.h"
 #include "PR_Display.h"
 #include "PR_BMP280.h"
 
@@ -18,26 +17,27 @@ void ApagarLuces(void);
 void main(void)
 {
 	int i=0;
+	int mediciones[2];
+
 	InicializacionExp1();
 	ApagarLuces();
-	IniciarDisplay(); //ApagarDisplay();
 	SetDIR(1,26, ENTRADA);
+
+	IniciarDisplay();
 	Init_I2C1();
-    (void)I2CMasterBuffer;
-	BMP280Config();
-    (void)I2CMasterBuffer;
-//    I2CEngine(); //Va a escribir y leer tantas veces como se configuro en la línea anterior
-    I2CStart(1);
-    /* Check the content of the Master and slave buffer */
+	BMP280_init(1); //Configura los parámetros de medición y toma los valores necesarios
+    mediciones[0] = get_temp();
+    mediciones[1] = get_pres();
+
 	while(1)
 	{
-		Display(I2CStatusBuffer[i]);
+		Display(mediciones[i]);
 		if(GetPIN(1,26,BAJO))
 		{
 			while(GetPIN(1,26,BAJO));
 			i++;
 		}
-		i %=7;
+		i %=2;
 	}
 }
 

@@ -49,6 +49,8 @@ volatile uint32_t I2CWriteLength[I2C_PORT_NUM];
 volatile uint32_t RdIndex0 = 0, RdIndex1 = 0, RdIndex2 = 0;
 volatile uint32_t WrIndex0 = 0, WrIndex1 = 0, WrIndex2 = 0;
 
+static I2C_t* I2C[3] = { I2C0, I2C1, I2C2 };
+
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
@@ -85,6 +87,7 @@ void Init_I2C1(void)
 	SetPINMODE_OD(SDA1,1);
 	SetPINMODE_OD(SCL1,1); //Seteo el Open-drain mode
 
+	//Limpio los flags
 	I2C[1]->CONCLR = I2CONCLR_AAC | I2CONCLR_SIC | I2CONCLR_STAC | I2CONCLR_I2ENC;
 
 	I2C[1]->SCLH = 60;
@@ -103,7 +106,7 @@ void Init_I2C1(void)
 ** parameters:			None
 ** Returned value:		None
 **
-*****************************************************************************/
+******************************************************************************/
 void I2C1_IRQHandler(void)
 {
   uint8_t StatValue;
@@ -126,7 +129,7 @@ void I2C1_IRQHandler(void)
 		I2C[1]->CONCLR = (I2CONCLR_SIC | I2CONCLR_STAC);
 		break;
 
-	case 0x18:			/* Regardless, it's a ACK */
+	case 0x18:			/* SLA+W has been transmitted; ACK has been received. */
 		if ( I2CWriteLength[1] == 1 )
 		{
 		  I2C[1]->CONSET = I2CONSET_STO;      /* Set Stop flag */
@@ -138,6 +141,8 @@ void I2C1_IRQHandler(void)
 		}
 		I2C[1]->CONCLR = I2CONCLR_SIC;
 		break;
+
+	case 0x20:		/* SLA+W has been transmitted; NOT ACK has been received. */
 
 	case 0x28:	/* Data byte has been transmitted, regardless ACK or NACK */
 		if ( WrIndex1 < I2CWriteLength[1] )
@@ -198,8 +203,6 @@ void I2C1_IRQHandler(void)
 		I2C[1]->CONSET = I2CONSET_STO;	/* Set Stop flag */
 		I2C[1]->CONCLR = I2CONCLR_SIC;	/* Clear SI flag */
 		break;
-
-	case 0x20:		/* regardless, it's a NACK */
 
 	case 0x48:
 		I2C[1]->CONSET = I2CONSET_STO;      /* Set Stop flag */
