@@ -49,7 +49,7 @@ volatile uint32_t I2CWriteLength[I2C_PORT_NUM];
 volatile uint32_t RdIndex0 = 0, RdIndex1 = 0, RdIndex2 = 0;
 volatile uint32_t WrIndex0 = 0, WrIndex1 = 0, WrIndex2 = 0;
 
-static I2C_t* I2C[3] = { I2C0, I2C1, I2C2 };
+volatile I2C_t* I2C[3] = { I2C0, I2C1, I2C2 };
 
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
@@ -273,6 +273,8 @@ uint8_t I2CEngine( uint32_t portNum )
 	timeout[portNum]++;
   }
   I2C[portNum]->CONCLR = I2CONCLR_STAC;
+
+  I2CStop(portNum);
 
   return ( I2CMasterState[portNum] );
 }
