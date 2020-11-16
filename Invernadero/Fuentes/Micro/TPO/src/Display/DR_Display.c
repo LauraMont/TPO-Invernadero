@@ -27,7 +27,7 @@ void IniciarDisplay(void)
 }
 void BarridoDisplay ( void )
 {
-    static int8_t IndiceDisplay = 5;
+    static uint8_t IndiceDisplay = 5;
     uint8_t digito;
 
     digito = Tabla_Digitos_BCD_7seg [ MSG_DSP [ IndiceDisplay ] ];

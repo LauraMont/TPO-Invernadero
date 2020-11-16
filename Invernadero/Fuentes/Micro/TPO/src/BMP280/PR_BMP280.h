@@ -33,19 +33,15 @@
 #define MIN_OSRS_P (0x01 << 2)
 
 void BMP280_init(uint32_t portNum);
-void BMP280_get_calib_data(uint32_t portNum);
 void BMP280_get_meas_values(uint32_t portNum);
-void BMP280_set_params(uint32_t portNum);
+void bmp280_get_uncomp_data(uint8_t * data);
 
-void BMP280_get_measure(uint8_t * data);
-void bmp280_get_uncomp_data(struct bmp280_uncomp_data *uncomp_data, uint8_t * data);
+int32_t get_temp(uint32_t portNum);
+uint32_t get_pres(uint32_t portNum);
 
-void get_comp_temp(int32_t *comp_temp, int32_t uncomp_temp, struct bmp280_dev *dev);
-void get_comp_pres(uint32_t *comp_pres, uint32_t uncomp_pres, const struct bmp280_dev *dev);
+void get_comp_temp(int32_t *comp_temp, int32_t uncomp_temp);
+void get_comp_pres(uint32_t *comp_pres, uint32_t uncomp_pres);
 
-int32_t get_temp(void);
-uint32_t get_pres(void);
-
-void set_calib_param(struct bmp280_dev *dev);
+void set_calib_param(void);
 
 #endif /* BMP280_PR_BMP280_H_ */
