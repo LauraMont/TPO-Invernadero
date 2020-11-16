@@ -2,7 +2,6 @@
 #include "ui_tabla.h"
 
 extern QSqlDatabase db;
-extern bool huboCambios;
 
 /**
     \fn  	Tabla::Tabla(QWidget *parent)
@@ -35,7 +34,7 @@ void Tabla::MostrarDatos()
 
     //Mostramos los datos...
     QString consulta;
-    consulta.append("SELECT * FROM  plantas");
+    consulta.append("SELECT * FROM  plantas ORDER BY planta ASC");//Lo ordena alfabeticamente
 
     QSqlQuery consultar(db);
     consultar.prepare(consulta);
@@ -47,7 +46,6 @@ void Tabla::MostrarDatos()
         qDebug()<<"No se ha consultado correctamente";
         qDebug()<<"ERROR!"<<consultar.lastError();
     }
-
     ui->tableWidget_Datos->setRowCount(0);
     while(consultar.next())//hasta que el string este vacio
     {
@@ -55,8 +53,10 @@ void Tabla::MostrarDatos()
 
         for (int i=0; i<7; i++)
         {
+            QTableWidgetItem *item;
              ui->tableWidget_Datos->setItem(fila , i ,
-             new QTableWidgetItem(consultar.value(i).toByteArray().constData()) );
+             item = new QTableWidgetItem(consultar.value(i).toByteArray().constData()) );
+             if (i==0) item->setFlags(item->flags() & ~Qt::ItemIsEditable);
         }
         fila++;
    }
@@ -97,9 +97,9 @@ void Tabla::on_tableWidget_Datos_cellChanged(int row, int column)
 {
     if(dobleClick)//Si no estuviera entra también cada vez que crea celdas
     {
-        QString columnas[] = {"temp_max", "temp_min", "nivel_riego", "nivel_luz", "precaucion",};
+        QString columnas[] = {"planta","temp_min", "temp_max", "nivel_riego", "nivel_luz", "precaucion",};
         //Nombres reales de las columnas en la base de datos
-        QString campo = columnas[column-2];//Resto dos por el id y el nombre
+        QString campo = columnas[column-1];//Resto dos por el id y el nombre
         QString ID = ui->tableWidget_Datos->item(row,0)->text(); //Obtengo el id
         QString value = ui->tableWidget_Datos->item(row, column)->text();//Contenido de la celda
         qDebug() << campo;
@@ -111,7 +111,6 @@ void Tabla::on_tableWidget_Datos_cellChanged(int row, int column)
             qDebug() << qry.lastError();
         else
             qDebug() << "Updated " << campo << "!";
-        huboCambios = true;
     }
     dobleClick = false;
 }
