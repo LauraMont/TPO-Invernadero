@@ -243,7 +243,7 @@ void MainWindow::on_iniciar_clicked()
         ui->comboBox->setEnabled(true);
         ui->configuraciones->setEnabled(true);
         ui->iniciar->setText("INICIAR");
-        terminar();
+//        terminar();
         puerto->close();
 
     }
@@ -266,30 +266,41 @@ void MainWindow::enviar_datos()
     QSqlQuery consultar(db);
     consultar.prepare("SELECT * FROM plantas WHERE planta = '"+ui->comboBox->currentText()+"'");
 
+    if(!consultar.exec()) //Devuelve un booleano
+            qDebug()<<"ERROR EN LA CONSULTA!"<<consultar.lastError();
+
+    consultar.next();
+
     unsigned int valor;
 
     QByteArray data;
-    data.append("$");
+    data.append('$');
     valor = consultar.value(2).toUInt();
     data.append(valor/10 + '0');
+    qDebug() << "Envío: " << valor/10;
     valor%= 10;
     data.append(valor + '0');
-    data.append("%");
+    qDebug() << "Envío: " << valor;
+    data.append('%');
     valor = consultar.value(3).toUInt();
     data.append(valor/10 + '0');
+    qDebug() << "Envío: " << valor/10;
     valor%= 10;
     data.append(valor + '0');
-    data.append("%");
+    qDebug() << "Envío: " << valor;
+    data.append('%');
     valor = consultar.value(4).toUInt();
     data.append(valor + '0');
-
+    qDebug() << "Envío: " << valor;
+    data.append('&');
+    data.append('#');
     puerto->write(data);
 }
 
 void MainWindow::terminar()
 {
     QByteArray data;
-    data.append("#");
+    data.append('#');
     puerto->write(data);
     //puerto->close();
 }

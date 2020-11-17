@@ -59,7 +59,7 @@ void rx_trama_MDE(void) {
 		dato_rx = UART0_pop_rx();
 
 		if(dato_rx == START_CHAR) {
-			start_rx_timeout();
+			//start_rx_timeout();
 			data_counter = 0;
 			rx_trama_state = WAITING_DATA;
 		}
@@ -78,8 +78,9 @@ void rx_trama_MDE(void) {
 
 		check_data_result = check_if_data_valid(dato_rx);
 
+
 		if(check_data_result == 1) {
-			stop_rx_timeout();
+			//stop_rx_timeout();
 			rx_trama_state = WAITING_END;
 		}
 
@@ -113,11 +114,11 @@ void rx_trama_MDE(void) {
 	}
 
 	case RX_TRAMA_ERROR: {
-		if(err_timeout_flag == 1) {
+	//	if(err_timeout_flag == 1) {
 			//rgb_set(0, 0 ,0);
 			err_timeout_flag = 0;
 			rx_trama_state = WAITING_START;
-		}
+	//	}
 
 		break;
 	}
@@ -138,7 +139,7 @@ static int32_t check_if_data_valid(int32_t dato_rx) {
 		return 0;
 	}
 
-	if((dato_rx < '0' || dato_rx > '9') && (dato_rx !='%' || dato_rx != '&')) {
+	if((dato_rx < '0' || dato_rx > '9') && (dato_rx !='%' && dato_rx != '&')) {
 		return -1;
 	}
 

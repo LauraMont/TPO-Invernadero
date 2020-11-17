@@ -1,6 +1,6 @@
 Archive member included to satisfy reference by file (symbol)
 
-/usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+/usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
                               ./src/cr_startup_lpc175x_6x.o (__main)
 
 Discarded input sections
@@ -29,8 +29,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x46 ./src/DR_GPIO.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/DR_GPIO.o
  .debug_macro   0x0000000000000000       0x2e ./src/DR_GPIO.o
- .debug_line    0x0000000000000000      0x148 ./src/DR_GPIO.o
- .debug_str     0x0000000000000000     0x303c ./src/DR_GPIO.o
+ .debug_line    0x0000000000000000      0x180 ./src/DR_GPIO.o
+ .debug_str     0x0000000000000000     0x3074 ./src/DR_GPIO.o
  .comment       0x0000000000000000       0x7a ./src/DR_GPIO.o
  .debug_frame   0x0000000000000000       0xd8 ./src/DR_GPIO.o
  .ARM.attributes
@@ -133,9 +133,9 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 ./src/rx_trama.o
  .debug_macro   0x0000000000000000      0xaa8 ./src/rx_trama.o
  .debug_macro   0x0000000000000000       0x2e ./src/rx_trama.o
- .text          0x0000000000000000        0x0 /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
- .data          0x0000000000000000        0x0 /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
- .bss           0x0000000000000000        0x0 /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+ .text          0x0000000000000000        0x0 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+ .data          0x0000000000000000        0x0 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+ .bss           0x0000000000000000        0x0 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 
 Memory Configuration
 
@@ -160,9 +160,9 @@ LOAD ./src/cr_startup_lpc175x_6x.o
 LOAD ./src/crp.o
 LOAD ./src/rx_trama.o
 START GROUP
-LOAD /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a
-LOAD /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a
-LOAD /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a
+LOAD /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a
+LOAD /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libcr_eabihelpers.a
+LOAD /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/thumb/v7-m/nofp/libgcc.a
 END GROUP
                 0x0000000000000000                __base_MFlash512 = 0x0
                 0x0000000000000000                __base_Flash = 0x0
@@ -177,7 +177,7 @@ END GROUP
                 0x0000000020084000                __top_RamAHB32 = 0x20084000
                 0x0000000020084000                __top_RAM2 = 0x20084000
 
-.text           0x0000000000000000      0xbd4
+.text           0x0000000000000000      0xc04
  FILL mask 0xff
                 0x0000000000000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -186,10 +186,10 @@ END GROUP
                 0x00000000000000cc                . = ALIGN (0x4)
                 0x00000000000000cc                __section_table_start = .
                 0x00000000000000cc                __data_section_table = .
-                0x00000000000000cc        0x4 LONG 0xbd4 LOADADDR (.data)
+                0x00000000000000cc        0x4 LONG 0xc04 LOADADDR (.data)
                 0x00000000000000d0        0x4 LONG 0x10000000 ADDR (.data)
                 0x00000000000000d4        0x4 LONG 0x0 SIZEOF (.data)
-                0x00000000000000d8        0x4 LONG 0xbd4 LOADADDR (.data_RAM2)
+                0x00000000000000d8        0x4 LONG 0xc04 LOADADDR (.data_RAM2)
                 0x00000000000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x00000000000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x00000000000000e4                __data_section_table_end = .
@@ -280,93 +280,95 @@ END GROUP
  .text.timer_discount
                 0x00000000000006b4       0xa4 ./src/DR_timer.o
                 0x00000000000006b4                timer_discount
- .text.main     0x0000000000000758       0x30 ./src/Indicador_nivel.o
+ .text.main     0x0000000000000758       0x58 ./src/Indicador_nivel.o
                 0x0000000000000758                main
+ .text.callback
+                0x00000000000007b0       0x1c ./src/Indicador_nivel.o
  .text.UART0_init
-                0x0000000000000788        0xc ./src/PR_UART0.o
-                0x0000000000000788                UART0_init
+                0x00000000000007cc        0xc ./src/PR_UART0.o
+                0x00000000000007cc                UART0_init
  .text.UART0_pop_rx
-                0x0000000000000794       0x54 ./src/PR_UART0.o
-                0x0000000000000794                UART0_pop_rx
+                0x00000000000007d8       0x54 ./src/PR_UART0.o
+                0x00000000000007d8                UART0_pop_rx
  .text.timer_event
-                0x00000000000007e8       0x54 ./src/PR_timer.o
-                0x00000000000007e8                timer_event
+                0x000000000000082c       0x54 ./src/PR_timer.o
+                0x000000000000082c                timer_event
  .text.timer_start
-                0x000000000000083c       0x68 ./src/PR_timer.o
-                0x000000000000083c                timer_start
+                0x0000000000000880       0x68 ./src/PR_timer.o
+                0x0000000000000880                timer_start
  .text.timer_stop
-                0x00000000000008a4       0x28 ./src/PR_timer.o
-                0x00000000000008a4                timer_stop
+                0x00000000000008e8       0x28 ./src/PR_timer.o
+                0x00000000000008e8                timer_stop
  .text.rx_trama_MDE
-                0x00000000000008cc      0x130 ./src/rx_trama.o
-                0x00000000000008cc                rx_trama_MDE
+                0x0000000000000910      0x11c ./src/rx_trama.o
+                0x0000000000000910                rx_trama_MDE
  .text.rx_trama_current_state
-                0x00000000000009fc       0x14 ./src/rx_trama.o
-                0x00000000000009fc                rx_trama_current_state
+                0x0000000000000a2c       0x14 ./src/rx_trama.o
+                0x0000000000000a2c                rx_trama_current_state
  .text.check_if_data_valid
-                0x0000000000000a10       0x74 ./src/rx_trama.o
+                0x0000000000000a40       0x74 ./src/rx_trama.o
  .text.start_rx_timeout
-                0x0000000000000a84       0x20 ./src/rx_trama.o
+                0x0000000000000ab4       0x20 ./src/rx_trama.o
  .text.restart_rx_timeout
-                0x0000000000000aa4       0x10 ./src/rx_trama.o
+                0x0000000000000ad4       0x10 ./src/rx_trama.o
  .text.stop_rx_timeout
-                0x0000000000000ab4        0xe ./src/rx_trama.o
- *fill*         0x0000000000000ac2        0x2 ff
+                0x0000000000000ae4        0xe ./src/rx_trama.o
+ *fill*         0x0000000000000af2        0x2 ff
  .text.rx_timeout_callback
-                0x0000000000000ac4       0x1c ./src/rx_trama.o
+                0x0000000000000af4       0x1c ./src/rx_trama.o
  .text.start_err_timeout
-                0x0000000000000ae0       0x20 ./src/rx_trama.o
+                0x0000000000000b10       0x20 ./src/rx_trama.o
  .text.err_timeout_callback
-                0x0000000000000b00       0x1c ./src/rx_trama.o
+                0x0000000000000b30       0x1c ./src/rx_trama.o
  .text.err_func
-                0x0000000000000b1c        0xc ./src/rx_trama.o
+                0x0000000000000b4c        0xc ./src/rx_trama.o
  .text.get_temp_min
-                0x0000000000000b28       0x38 ./src/rx_trama.o
-                0x0000000000000b28                get_temp_min
+                0x0000000000000b58       0x38 ./src/rx_trama.o
+                0x0000000000000b58                get_temp_min
  .text.get_temp_max
-                0x0000000000000b60       0x38 ./src/rx_trama.o
-                0x0000000000000b60                get_temp_max
+                0x0000000000000b90       0x38 ./src/rx_trama.o
+                0x0000000000000b90                get_temp_max
  .text.get_humidity
-                0x0000000000000b98       0x20 ./src/rx_trama.o
-                0x0000000000000b98                get_humidity
+                0x0000000000000bc8       0x20 ./src/rx_trama.o
+                0x0000000000000bc8                get_humidity
  .text.get_datos
-                0x0000000000000bb8       0x18 ./src/rx_trama.o
-                0x0000000000000bb8                get_datos
+                0x0000000000000be8       0x18 ./src/rx_trama.o
+                0x0000000000000be8                get_datos
  .text.__weak_main
-                0x0000000000000bd0        0x4 /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
-                0x0000000000000bd0                __main
-                0x0000000000000bd0                __weak_main
+                0x0000000000000c00        0x4 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+                0x0000000000000c00                __main
+                0x0000000000000c00                __weak_main
  *(.rodata .rodata.* .constdata .constdata.*)
-                0x0000000000000bd4                . = ALIGN (0x4)
+                0x0000000000000c04                . = ALIGN (0x4)
 
-.glue_7         0x0000000000000bd4        0x0
- .glue_7        0x0000000000000bd4        0x0 linker stubs
+.glue_7         0x0000000000000c04        0x0
+ .glue_7        0x0000000000000c04        0x0 linker stubs
 
-.glue_7t        0x0000000000000bd4        0x0
- .glue_7t       0x0000000000000bd4        0x0 linker stubs
+.glue_7t        0x0000000000000c04        0x0
+ .glue_7t       0x0000000000000c04        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000000bd4        0x0
- .vfp11_veneer  0x0000000000000bd4        0x0 linker stubs
+.vfp11_veneer   0x0000000000000c04        0x0
+ .vfp11_veneer  0x0000000000000c04        0x0 linker stubs
 
-.v4_bx          0x0000000000000bd4        0x0
- .v4_bx         0x0000000000000bd4        0x0 linker stubs
+.v4_bx          0x0000000000000c04        0x0
+ .v4_bx         0x0000000000000c04        0x0 linker stubs
 
-.iplt           0x0000000000000bd4        0x0
- .iplt          0x0000000000000bd4        0x0 ./src/DR_PINSEL.o
+.iplt           0x0000000000000c04        0x0
+ .iplt          0x0000000000000c04        0x0 ./src/DR_PINSEL.o
 
-.rel.dyn        0x0000000000000bd4        0x0
- .rel.iplt      0x0000000000000bd4        0x0 ./src/DR_PINSEL.o
+.rel.dyn        0x0000000000000c04        0x0
+ .rel.iplt      0x0000000000000c04        0x0 ./src/DR_PINSEL.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x0000000000000bd4        0x0
-                0x0000000000000bd4                __exidx_start = .
+.ARM.exidx      0x0000000000000c04        0x0
+                0x0000000000000c04                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000000000bd4                __exidx_end = .
-                0x0000000000000bd4                _etext = .
+                0x0000000000000c04                __exidx_end = .
+                0x0000000000000c04                _etext = .
 
-.data_RAM2      0x000000002007c000        0x0 load address 0x0000000000000bd4
+.data_RAM2      0x000000002007c000        0x0 load address 0x0000000000000c04
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM2 = .)
                 [!provide]                        PROVIDE (__start_data_RamAHB32 = .)
@@ -387,7 +389,7 @@ END GROUP
                 0x0000000010000000                . = ALIGN (0x4)
                 0x0000000010000000                _end_uninit_RESERVED = .
 
-.data           0x0000000010000000        0x0 load address 0x0000000000000bd4
+.data           0x0000000010000000        0x0 load address 0x0000000000000c04
  FILL mask 0xff
                 0x0000000010000000                _data = .
                 [!provide]                        PROVIDE (__start_data_RAM = .)
@@ -403,7 +405,7 @@ END GROUP
                 [!provide]                        PROVIDE (__end_data_RAM = .)
                 [!provide]                        PROVIDE (__end_data_RamLoc32 = .)
 
-.igot.plt       0x0000000010000000        0x0 load address 0x0000000000000bd4
+.igot.plt       0x0000000010000000        0x0 load address 0x0000000000000c04
  .igot.plt      0x0000000010000000        0x0 ./src/DR_PINSEL.o
 
 .bss_RAM2       0x000000002007c000        0x0
@@ -446,13 +448,14 @@ END GROUP
  *fill*         0x0000000010000091        0x3 
  .bss.timers    0x0000000010000094       0x3c ./src/DR_timer.o
                 0x0000000010000094                timers
+ .bss.flagcito  0x00000000100000d0        0x1 ./src/Indicador_nivel.o
+                0x00000000100000d0                flagcito
  .bss.rx_trama_state
-                0x00000000100000d0        0x1 ./src/rx_trama.o
- .bss.rx_timeout_flag
                 0x00000000100000d1        0x1 ./src/rx_trama.o
- .bss.err_timeout_flag
+ .bss.rx_timeout_flag
                 0x00000000100000d2        0x1 ./src/rx_trama.o
- *fill*         0x00000000100000d3        0x1 
+ .bss.err_timeout_flag
+                0x00000000100000d3        0x1 ./src/rx_trama.o
  .bss.data_buffer
                 0x00000000100000d4        0x8 ./src/rx_trama.o
  .bss.data_counter
@@ -491,35 +494,35 @@ END GROUP
                 0x0000000010008000                PROVIDE (_vStackTop = DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc32 - 0x0))
                 0xffffffffefff74da                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
                 0x0000000000000000                _image_start = LOADADDR (.text)
-                0x0000000000000bd4                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x0000000000000bd4                _image_size = (_image_end - _image_start)
+                0x0000000000000c04                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x0000000000000c04                _image_size = (_image_end - _image_start)
 OUTPUT(Indicador_nivel.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x1056
+.debug_info     0x0000000000000000     0x10d8
  .debug_info    0x0000000000000000       0xf0 ./src/DR_PINSEL.o
  .debug_info    0x00000000000000f0       0x72 ./src/DR_PLL.o
  .debug_info    0x0000000000000162      0x31a ./src/DR_SYSTICK.o
  .debug_info    0x000000000000047c      0x241 ./src/DR_UART0.o
  .debug_info    0x00000000000006bd      0x122 ./src/DR_timer.o
- .debug_info    0x00000000000007df       0x6a ./src/Indicador_nivel.o
- .debug_info    0x0000000000000849      0x152 ./src/PR_UART0.o
- .debug_info    0x000000000000099b      0x17c ./src/PR_timer.o
- .debug_info    0x0000000000000b17      0x272 ./src/cr_startup_lpc175x_6x.o
- .debug_info    0x0000000000000d89      0x2cd ./src/rx_trama.o
+ .debug_info    0x00000000000007df       0xec ./src/Indicador_nivel.o
+ .debug_info    0x00000000000008cb      0x152 ./src/PR_UART0.o
+ .debug_info    0x0000000000000a1d      0x17c ./src/PR_timer.o
+ .debug_info    0x0000000000000b99      0x272 ./src/cr_startup_lpc175x_6x.o
+ .debug_info    0x0000000000000e0b      0x2cd ./src/rx_trama.o
 
-.debug_abbrev   0x0000000000000000      0x8a5
+.debug_abbrev   0x0000000000000000      0x90a
  .debug_abbrev  0x0000000000000000       0x94 ./src/DR_PINSEL.o
  .debug_abbrev  0x0000000000000094       0x56 ./src/DR_PLL.o
  .debug_abbrev  0x00000000000000ea      0x11a ./src/DR_SYSTICK.o
  .debug_abbrev  0x0000000000000204      0x11f ./src/DR_UART0.o
  .debug_abbrev  0x0000000000000323       0xd7 ./src/DR_timer.o
- .debug_abbrev  0x00000000000003fa       0x49 ./src/Indicador_nivel.o
- .debug_abbrev  0x0000000000000443       0xe3 ./src/PR_UART0.o
- .debug_abbrev  0x0000000000000526      0x106 ./src/PR_timer.o
- .debug_abbrev  0x000000000000062c      0x117 ./src/cr_startup_lpc175x_6x.o
- .debug_abbrev  0x0000000000000743      0x162 ./src/rx_trama.o
+ .debug_abbrev  0x00000000000003fa       0xae ./src/Indicador_nivel.o
+ .debug_abbrev  0x00000000000004a8       0xe3 ./src/PR_UART0.o
+ .debug_abbrev  0x000000000000058b      0x106 ./src/PR_timer.o
+ .debug_abbrev  0x0000000000000691      0x117 ./src/cr_startup_lpc175x_6x.o
+ .debug_abbrev  0x00000000000007a8      0x162 ./src/rx_trama.o
 
-.debug_aranges  0x0000000000000000      0x258
+.debug_aranges  0x0000000000000000      0x260
  .debug_aranges
                 0x0000000000000000       0x28 ./src/DR_PINSEL.o
  .debug_aranges
@@ -531,27 +534,27 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .debug_aranges
                 0x00000000000000b0       0x20 ./src/DR_timer.o
  .debug_aranges
-                0x00000000000000d0       0x20 ./src/Indicador_nivel.o
+                0x00000000000000d0       0x28 ./src/Indicador_nivel.o
  .debug_aranges
-                0x00000000000000f0       0x30 ./src/PR_UART0.o
+                0x00000000000000f8       0x30 ./src/PR_UART0.o
  .debug_aranges
-                0x0000000000000120       0x30 ./src/PR_timer.o
+                0x0000000000000128       0x30 ./src/PR_timer.o
  .debug_aranges
-                0x0000000000000150       0x80 ./src/cr_startup_lpc175x_6x.o
+                0x0000000000000158       0x80 ./src/cr_startup_lpc175x_6x.o
  .debug_aranges
-                0x00000000000001d0       0x88 ./src/rx_trama.o
+                0x00000000000001d8       0x88 ./src/rx_trama.o
 
-.debug_ranges   0x0000000000000000      0x1d0
+.debug_ranges   0x0000000000000000      0x1d8
  .debug_ranges  0x0000000000000000       0x18 ./src/DR_PINSEL.o
  .debug_ranges  0x0000000000000018       0x10 ./src/DR_PLL.o
  .debug_ranges  0x0000000000000028       0x18 ./src/DR_SYSTICK.o
  .debug_ranges  0x0000000000000040       0x30 ./src/DR_UART0.o
  .debug_ranges  0x0000000000000070       0x10 ./src/DR_timer.o
- .debug_ranges  0x0000000000000080       0x10 ./src/Indicador_nivel.o
- .debug_ranges  0x0000000000000090       0x20 ./src/PR_UART0.o
- .debug_ranges  0x00000000000000b0       0x20 ./src/PR_timer.o
- .debug_ranges  0x00000000000000d0       0x70 ./src/cr_startup_lpc175x_6x.o
- .debug_ranges  0x0000000000000140       0x90 ./src/rx_trama.o
+ .debug_ranges  0x0000000000000080       0x18 ./src/Indicador_nivel.o
+ .debug_ranges  0x0000000000000098       0x20 ./src/PR_UART0.o
+ .debug_ranges  0x00000000000000b8       0x20 ./src/PR_timer.o
+ .debug_ranges  0x00000000000000d8       0x70 ./src/cr_startup_lpc175x_6x.o
+ .debug_ranges  0x0000000000000148       0x90 ./src/rx_trama.o
 
 .debug_macro    0x0000000000000000      0x508
  .debug_macro   0x0000000000000000       0x30 ./src/DR_PINSEL.o
@@ -569,39 +572,39 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .debug_macro   0x000000000000047b       0x1d ./src/cr_startup_lpc175x_6x.o
  .debug_macro   0x0000000000000498       0x70 ./src/rx_trama.o
 
-.debug_line     0x0000000000000000      0xd88
- .debug_line    0x0000000000000000       0xfa ./src/DR_PINSEL.o
- .debug_line    0x00000000000000fa      0x1ad ./src/DR_PLL.o
- .debug_line    0x00000000000002a7       0xfc ./src/DR_SYSTICK.o
- .debug_line    0x00000000000003a3      0x197 ./src/DR_UART0.o
- .debug_line    0x000000000000053a       0xde ./src/DR_timer.o
- .debug_line    0x0000000000000618       0xe7 ./src/Indicador_nivel.o
- .debug_line    0x00000000000006ff      0x108 ./src/PR_UART0.o
- .debug_line    0x0000000000000807       0xf9 ./src/PR_timer.o
- .debug_line    0x0000000000000900      0x15f ./src/cr_startup_lpc175x_6x.o
- .debug_line    0x0000000000000a5f      0x329 ./src/rx_trama.o
+.debug_line     0x0000000000000000      0xf95
+ .debug_line    0x0000000000000000      0x132 ./src/DR_PINSEL.o
+ .debug_line    0x0000000000000132      0x1e5 ./src/DR_PLL.o
+ .debug_line    0x0000000000000317      0x134 ./src/DR_SYSTICK.o
+ .debug_line    0x000000000000044b      0x1cf ./src/DR_UART0.o
+ .debug_line    0x000000000000061a      0x116 ./src/DR_timer.o
+ .debug_line    0x0000000000000730      0x141 ./src/Indicador_nivel.o
+ .debug_line    0x0000000000000871      0x140 ./src/PR_UART0.o
+ .debug_line    0x00000000000009b1      0x131 ./src/PR_timer.o
+ .debug_line    0x0000000000000ae2      0x15f ./src/cr_startup_lpc175x_6x.o
+ .debug_line    0x0000000000000c41      0x354 ./src/rx_trama.o
 
-.debug_str      0x0000000000000000     0x3d31
- .debug_str     0x0000000000000000     0x2eed ./src/DR_PINSEL.o
-                                       0x2f34 (size before relaxing)
- .debug_str     0x0000000000002eed      0x579 ./src/DR_PLL.o
-                                       0x33fb (size before relaxing)
- .debug_str     0x0000000000003466      0x193 ./src/DR_SYSTICK.o
-                                       0x3026 (size before relaxing)
- .debug_str     0x00000000000035f9      0x26c ./src/DR_UART0.o
-                                       0x3666 (size before relaxing)
- .debug_str     0x0000000000003865       0x21 ./src/DR_timer.o
-                                       0x2f10 (size before relaxing)
- .debug_str     0x0000000000003886       0x38 ./src/Indicador_nivel.o
-                                       0x3427 (size before relaxing)
- .debug_str     0x00000000000038be       0x38 ./src/PR_UART0.o
-                                       0x2f6f (size before relaxing)
- .debug_str     0x00000000000038f6       0x35 ./src/PR_timer.o
-                                       0x2f24 (size before relaxing)
- .debug_str     0x000000000000392b      0x1c6 ./src/cr_startup_lpc175x_6x.o
-                                       0x2fcc (size before relaxing)
- .debug_str     0x0000000000003af1      0x240 ./src/rx_trama.o
-                                       0x310a (size before relaxing)
+.debug_str      0x0000000000000000     0x3d72
+ .debug_str     0x0000000000000000     0x2f25 ./src/DR_PINSEL.o
+                                       0x2f6c (size before relaxing)
+ .debug_str     0x0000000000002f25      0x579 ./src/DR_PLL.o
+                                       0x3433 (size before relaxing)
+ .debug_str     0x000000000000349e      0x193 ./src/DR_SYSTICK.o
+                                       0x305e (size before relaxing)
+ .debug_str     0x0000000000003631      0x26c ./src/DR_UART0.o
+                                       0x369e (size before relaxing)
+ .debug_str     0x000000000000389d       0x21 ./src/DR_timer.o
+                                       0x2f48 (size before relaxing)
+ .debug_str     0x00000000000038be       0x41 ./src/Indicador_nivel.o
+                                       0x349d (size before relaxing)
+ .debug_str     0x00000000000038ff       0x38 ./src/PR_UART0.o
+                                       0x2fa7 (size before relaxing)
+ .debug_str     0x0000000000003937       0x35 ./src/PR_timer.o
+                                       0x2f5c (size before relaxing)
+ .debug_str     0x000000000000396c      0x1c6 ./src/cr_startup_lpc175x_6x.o
+                                       0x3004 (size before relaxing)
+ .debug_str     0x0000000000003b32      0x240 ./src/rx_trama.o
+                                       0x3142 (size before relaxing)
 
 .comment        0x0000000000000000       0x79
  .comment       0x0000000000000000       0x79 ./src/DR_PINSEL.o
@@ -615,7 +618,7 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .comment       0x0000000000000079       0x7a ./src/PR_timer.o
  .comment       0x0000000000000079       0x7a ./src/cr_startup_lpc175x_6x.o
  .comment       0x0000000000000079       0x7a ./src/rx_trama.o
- .comment       0x0000000000000079       0x7a /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+ .comment       0x0000000000000079       0x7a /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 
 .ARM.attributes
                 0x0000000000000000       0x2d
@@ -640,19 +643,19 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .ARM.attributes
                 0x0000000000000195       0x2d ./src/rx_trama.o
  .ARM.attributes
-                0x00000000000001c2       0x2d /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+                0x00000000000001c2       0x2d /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 
-.debug_frame    0x0000000000000000      0x660
+.debug_frame    0x0000000000000000      0x68c
  .debug_frame   0x0000000000000000       0x64 ./src/DR_PINSEL.o
  .debug_frame   0x0000000000000064       0x30 ./src/DR_PLL.o
  .debug_frame   0x0000000000000094       0x4c ./src/DR_SYSTICK.o
  .debug_frame   0x00000000000000e0       0xc8 ./src/DR_UART0.o
  .debug_frame   0x00000000000001a8       0x38 ./src/DR_timer.o
- .debug_frame   0x00000000000001e0       0x2c ./src/Indicador_nivel.o
- .debug_frame   0x000000000000020c       0x78 ./src/PR_UART0.o
- .debug_frame   0x0000000000000284       0x84 ./src/PR_timer.o
- .debug_frame   0x0000000000000308      0x170 ./src/cr_startup_lpc175x_6x.o
- .debug_frame   0x0000000000000478      0x1e8 ./src/rx_trama.o
+ .debug_frame   0x00000000000001e0       0x58 ./src/Indicador_nivel.o
+ .debug_frame   0x0000000000000238       0x78 ./src/PR_UART0.o
+ .debug_frame   0x00000000000002b0       0x84 ./src/PR_timer.o
+ .debug_frame   0x0000000000000334      0x170 ./src/cr_startup_lpc175x_6x.o
+ .debug_frame   0x00000000000004a4      0x1e8 ./src/rx_trama.o
 
 Cross Reference Table
 
@@ -743,13 +746,14 @@ WDT_IRQHandler                                    ./src/cr_startup_lpc175x_6x.o
 __bss_section_table_end                           ./src/cr_startup_lpc175x_6x.o
 __data_section_table                              ./src/cr_startup_lpc175x_6x.o
 __data_section_table_end                          ./src/cr_startup_lpc175x_6x.o
-__main                                            /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+__main                                            /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
                                                   ./src/cr_startup_lpc175x_6x.o
 __valid_user_code_checksum                        ./src/cr_startup_lpc175x_6x.o
-__weak_main                                       /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+__weak_main                                       /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 _vStackTop                                        ./src/cr_startup_lpc175x_6x.o
 bss_init                                          ./src/cr_startup_lpc175x_6x.o
 data_init                                         ./src/cr_startup_lpc175x_6x.o
+flagcito                                          ./src/Indicador_nivel.o
 g_pfnVectors                                      ./src/cr_startup_lpc175x_6x.o
 get_datos                                         ./src/rx_trama.o
                                                   ./src/Indicador_nivel.o
@@ -760,7 +764,7 @@ get_temp_max                                      ./src/rx_trama.o
 get_temp_min                                      ./src/rx_trama.o
                                                   ./src/Indicador_nivel.o
 main                                              ./src/Indicador_nivel.o
-                                                  /usr/local/mcuxpressoide-11.2.0_4120/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+                                                  /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
 rx_trama_MDE                                      ./src/rx_trama.o
                                                   ./src/Indicador_nivel.o
 rx_trama_current_state                            ./src/rx_trama.o
@@ -770,6 +774,7 @@ timer_event                                       ./src/PR_timer.o
                                                   ./src/Indicador_nivel.o
 timer_start                                       ./src/PR_timer.o
                                                   ./src/rx_trama.o
+                                                  ./src/Indicador_nivel.o
 timer_stop                                        ./src/PR_timer.o
                                                   ./src/rx_trama.o
 timers                                            ./src/DR_timer.o
