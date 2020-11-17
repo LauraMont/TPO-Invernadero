@@ -1,0 +1,14 @@
+rx_trama.c:49:6:rx_trama_MDE	16	static
+rx_trama.c:132:19:rx_trama_current_state	4	static
+rx_trama.c:136:16:check_if_data_valid	16	static
+rx_trama.c:158:13:start_rx_timeout	8	static
+rx_trama.c:163:13:restart_rx_timeout	8	static
+rx_trama.c:168:13:stop_rx_timeout	8	static
+rx_trama.c:172:13:rx_timeout_callback	16	static
+rx_trama.c:176:13:start_err_timeout	8	static
+rx_trama.c:181:13:err_timeout_callback	16	static
+rx_trama.c:185:13:err_func	8	static
+rx_trama.c:190:21:get_temp_min	16	static
+rx_trama.c:197:21:get_temp_max	16	static
+rx_trama.c:205:21:get_humidity	16	static
+rx_trama.c:210:9:get_datos	8	static

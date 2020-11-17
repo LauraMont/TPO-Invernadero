@@ -1,0 +1,3 @@
+DR_pulsador.c:21:6:pulsador_init	8	static
+DR_pulsador.c:26:6:pulsador_check	8	static
+DR_pulsador.c:50:9:pulsador_get	16	static

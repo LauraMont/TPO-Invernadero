@@ -1,0 +1,3 @@
+PR_UART0.c:4:6:UART0_init	8	static
+PR_UART0.c:8:9:UART0_pop_rx	16	static
+PR_UART0.c:24:6:UART0_push_tx	16	static

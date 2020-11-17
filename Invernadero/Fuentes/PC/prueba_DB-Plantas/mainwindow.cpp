@@ -229,6 +229,7 @@ void MainWindow::on_iniciar_clicked()
            ui->comboBox->setEnabled(false);
            ui->configuraciones->setEnabled(false);
            ui->iniciar->setText("DETENER");
+           enviar_datos();
        }
 
        else {
@@ -237,12 +238,13 @@ void MainWindow::on_iniciar_clicked()
                                  "Error abriendo puerto: " + puerto->errorString());
        }
 
-
     }
     else {
         ui->comboBox->setEnabled(true);
         ui->configuraciones->setEnabled(true);
         ui->iniciar->setText("INICIAR");
+        terminar();
+        puerto->close();
 
     }
     /*if(ui->iniciar->text() == "INICIAR")
@@ -250,9 +252,6 @@ void MainWindow::on_iniciar_clicked()
         ui->iniciar->setText("DETENER");
         ui->comboBox->setEnabled(false);
         ui->configuraciones->setEnabled(false);
-
-        QSqlQuery consultar(db);
-        consultar.prepare("SELECT * FROM plantas WHERE planta = '"+ui->comboBox->currentText()+"'");
     }
     else
     {
@@ -267,13 +266,22 @@ void MainWindow::enviar_datos()
     QSqlQuery consultar(db);
     consultar.prepare("SELECT * FROM plantas WHERE planta = '"+ui->comboBox->currentText()+"'");
 
+    unsigned int valor;
+
     QByteArray data;
     data.append("$");
-    data.append(consultar.value(2).toUInt());
+    valor = consultar.value(2).toUInt();
+    data.append(valor/10 + '0');
+    valor%= 10;
+    data.append(valor + '0');
     data.append("%");
-    data.append(consultar.value(3).toUInt());
+    valor = consultar.value(3).toUInt();
+    data.append(valor/10 + '0');
+    valor%= 10;
+    data.append(valor + '0');
     data.append("%");
-    data.append(consultar.value(4).toUInt());
+    valor = consultar.value(4).toUInt();
+    data.append(valor + '0');
 
     puerto->write(data);
 }
@@ -283,5 +291,5 @@ void MainWindow::terminar()
     QByteArray data;
     data.append("#");
     puerto->write(data);
-    puerto->close();
+    //puerto->close();
 }
