@@ -13,6 +13,9 @@ Datos::Datos(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->lineEdit_foto->setEnabled(false);
+    ui->lineEdit_t_min->setValidator( new QIntValidator(0, 99, this) );
+    ui->lineEdit_t_max->setValidator( new QIntValidator(0, 99, this) );
+    ui->lineEdit_nivel_riego->setValidator( new QIntValidator(0, 9, this) );
 }
 
 /**

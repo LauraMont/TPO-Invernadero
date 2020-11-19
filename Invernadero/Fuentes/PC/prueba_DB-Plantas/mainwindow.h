@@ -11,7 +11,8 @@
 #include <QtSerialPort/QSerialPort> // Para conectar el puerto
 #include "tabla.h"
 
-#define RUTA_FOTOS "../DB-PLANTAS-V3/Recursos/"
+#define RUTA_FOTOS "../prueba_DB-Plantas/Recursos/"
+#define DATA_BUFFER_SIZE 4
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,13 +38,42 @@ private slots:
 
     void on_iniciar_clicked();
 
+    void enable_gui();
+
+    void disable_gui();
+
     void enviar_datos();
 
     void terminar();
+
+    void data_in();
+
+    int check_if_data_valid(int);
+
+    void actualizar_datos();
+private:
+
+    void rx_SM(QByteArray byte_in);
+
+    typedef enum
+    {
+        RX_SM_WAITING_START = 0,
+        RX_SM_WAITING_DATA,
+        RX_SM_WAITING_END,
+        RX_SM_ERR,
+    }rx_sm_state_en;
+
 
 private:
     Ui::MainWindow *ui;
     QString eleccion;
     QSerialPort* puerto;
+
+    QByteArray data;
+    bool comm_started;
+
+    rx_sm_state_en rx_state;
+    char data_buffer[DATA_BUFFER_SIZE];
+
 };
 #endif // MAINWINDOW_H

@@ -78,7 +78,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -139,7 +139,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>223</x>
@@ -153,13 +153,25 @@
      <widget class="QLineEdit" name="lineEdit_planta"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_t_min"/>
+     <widget class="QLineEdit" name="lineEdit_t_min">
+      <property name="maxLength">
+       <number>2</number>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_t_max"/>
+     <widget class="QLineEdit" name="lineEdit_t_max">
+      <property name="maxLength">
+       <number>5</number>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_nivel_riego"/>
+     <widget class="QLineEdit" name="lineEdit_nivel_riego">
+      <property name="maxLength">
+       <number>1</number>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="lineEdit_nivel_luz"/>

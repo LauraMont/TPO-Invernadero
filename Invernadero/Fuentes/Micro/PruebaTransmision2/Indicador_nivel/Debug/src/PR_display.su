@@ -1,0 +1,6 @@
+PR_display.c:13:6:display_init	8	static
+PR_display.c:19:6:display_set	24	static
+PR_display.c:53:6:display_use	16	static
+PR_display.c:74:9:display_get	4	static
+PR_display.c:78:6:display_clear	16	static
+PR_display.c:88:6:display_show_all	16	static

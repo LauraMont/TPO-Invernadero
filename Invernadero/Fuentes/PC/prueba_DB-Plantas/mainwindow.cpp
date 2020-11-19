@@ -23,6 +23,13 @@ MainWindow::MainWindow(QWidget *parent)
     puerto->setFlowControl(QSerialPort::NoFlowControl);
     puerto->setDataBits(QSerialPort::Data8);
 
+    rx_state= RX_SM_WAITING_START;
+
+    ui->label_TACTUAL->setVisible(false);
+    ui->label_tactual->setVisible(false);
+    ui->label_HUMEDAD->setVisible(false);
+    ui->label_humedad->setVisible(false);
+
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     crearTablaPlantas();
     QPixmap* MiPixMap = new QPixmap(rutaFotos + "invernadero.png");
@@ -30,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_invernadero->setPixmap(*MiPixMap);
     ui->label_invernadero->setScaledContents(true);
     cargarPlantas();
+    connect(puerto, &QSerialPort::readyRead, this, &MainWindow::data_in);
 }
 
 /**
@@ -221,53 +229,59 @@ void MainWindow::on_configuraciones_clicked()
 void MainWindow::on_iniciar_clicked()
 {
 
-
     if(!puerto->isOpen()) {
        puerto->setPortName("/dev/ttyUSB0");
 
        if(puerto->open(QSerialPort::ReadWrite)) {
-           ui->comboBox->setEnabled(false);
-           ui->configuraciones->setEnabled(false);
-           ui->iniciar->setText("DETENER");
+
+           enable_gui();
            enviar_datos();
        }
-
        else {
            QMessageBox::critical(this,
                                  "Error",
                                  "Error abriendo puerto: " + puerto->errorString());
        }
-
     }
     else {
-        ui->comboBox->setEnabled(true);
-        ui->configuraciones->setEnabled(true);
-        ui->iniciar->setText("INICIAR");
-//        terminar();
+        disable_gui();
+        terminar();
         puerto->close();
+    }
+}
 
-    }
-    /*if(ui->iniciar->text() == "INICIAR")
-    {
-        ui->iniciar->setText("DETENER");
-        ui->comboBox->setEnabled(false);
-        ui->configuraciones->setEnabled(false);
-    }
-    else
-    {
-        ui->iniciar->setText("INICIAR");
-        ui->comboBox->setEnabled(true);
-        ui->configuraciones->setEnabled(true);
-    }*/
+void MainWindow::enable_gui()
+{
+    ui->comboBox->setEnabled(false);
+    ui->configuraciones->setEnabled(false);
+    ui->iniciar->setText("DETENER");
+
+    ui->label_TACTUAL->setVisible(true);
+    ui->label_tactual->setVisible(true);
+    ui->label_HUMEDAD->setVisible(true);
+    ui->label_humedad->setVisible(true);
+}
+
+void MainWindow::disable_gui()
+{
+    ui->comboBox->setEnabled(true);
+    ui->configuraciones->setEnabled(true);
+    ui->iniciar->setText("INICIAR");
+
+    ui->label_TACTUAL->setVisible(false);
+    ui->label_tactual->setVisible(false);
+    ui->label_HUMEDAD->setVisible(false);
+    ui->label_humedad->setVisible(false);
 }
 
 void MainWindow::enviar_datos()
 {
     QSqlQuery consultar(db);
-    consultar.prepare("SELECT * FROM plantas WHERE planta = '"+ui->comboBox->currentText()+"'");
+    consultar.prepare("SELECT * FROM plantas WHERE planta = '"+ui->comboBox->currentText()+"' ");
+
 
     if(!consultar.exec()) //Devuelve un booleano
-            qDebug()<<"ERROR EN LA CONSULTA!"<<consultar.lastError();
+        qDebug()<<"ERROR EN LA CONSULTA!"<<consultar.lastError();
 
     consultar.next();
 
@@ -276,24 +290,20 @@ void MainWindow::enviar_datos()
     QByteArray data;
     data.append('$');
     valor = consultar.value(2).toUInt();
+    qDebug() << "Valor: " << valor;
     data.append(valor/10 + '0');
-    qDebug() << "Envío: " << valor/10;
     valor%= 10;
     data.append(valor + '0');
-    qDebug() << "Envío: " << valor;
     data.append('%');
     valor = consultar.value(3).toUInt();
     data.append(valor/10 + '0');
-    qDebug() << "Envío: " << valor/10;
     valor%= 10;
     data.append(valor + '0');
-    qDebug() << "Envío: " << valor;
     data.append('%');
     valor = consultar.value(4).toUInt();
     data.append(valor + '0');
-    qDebug() << "Envío: " << valor;
     data.append('&');
-    data.append('#');
+
     puerto->write(data);
 }
 
@@ -302,5 +312,118 @@ void MainWindow::terminar()
     QByteArray data;
     data.append('#');
     puerto->write(data);
-    //puerto->close();
+}
+
+void MainWindow::data_in()
+{
+    do
+        {
+            rx_SM(puerto->read(1));
+    }while(puerto->bytesAvailable() != 0);
+}
+
+void MainWindow::rx_SM(QByteArray byte_in)
+{
+    switch(rx_state)
+        {
+        case RX_SM_WAITING_START:
+        {
+            if(!byte_in.compare("$"))
+            {
+                rx_state = RX_SM_WAITING_DATA;
+            }
+
+            break;
+        } // End case RX_SM_WAITING_START
+
+    case RX_SM_WAITING_DATA:
+    {
+        int check_data_result;
+
+        check_data_result = check_if_data_valid(byte_in.at(0));
+
+        if(check_data_result == 1) {
+            rx_state = RX_SM_WAITING_END;
+        }
+
+        if(check_data_result == -1) {
+            ;
+            rx_state = RX_SM_ERR;
+        }
+
+
+        break;
+    } // End case RX_SM_WAITING_START
+
+        case RX_SM_WAITING_END:
+        {
+            if(!byte_in.compare("#"))
+            {
+                actualizar_datos();
+                rx_state = RX_SM_WAITING_START;
+            }
+            else
+            {
+                rx_state = RX_SM_ERR;
+            }
+
+            break;
+        } // End case RX_SM_WAITING_0D
+
+    case RX_SM_ERR:
+    {
+        QString Error ="ERER";
+        memcpy(data_buffer,Error.toStdString().c_str(),Error.size());
+        actualizar_datos();
+
+        rx_state = RX_SM_WAITING_START;
+
+        break;
+    } // End case RX_SM_WAITING_0D
+
+
+        default:
+            rx_state=RX_SM_WAITING_START;
+        } // End switch(rx_state)
+}
+
+int MainWindow::check_if_data_valid(int dato_rx) {
+
+    static int data_counter=0;
+
+    if(dato_rx == -1) {
+        return 0;
+    }
+
+    if(dato_rx < '0' || dato_rx > '9') {
+        return -1;
+    }
+
+    //restart_rx_timeout();
+
+    data_buffer[data_counter] = (char) dato_rx;
+    data_counter++;
+
+    if(data_counter >= DATA_BUFFER_SIZE) {
+        data_counter = 0;
+        return 1;
+    }
+
+    return 0;
+}
+
+void MainWindow::actualizar_datos()
+{
+    //Trama $TEHU#      TE: dos digitos de temp, HU:dos digitos de humedad
+
+    int humedad, temperatura;
+
+    humedad=(data_buffer[3]-'0');
+    humedad+=(data_buffer[2]-'0')*10;
+
+    temperatura=(data_buffer[1]-'0');
+    temperatura+=(data_buffer[0]-'0')*10;
+
+    ui->label_TACTUAL->setText( QString::number(temperatura) + " °C");
+    ui->label_HUMEDAD->setText( QString::number(humedad) + " %");
 }

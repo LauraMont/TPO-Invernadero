@@ -9,6 +9,7 @@
 #include <QSqlError>//Nos permite conocer los tipos de errores en las bases de datos
 #include <QFileDialog>
 #include "mainwindow.h"
+#include <QIntValidator>
 
 namespace Ui {
 class Datos;
