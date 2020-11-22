@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "time.h"
+#include "unistd.h"
 
 QSqlDatabase db; //Variable global para que la pueda tomar la otra aplicación como extern
 QString rutaFotos = RUTA_FOTOS;
@@ -228,25 +230,27 @@ void MainWindow::on_configuraciones_clicked()
 */
 void MainWindow::on_iniciar_clicked()
 {
+    if(ui->iniciar->text() == "INICIAR")
+    {
+        if(!puerto->isOpen()) {
+            puerto->setPortName("/dev/ttyUSB0");
 
-    if(!puerto->isOpen()) {
-       puerto->setPortName("/dev/ttyUSB0");
+            if(puerto->open(QSerialPort::ReadWrite)) {
 
-       if(puerto->open(QSerialPort::ReadWrite)) {
-
-           enable_gui();
-           enviar_datos();
-       }
-       else {
-           QMessageBox::critical(this,
-                                 "Error",
-                                 "Error abriendo puerto: " + puerto->errorString());
-       }
+                enable_gui();
+                enviar_datos();
+            }
+            else {
+                QMessageBox::critical(this,
+                                      "Error",
+                                      "Error abriendo puerto: " + puerto->errorString());
+            }
+        }
     }
     else {
         disable_gui();
         terminar();
-        puerto->close();
+//        puerto->close();   PREGUNTAR AUGUSTO Cómo cerrar el puerto y que envie el dato anterior.
     }
 }
 
@@ -303,7 +307,6 @@ void MainWindow::enviar_datos()
     valor = consultar.value(4).toUInt();
     data.append(valor + '0');
     data.append('&');
-
     puerto->write(data);
 }
 
