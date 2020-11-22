@@ -22,7 +22,7 @@
 #define		ERR_TIMEOUT_MSECS	(250)
 
 #define		TIMER_ID_DATOS		(2)
-#define		DATOS_TIMEOUT_SECS	(30)
+#define		DATOS_TIMEOUT_SECS	(15)
 
 #define		DATA_BUFFER_SIZE	(8)
 #define 	DATOS_BUFFER_SIZE	(4)
@@ -230,9 +230,9 @@ static void stop_datos_timeout(void){
 }
 
 /*static*/ uint32_t get_temp_min(void) {
-	uint32_t temperatura = (data_buffer[7]-'0');
+	uint32_t temperatura = (data_buffer[1]-'0');
 
-	temperatura += (data_buffer[6]-'0')*10;
+	temperatura += (data_buffer[0]-'0')*10;
 
 	return temperatura;
 }
@@ -245,7 +245,7 @@ static void stop_datos_timeout(void){
 }
 
 /*static*/ uint32_t get_riego(void) {
-	uint32_t riego = (data_buffer[1]-'0');
+	uint32_t riego = (data_buffer[6]-'0');
 
 	return riego;
 }
@@ -261,13 +261,13 @@ static void update_datos(void) {
 	uint32_t humedad = get_humedad();
 	uint32_t temp = get_temp();
 
-	datos_enviar_buffer[3]= (humedad/10 +'0');
+	datos_enviar_buffer[2]= (humedad/10 +'0');
 	humedad%=10;
-	datos_enviar_buffer[2]=(humedad + '0');
+	datos_enviar_buffer[3]=(humedad + '0');
 
-	datos_enviar_buffer[1]= (temp/10 +'0');
+	datos_enviar_buffer[0]= (temp/10 +'0');
 	temp%=10;
-	datos_enviar_buffer[0]=(temp + '0');
+	datos_enviar_buffer[1]=(temp + '0');
 }
 static uint32_t get_humedad(void){
 

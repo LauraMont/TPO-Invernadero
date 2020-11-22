@@ -7,6 +7,9 @@
 #include "rx_trama.h"
 
 int main(void) {
+	uint32_t temp_min;
+	uint32_t temp_max;
+	uint32_t riego;
 	InicializarPLL();
 	SYSTICK_init();
 
@@ -19,9 +22,9 @@ int main(void) {
 
 		if (is_ready()) {
 
-			get_temp_min();
-			get_temp_max();
-			get_riego();
+			temp_min = get_temp_min();
+			temp_max = get_temp_max();
+			riego = get_riego();
 		}
 	}
 

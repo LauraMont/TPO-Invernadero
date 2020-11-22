@@ -424,6 +424,8 @@ void MainWindow::actualizar_datos()
     temperatura=(data_buffer[1]-'0');
     temperatura+=(data_buffer[0]-'0')*10;
 
+    qDebug() << "Recibí: " << temperatura << " °C" ;
+    qDebug() << "Recibí: " << humedad << " %";
     ui->label_TACTUAL->setText( QString::number(temperatura) + " °C");
     ui->label_HUMEDAD->setText( QString::number(humedad) + " %");
 }

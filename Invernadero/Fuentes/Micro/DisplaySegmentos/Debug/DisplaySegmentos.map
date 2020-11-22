@@ -204,7 +204,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0xaa8 ./src/crp.o
  .debug_macro   0x0000000000000000       0x34 ./src/crp.o
  .debug_line    0x0000000000000000       0xb5 ./src/crp.o
- .debug_str     0x0000000000000000     0x2ed6 ./src/crp.o
+ .debug_str     0x0000000000000000     0x2f00 ./src/crp.o
  .comment       0x0000000000000000       0x7a ./src/crp.o
  .ARM.attributes
                 0x0000000000000000       0x33 ./src/crp.o
@@ -635,27 +635,27 @@ OUTPUT(DisplaySegmentos.axf elf32-littlearm)
  .debug_line    0x0000000000001785      0x704 ./src/DisplaySegmentos.o
  .debug_line    0x0000000000001e89      0x15f ./src/cr_startup_lpc175x_6x.o
 
-.debug_str      0x0000000000000000     0x416f
+.debug_str      0x0000000000000000     0x413e
  .debug_str     0x0000000000000000     0x3896 ./src/systick/DR_SysTick.o
                                        0x391d (size before relaxing)
- .debug_str     0x0000000000003896       0x54 ./src/pll/DR_PLL.o
-                                       0x33bc (size before relaxing)
- .debug_str     0x00000000000038ea       0x8f ./src/gpio/DR_GPIO.o
-                                       0x2f9e (size before relaxing)
- .debug_str     0x0000000000003979      0x46f ./src/Temporizadores/AP_Temporizadores.o
+ .debug_str     0x0000000000003896       0x23 ./src/pll/DR_PLL.o
+                                       0x33e6 (size before relaxing)
+ .debug_str     0x00000000000038b9       0x8f ./src/gpio/DR_GPIO.o
+                                       0x2fc8 (size before relaxing)
+ .debug_str     0x0000000000003948      0x46f ./src/Temporizadores/AP_Temporizadores.o
                                        0x3443 (size before relaxing)
- .debug_str     0x0000000000003de8       0x91 ./src/Temporizadores/PR_Temporizadores.o
-                                       0x2fbb (size before relaxing)
- .debug_str     0x0000000000003e79       0x6d ./src/Display/DR_Display.o
+ .debug_str     0x0000000000003db7       0x91 ./src/Temporizadores/PR_Temporizadores.o
+                                       0x2fe5 (size before relaxing)
+ .debug_str     0x0000000000003e48       0x6d ./src/Display/DR_Display.o
                                        0x340f (size before relaxing)
- .debug_str     0x0000000000003ee6       0x38 ./src/Display/PR_Display.o
+ .debug_str     0x0000000000003eb5       0x38 ./src/Display/PR_Display.o
                                        0x3261 (size before relaxing)
- .debug_str     0x0000000000003f1e       0x63 ./src/ADC/DR_ADC.o
+ .debug_str     0x0000000000003eed       0x63 ./src/ADC/DR_ADC.o
                                        0x36eb (size before relaxing)
- .debug_str     0x0000000000003f81       0x28 ./src/DisplaySegmentos.o
+ .debug_str     0x0000000000003f50       0x28 ./src/DisplaySegmentos.o
                                        0x3c59 (size before relaxing)
- .debug_str     0x0000000000003fa9      0x1c6 ./src/cr_startup_lpc175x_6x.o
-                                       0x2fc9 (size before relaxing)
+ .debug_str     0x0000000000003f78      0x1c6 ./src/cr_startup_lpc175x_6x.o
+                                       0x2ff3 (size before relaxing)
 
 .comment        0x0000000000000000       0x79
  .comment       0x0000000000000000       0x79 ./src/systick/DR_SysTick.o

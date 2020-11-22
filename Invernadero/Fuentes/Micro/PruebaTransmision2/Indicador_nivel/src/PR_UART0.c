@@ -1,7 +1,7 @@
 #include "PR_UART0.h"
 #include "DR_UART0.h"
 
-#define DATA_SIZE 6
+#define DATA_SIZE 4
 
 void UART0_init(void) {
 	UART0_dr_init();
