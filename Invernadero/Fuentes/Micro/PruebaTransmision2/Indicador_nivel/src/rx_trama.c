@@ -22,7 +22,7 @@
 #define		ERR_TIMEOUT_MSECS	(250)
 
 #define		TIMER_ID_DATOS		(2)
-#define		DATOS_TIMEOUT_SECS	(15)
+#define		DATOS_TIMEOUT_SECS	(5)
 
 #define		DATA_BUFFER_SIZE	(8)
 #define 	DATOS_BUFFER_SIZE	(4)
@@ -95,8 +95,7 @@ void rx_trama_MDE(void) {
 		check_data_result = check_if_data_valid(dato_rx);
 
 		if(check_data_result == 1) {
-			//stop_rx_timeout();
-			//-- update_datos();
+			stop_rx_timeout();
 
 			start_datos_timeout();
 			rx_trama_state = WAITING_END;
@@ -236,8 +235,9 @@ static void stop_datos_timeout(void){
 
 	return temperatura;
 }
+
 /*static*/ uint32_t get_temp_max(void) {
-	uint32_t temperatura = (data_buffer[4]-'0');
+    uint32_t temperatura = (data_buffer[4]-'0');
 
 	temperatura += (data_buffer[3]-'0')*10;
 
@@ -271,12 +271,14 @@ static void update_datos(void) {
 }
 static uint32_t get_humedad(void){
 
-	return 52;				//funcion de prueba
+	static uint32_t aux = 1;
+	return aux++;				//funcion de prueba
 
 }
 
 static uint32_t get_temp(void){
 
-	return 30;				//funcion de prueba
+	static uint32_t aux = 2;
+	return aux++;				//funcion de prueba
 
 }

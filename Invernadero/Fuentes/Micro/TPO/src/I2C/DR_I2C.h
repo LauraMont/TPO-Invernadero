@@ -17,9 +17,9 @@
 /***********************************************************************************************************************************
  *** INCLUDES GLOBALES
  **********************************************************************************************************************************/
+#include <GPIO/DR_GPIO.h>
+#include <PR_BME280.h>
 #include "tipos.h"
-#include "PR_BMP280.h"
-#include "DR_GPIO.h"
 #include "DR_PLL.h"
 #include "PR_Display.h"
 
@@ -31,8 +31,8 @@
 
 #define MAX_TIMEOUT         0x00FFFFFF
 #define BUFSIZE             64
-#define TRUE				1
-#define FALSE				0
+//#define TRUE				1
+//#define FALSE				0
 #define I2C_PORT_NUM        3
 
 #define I2C_IDLE              0

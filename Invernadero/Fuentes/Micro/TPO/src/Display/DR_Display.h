@@ -1,17 +1,19 @@
-#include "../Inicializacion/tipos.h"
-
+#include <GPIO/DR_GPIO.h>
+#include "PR_Temporizadores.h"
+#include "AP_Temporizadores.h"
+#include "tipos.h"
+#include "DR_SysTick.h"
 
 #define 	MAX_DIGITOS      6
 
-extern uint8_t MSG_DSP [ MAX_DIGITOS ];
+extern volatile uint8_t MSG_DSP [ MAX_DIGITOS ];
 
+extern volatile uint8_t cantDispl;
 
-#define 	PORT0           0
-#define 	PORT1           1
-#define 	PORT2           2
-#define 	PORT3           3
-#define 	PORT4           4
-#define 	PORT5           5
+//Modos
+#define 	CANT_DISP1 		1
+#define 	CANT_DISP2 		2
+#define 	COMA 			3
 
 
 // PLACA EXPANSION 2
@@ -46,7 +48,7 @@ extern uint8_t MSG_DSP [ MAX_DIGITOS ];
 #define 	segmento_b          EXPANSION15
 
 /*Includes*/
-void BarridoDisplay ( void );
+void BarridoDisplay();
 void Apagar(void);
-void IniciarDisplay(void);
+void Display_Init(void);
 

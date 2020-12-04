@@ -175,7 +175,7 @@ END GROUP
                 0x0000000020084000                __top_RamAHB32 = 0x20084000
                 0x0000000020084000                __top_RAM2 = 0x20084000
 
-.text           0x0000000000000000      0xd90
+.text           0x0000000000000000      0xdb0
  FILL mask 0xff
                 0x0000000000000000                __vectors_start__ = ABSOLUTE (.)
  *(.isr_vector)
@@ -184,15 +184,15 @@ END GROUP
                 0x00000000000000cc                . = ALIGN (0x4)
                 0x00000000000000cc                __section_table_start = .
                 0x00000000000000cc                __data_section_table = .
-                0x00000000000000cc        0x4 LONG 0xd90 LOADADDR (.data)
+                0x00000000000000cc        0x4 LONG 0xdb0 LOADADDR (.data)
                 0x00000000000000d0        0x4 LONG 0x10000000 ADDR (.data)
-                0x00000000000000d4        0x4 LONG 0x0 SIZEOF (.data)
-                0x00000000000000d8        0x4 LONG 0xd90 LOADADDR (.data_RAM2)
+                0x00000000000000d4        0x4 LONG 0x8 SIZEOF (.data)
+                0x00000000000000d8        0x4 LONG 0xdb0 LOADADDR (.data_RAM2)
                 0x00000000000000dc        0x4 LONG 0x2007c000 ADDR (.data_RAM2)
                 0x00000000000000e0        0x4 LONG 0x0 SIZEOF (.data_RAM2)
                 0x00000000000000e4                __data_section_table_end = .
                 0x00000000000000e4                __bss_section_table = .
-                0x00000000000000e4        0x4 LONG 0x10000000 ADDR (.bss)
+                0x00000000000000e4        0x4 LONG 0x10000008 ADDR (.bss)
                 0x00000000000000e8        0x4 LONG 0xe8 SIZEOF (.bss)
                 0x00000000000000ec        0x4 LONG 0x2007c000 ADDR (.bss_RAM2)
                 0x00000000000000f0        0x4 LONG 0x0 SIZEOF (.bss_RAM2)
@@ -303,88 +303,88 @@ END GROUP
                 0x0000000000000940       0x28 ./src/PR_timer.o
                 0x0000000000000940                timer_stop
  .text.rx_trama_MDE
-                0x0000000000000968      0x154 ./src/rx_trama.o
+                0x0000000000000968      0x158 ./src/rx_trama.o
                 0x0000000000000968                rx_trama_MDE
  .text.rx_trama_current_state
-                0x0000000000000abc       0x14 ./src/rx_trama.o
-                0x0000000000000abc                rx_trama_current_state
+                0x0000000000000ac0       0x14 ./src/rx_trama.o
+                0x0000000000000ac0                rx_trama_current_state
  .text.check_if_data_valid
-                0x0000000000000ad0       0x74 ./src/rx_trama.o
+                0x0000000000000ad4       0x74 ./src/rx_trama.o
  .text.start_rx_timeout
-                0x0000000000000b44       0x20 ./src/rx_trama.o
+                0x0000000000000b48       0x20 ./src/rx_trama.o
  .text.restart_rx_timeout
-                0x0000000000000b64       0x10 ./src/rx_trama.o
+                0x0000000000000b68       0x10 ./src/rx_trama.o
  .text.stop_rx_timeout
-                0x0000000000000b74        0xe ./src/rx_trama.o
- *fill*         0x0000000000000b82        0x2 ff
+                0x0000000000000b78        0xe ./src/rx_trama.o
+ *fill*         0x0000000000000b86        0x2 ff
  .text.rx_timeout_callback
-                0x0000000000000b84       0x1c ./src/rx_trama.o
+                0x0000000000000b88       0x1c ./src/rx_trama.o
  .text.start_err_timeout
-                0x0000000000000ba0       0x20 ./src/rx_trama.o
+                0x0000000000000ba4       0x20 ./src/rx_trama.o
  .text.err_timeout_callback
-                0x0000000000000bc0       0x1c ./src/rx_trama.o
+                0x0000000000000bc4       0x1c ./src/rx_trama.o
  .text.err_func
-                0x0000000000000bdc        0xc ./src/rx_trama.o
+                0x0000000000000be0        0xc ./src/rx_trama.o
  .text.start_datos_timeout
-                0x0000000000000be8       0x24 ./src/rx_trama.o
+                0x0000000000000bec       0x24 ./src/rx_trama.o
  .text.datos_timeout_callback
-                0x0000000000000c0c       0x1c ./src/rx_trama.o
+                0x0000000000000c10       0x1c ./src/rx_trama.o
  .text.stop_datos_timeout
-                0x0000000000000c28        0xe ./src/rx_trama.o
- *fill*         0x0000000000000c36        0x2 ff
+                0x0000000000000c2c        0xe ./src/rx_trama.o
+ *fill*         0x0000000000000c3a        0x2 ff
  .text.get_temp_min
-                0x0000000000000c38       0x38 ./src/rx_trama.o
-                0x0000000000000c38                get_temp_min
+                0x0000000000000c3c       0x38 ./src/rx_trama.o
+                0x0000000000000c3c                get_temp_min
  .text.get_temp_max
-                0x0000000000000c70       0x38 ./src/rx_trama.o
-                0x0000000000000c70                get_temp_max
+                0x0000000000000c74       0x38 ./src/rx_trama.o
+                0x0000000000000c74                get_temp_max
  .text.get_riego
-                0x0000000000000ca8       0x20 ./src/rx_trama.o
-                0x0000000000000ca8                get_riego
+                0x0000000000000cac       0x20 ./src/rx_trama.o
+                0x0000000000000cac                get_riego
  .text.is_ready
-                0x0000000000000cc8       0x18 ./src/rx_trama.o
-                0x0000000000000cc8                is_ready
+                0x0000000000000ccc       0x18 ./src/rx_trama.o
+                0x0000000000000ccc                is_ready
  .text.update_datos
-                0x0000000000000ce0       0x90 ./src/rx_trama.o
+                0x0000000000000ce4       0x90 ./src/rx_trama.o
  .text.get_humedad
-                0x0000000000000d70        0xe ./src/rx_trama.o
+                0x0000000000000d74       0x1c ./src/rx_trama.o
  .text.get_temp
-                0x0000000000000d7e        0xe ./src/rx_trama.o
+                0x0000000000000d90       0x1c ./src/rx_trama.o
  .text.__weak_main
-                0x0000000000000d8c        0x4 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
-                0x0000000000000d8c                __main
-                0x0000000000000d8c                __weak_main
+                0x0000000000000dac        0x4 /usr/local/mcuxpressoide-11.2.1_4149/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.2.0.202001021529/tools/bin/../lib/gcc/arm-none-eabi/9.2.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp/libcr_c.a(__weak__main.o)
+                0x0000000000000dac                __main
+                0x0000000000000dac                __weak_main
  *(.rodata .rodata.* .constdata .constdata.*)
-                0x0000000000000d90                . = ALIGN (0x4)
+                0x0000000000000db0                . = ALIGN (0x4)
 
-.glue_7         0x0000000000000d90        0x0
- .glue_7        0x0000000000000d90        0x0 linker stubs
+.glue_7         0x0000000000000db0        0x0
+ .glue_7        0x0000000000000db0        0x0 linker stubs
 
-.glue_7t        0x0000000000000d90        0x0
- .glue_7t       0x0000000000000d90        0x0 linker stubs
+.glue_7t        0x0000000000000db0        0x0
+ .glue_7t       0x0000000000000db0        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000000d90        0x0
- .vfp11_veneer  0x0000000000000d90        0x0 linker stubs
+.vfp11_veneer   0x0000000000000db0        0x0
+ .vfp11_veneer  0x0000000000000db0        0x0 linker stubs
 
-.v4_bx          0x0000000000000d90        0x0
- .v4_bx         0x0000000000000d90        0x0 linker stubs
+.v4_bx          0x0000000000000db0        0x0
+ .v4_bx         0x0000000000000db0        0x0 linker stubs
 
-.iplt           0x0000000000000d90        0x0
- .iplt          0x0000000000000d90        0x0 ./src/DR_PINSEL.o
+.iplt           0x0000000000000db0        0x0
+ .iplt          0x0000000000000db0        0x0 ./src/DR_PINSEL.o
 
-.rel.dyn        0x0000000000000d90        0x0
- .rel.iplt      0x0000000000000d90        0x0 ./src/DR_PINSEL.o
+.rel.dyn        0x0000000000000db0        0x0
+ .rel.iplt      0x0000000000000db0        0x0 ./src/DR_PINSEL.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x0000000000000d90        0x0
-                0x0000000000000d90                __exidx_start = .
+.ARM.exidx      0x0000000000000db0        0x0
+                0x0000000000000db0                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000000000d90                __exidx_end = .
-                0x0000000000000d90                _etext = .
+                0x0000000000000db0                __exidx_end = .
+                0x0000000000000db0                _etext = .
 
-.data_RAM2      0x000000002007c000        0x0 load address 0x0000000000000d90
+.data_RAM2      0x000000002007c000        0x0 load address 0x0000000000000db0
  FILL mask 0xff
                 [!provide]                        PROVIDE (__start_data_RAM2 = .)
                 [!provide]                        PROVIDE (__start_data_RamAHB32 = .)
@@ -405,7 +405,7 @@ END GROUP
                 0x0000000010000000                . = ALIGN (0x4)
                 0x0000000010000000                _end_uninit_RESERVED = .
 
-.data           0x0000000010000000        0x0 load address 0x0000000000000d90
+.data           0x0000000010000000        0x8 load address 0x0000000000000db0
  FILL mask 0xff
                 0x0000000010000000                _data = .
                 [!provide]                        PROVIDE (__start_data_RAM = .)
@@ -416,13 +416,17 @@ END GROUP
  *(DataQuickAccess)
  *(RamFunction)
  *(.data*)
-                0x0000000010000000                . = ALIGN (0x4)
-                0x0000000010000000                _edata = .
+ .data.aux.3805
+                0x0000000010000000        0x4 ./src/rx_trama.o
+ .data.aux.3809
+                0x0000000010000004        0x4 ./src/rx_trama.o
+                0x0000000010000008                . = ALIGN (0x4)
+                0x0000000010000008                _edata = .
                 [!provide]                        PROVIDE (__end_data_RAM = .)
                 [!provide]                        PROVIDE (__end_data_RamLoc32 = .)
 
-.igot.plt       0x0000000010000000        0x0 load address 0x0000000000000d90
- .igot.plt      0x0000000010000000        0x0 ./src/DR_PINSEL.o
+.igot.plt       0x0000000010000008        0x0 load address 0x0000000000000db8
+ .igot.plt      0x0000000010000008        0x0 ./src/DR_PINSEL.o
 
 .bss_RAM2       0x000000002007c000        0x0
                 [!provide]                        PROVIDE (__start_bss_RAM2 = .)
@@ -435,55 +439,55 @@ END GROUP
                 [!provide]                        PROVIDE (__end_bss_RAM2 = .)
                 [!provide]                        PROVIDE (__end_bss_RamAHB32 = .)
 
-.bss            0x0000000010000000       0xe8
-                0x0000000010000000                _bss = .
+.bss            0x0000000010000008       0xe8
+                0x0000000010000008                _bss = .
                 [!provide]                        PROVIDE (__start_bss_RAM = .)
                 [!provide]                        PROVIDE (__start_bss_RamLoc32 = .)
  *(.bss*)
  .bss.UART0_rx_buff
-                0x0000000010000000       0x40 ./src/DR_UART0.o
-                0x0000000010000000                UART0_rx_buff
+                0x0000000010000008       0x40 ./src/DR_UART0.o
+                0x0000000010000008                UART0_rx_buff
  .bss.UART0_rx_in
-                0x0000000010000040        0x4 ./src/DR_UART0.o
-                0x0000000010000040                UART0_rx_in
+                0x0000000010000048        0x4 ./src/DR_UART0.o
+                0x0000000010000048                UART0_rx_in
  .bss.UART0_rx_out
-                0x0000000010000044        0x4 ./src/DR_UART0.o
-                0x0000000010000044                UART0_rx_out
+                0x000000001000004c        0x4 ./src/DR_UART0.o
+                0x000000001000004c                UART0_rx_out
  .bss.UART0_tx_buff
-                0x0000000010000048       0x40 ./src/DR_UART0.o
-                0x0000000010000048                UART0_tx_buff
+                0x0000000010000050       0x40 ./src/DR_UART0.o
+                0x0000000010000050                UART0_tx_buff
  .bss.UART0_tx_in
-                0x0000000010000088        0x4 ./src/DR_UART0.o
-                0x0000000010000088                UART0_tx_in
+                0x0000000010000090        0x4 ./src/DR_UART0.o
+                0x0000000010000090                UART0_tx_in
  .bss.UART0_tx_out
-                0x000000001000008c        0x4 ./src/DR_UART0.o
-                0x000000001000008c                UART0_tx_out
+                0x0000000010000094        0x4 ./src/DR_UART0.o
+                0x0000000010000094                UART0_tx_out
  .bss.UART0_flag_tx
-                0x0000000010000090        0x1 ./src/DR_UART0.o
-                0x0000000010000090                UART0_flag_tx
- *fill*         0x0000000010000091        0x3 
- .bss.timers    0x0000000010000094       0x3c ./src/DR_timer.o
-                0x0000000010000094                timers
+                0x0000000010000098        0x1 ./src/DR_UART0.o
+                0x0000000010000098                UART0_flag_tx
+ *fill*         0x0000000010000099        0x3 
+ .bss.timers    0x000000001000009c       0x3c ./src/DR_timer.o
+                0x000000001000009c                timers
  .bss.rx_trama_state
-                0x00000000100000d0        0x1 ./src/rx_trama.o
+                0x00000000100000d8        0x1 ./src/rx_trama.o
  .bss.rx_timeout_flag
-                0x00000000100000d1        0x1 ./src/rx_trama.o
+                0x00000000100000d9        0x1 ./src/rx_trama.o
  .bss.err_timeout_flag
-                0x00000000100000d2        0x1 ./src/rx_trama.o
+                0x00000000100000da        0x1 ./src/rx_trama.o
  .bss.datos_timeout_flag
-                0x00000000100000d3        0x1 ./src/rx_trama.o
+                0x00000000100000db        0x1 ./src/rx_trama.o
  .bss.data_buffer
-                0x00000000100000d4        0x8 ./src/rx_trama.o
+                0x00000000100000dc        0x8 ./src/rx_trama.o
  .bss.data_counter
-                0x00000000100000dc        0x1 ./src/rx_trama.o
- *fill*         0x00000000100000dd        0x3 
+                0x00000000100000e4        0x1 ./src/rx_trama.o
+ *fill*         0x00000000100000e5        0x3 
  .bss.datos_enviar_buffer
-                0x00000000100000e0        0x4 ./src/rx_trama.o
+                0x00000000100000e8        0x4 ./src/rx_trama.o
  .bss.dato_rx.3737
-                0x00000000100000e4        0x4 ./src/rx_trama.o
+                0x00000000100000ec        0x4 ./src/rx_trama.o
  *(COMMON)
-                0x00000000100000e8                . = ALIGN (0x4)
-                0x00000000100000e8                _ebss = .
+                0x00000000100000f0                . = ALIGN (0x4)
+                0x00000000100000f0                _ebss = .
                 [!provide]                        PROVIDE (__end_bss_RAM = .)
                 [!provide]                        PROVIDE (__end_bss_RamLoc32 = .)
                 [!provide]                        PROVIDE (end = .)
@@ -499,24 +503,24 @@ END GROUP
                 [!provide]                        PROVIDE (__end_noinit_RAM2 = .)
                 [!provide]                        PROVIDE (__end_noinit_RamAHB32 = .)
 
-.noinit         0x00000000100000e8        0x0
-                0x00000000100000e8                _noinit = .
+.noinit         0x00000000100000f0        0x0
+                0x00000000100000f0                _noinit = .
                 [!provide]                        PROVIDE (__start_noinit_RAM = .)
                 [!provide]                        PROVIDE (__start_noinit_RamLoc32 = .)
  *(.noinit*)
-                0x00000000100000e8                . = ALIGN (0x4)
-                0x00000000100000e8                _end_noinit = .
+                0x00000000100000f0                . = ALIGN (0x4)
+                0x00000000100000f0                _end_noinit = .
                 [!provide]                        PROVIDE (__end_noinit_RAM = .)
                 [!provide]                        PROVIDE (__end_noinit_RamLoc32 = .)
                 [!provide]                        PROVIDE (_pvHeapStart = DEFINED (__user_heap_base)?__user_heap_base:.)
                 0x0000000010008000                PROVIDE (_vStackTop = DEFINED (__user_stack_top)?__user_stack_top:(__top_RamLoc32 - 0x0))
                 0xffffffffefff74da                PROVIDE (__valid_user_code_checksum = (0x0 - ((((((_vStackTop + (ResetISR + 0x1)) + (NMI_Handler + 0x1)) + (HardFault_Handler + 0x1)) + (DEFINED (MemManage_Handler)?MemManage_Handler:0x0 + 0x1)) + (DEFINED (BusFault_Handler)?BusFault_Handler:0x0 + 0x1)) + (DEFINED (UsageFault_Handler)?UsageFault_Handler:0x0 + 0x1))))
                 0x0000000000000000                _image_start = LOADADDR (.text)
-                0x0000000000000d90                _image_end = (LOADADDR (.data) + SIZEOF (.data))
-                0x0000000000000d90                _image_size = (_image_end - _image_start)
+                0x0000000000000db8                _image_end = (LOADADDR (.data) + SIZEOF (.data))
+                0x0000000000000db8                _image_size = (_image_end - _image_start)
 OUTPUT(Indicador_nivel.axf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x11ae
+.debug_info     0x0000000000000000     0x11de
  .debug_info    0x0000000000000000       0xf0 ./src/DR_PINSEL.o
  .debug_info    0x00000000000000f0       0x72 ./src/DR_PLL.o
  .debug_info    0x0000000000000162      0x31a ./src/DR_SYSTICK.o
@@ -526,9 +530,9 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .debug_info    0x0000000000000883      0x18d ./src/PR_UART0.o
  .debug_info    0x0000000000000a10      0x17c ./src/PR_timer.o
  .debug_info    0x0000000000000b8c      0x272 ./src/cr_startup_lpc175x_6x.o
- .debug_info    0x0000000000000dfe      0x3b0 ./src/rx_trama.o
+ .debug_info    0x0000000000000dfe      0x3e0 ./src/rx_trama.o
 
-.debug_abbrev   0x0000000000000000      0x924
+.debug_abbrev   0x0000000000000000      0x937
  .debug_abbrev  0x0000000000000000       0x94 ./src/DR_PINSEL.o
  .debug_abbrev  0x0000000000000094       0x56 ./src/DR_PLL.o
  .debug_abbrev  0x00000000000000ea      0x11a ./src/DR_SYSTICK.o
@@ -538,7 +542,7 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .debug_abbrev  0x0000000000000463       0xfd ./src/PR_UART0.o
  .debug_abbrev  0x0000000000000560      0x106 ./src/PR_timer.o
  .debug_abbrev  0x0000000000000666      0x117 ./src/cr_startup_lpc175x_6x.o
- .debug_abbrev  0x000000000000077d      0x1a7 ./src/rx_trama.o
+ .debug_abbrev  0x000000000000077d      0x1ba ./src/rx_trama.o
 
 .debug_aranges  0x0000000000000000      0x290
  .debug_aranges
@@ -590,7 +594,7 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .debug_macro   0x0000000000000481       0x1d ./src/cr_startup_lpc175x_6x.o
  .debug_macro   0x000000000000049e       0x82 ./src/rx_trama.o
 
-.debug_line     0x0000000000000000     0x1086
+.debug_line     0x0000000000000000     0x1085
  .debug_line    0x0000000000000000      0x133 ./src/DR_PINSEL.o
  .debug_line    0x0000000000000133      0x1e6 ./src/DR_PLL.o
  .debug_line    0x0000000000000319      0x135 ./src/DR_SYSTICK.o
@@ -600,9 +604,9 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
  .debug_line    0x0000000000000857      0x17a ./src/PR_UART0.o
  .debug_line    0x00000000000009d1      0x132 ./src/PR_timer.o
  .debug_line    0x0000000000000b03      0x15f ./src/cr_startup_lpc175x_6x.o
- .debug_line    0x0000000000000c62      0x424 ./src/rx_trama.o
+ .debug_line    0x0000000000000c62      0x423 ./src/rx_trama.o
 
-.debug_str      0x0000000000000000     0x3e43
+.debug_str      0x0000000000000000     0x3e42
  .debug_str     0x0000000000000000     0x2f26 ./src/DR_PINSEL.o
                                        0x2f6d (size before relaxing)
  .debug_str     0x0000000000002f26      0x579 ./src/DR_PLL.o
@@ -621,8 +625,8 @@ OUTPUT(Indicador_nivel.axf elf32-littlearm)
                                        0x2f5d (size before relaxing)
  .debug_str     0x0000000000003981      0x1c6 ./src/cr_startup_lpc175x_6x.o
                                        0x3005 (size before relaxing)
- .debug_str     0x0000000000003b47      0x2fc ./src/rx_trama.o
-                                       0x3212 (size before relaxing)
+ .debug_str     0x0000000000003b47      0x2fb ./src/rx_trama.o
+                                       0x3211 (size before relaxing)
 
 .comment        0x0000000000000000       0x79
  .comment       0x0000000000000000       0x79 ./src/DR_PINSEL.o

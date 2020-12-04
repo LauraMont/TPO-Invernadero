@@ -250,7 +250,8 @@ void MainWindow::on_iniciar_clicked()
     else {
         disable_gui();
         terminar();
-//        puerto->close();   PREGUNTAR AUGUSTO Cómo cerrar el puerto y que envie el dato anterior.
+        puerto->flush();
+        puerto->close();   //PREGUNTAR AUGUSTO Cómo cerrar el puerto y que envie el dato anterior.
     }
 }
 

@@ -38,14 +38,7 @@
 								<option id="gnu.c.compiler.option.optimization.flags.1624340666" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" useByScannerDiscovery="false" value="-fno-common" valueType="string"/>
 								<option id="com.crt.advproject.gcc.hdrlib.328013775" name="Library headers" superClass="com.crt.advproject.gcc.hdrlib" useByScannerDiscovery="false" value="Redlib" valueType="enumerated"/>
 								<option id="com.crt.advproject.gcc.specs.508644234" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false" value="com.crt.advproject.gcc.specs.codered" valueType="enumerated"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.1241933955" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/I2C}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Inicializacion}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/pll}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/systick}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/gpio}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src}&quot;"/>
-								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="gnu.c.compiler.option.include.paths.1241933955" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath"/>
 								<inputType id="com.crt.advproject.compiler.input.203791273" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
 							<tool id="com.crt.advproject.gas.exe.debug.1643116663" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.debug">
@@ -63,14 +56,14 @@
 							</tool>
 							<tool id="com.crt.advproject.link.exe.debug.1917762418" name="MCU Linker" superClass="com.crt.advproject.link.exe.debug">
 								<option id="com.crt.advproject.link.thumb.640398208" name="Thumb mode" superClass="com.crt.advproject.link.thumb" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.memory.load.image.1018249658" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" value="" valueType="string"/>
-								<option defaultValue="com.crt.advproject.heapAndStack.lpcXpressoStyle" id="com.crt.advproject.link.memory.heapAndStack.style.1783423792" name="Heap and Stack placement" superClass="com.crt.advproject.link.memory.heapAndStack.style" valueType="enumerated"/>
+								<option id="com.crt.advproject.link.memory.load.image.1018249658" name="Plain load image" superClass="com.crt.advproject.link.memory.load.image" useByScannerDiscovery="false" value="false;" valueType="string"/>
+								<option defaultValue="com.crt.advproject.heapAndStack.lpcXpressoStyle" id="com.crt.advproject.link.memory.heapAndStack.style.1783423792" name="Heap and Stack placement" superClass="com.crt.advproject.link.memory.heapAndStack.style" useByScannerDiscovery="false" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.memory.heapAndStack.1747476922" name="Heap and Stack options" superClass="com.crt.advproject.link.memory.heapAndStack" value="&amp;Heap:Default;Post Data;Default&amp;Stack:Default;End;Default" valueType="string"/>
-								<option id="com.crt.advproject.link.memory.data.1781124103" name="Global data placement" superClass="com.crt.advproject.link.memory.data" value="" valueType="string"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="com.crt.advproject.link.memory.sections.1098876046" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" valueType="stringList"/>
-								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="com.crt.advproject.link.gcc.multicore.master.userobjs.697672890" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" valueType="userObjs"/>
+								<option id="com.crt.advproject.link.memory.data.1781124103" name="Global data placement" superClass="com.crt.advproject.link.memory.data" useByScannerDiscovery="false" value="Default" valueType="string"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="com.crt.advproject.link.memory.sections.1098876046" name="Extra linker script input sections" superClass="com.crt.advproject.link.memory.sections" useByScannerDiscovery="false" valueType="stringList"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="true" id="com.crt.advproject.link.gcc.multicore.master.userobjs.697672890" name="Slave Objects (not visible)" superClass="com.crt.advproject.link.gcc.multicore.master.userobjs" useByScannerDiscovery="false" valueType="userObjs"/>
 								<option id="com.crt.advproject.link.arch.1098857332" name="Architecture" superClass="com.crt.advproject.link.arch" value="com.crt.advproject.link.target.cm3" valueType="enumerated"/>
-								<option id="com.crt.advproject.link.script.1114965407" name="Linker script" superClass="com.crt.advproject.link.script" value="&quot;TPO_Debug.ld&quot;" valueType="string"/>
+								<option id="com.crt.advproject.link.script.1114965407" name="Linker script" superClass="com.crt.advproject.link.script" useByScannerDiscovery="false" value="&quot;TPO_Debug.ld&quot;" valueType="string"/>
 								<option id="com.crt.advproject.link.manage.772212027" name="Manage linker script" superClass="com.crt.advproject.link.manage" value="true" valueType="boolean"/>
 								<option id="gnu.c.link.option.nostdlibs.277111636" name="No startup or default libs (-nostdlib)" superClass="gnu.c.link.option.nostdlibs" value="true" valueType="boolean"/>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.link.option.other.1167051953" name="Other options (-Xlinker [option])" superClass="gnu.c.link.option.other" valueType="stringList">
@@ -79,7 +72,7 @@
 									<listOptionValue builtIn="false" value="--gc-sections"/>
 									<listOptionValue builtIn="false" value="-print-memory-usage"/>
 								</option>
-								<option id="com.crt.advproject.link.gcc.hdrlib.1354675786" name="Library" superClass="com.crt.advproject.link.gcc.hdrlib" value="com.crt.advproject.gcc.link.hdrlib.codered.none" valueType="enumerated"/>
+								<option id="com.crt.advproject.link.gcc.hdrlib.1354675786" name="Library" superClass="com.crt.advproject.link.gcc.hdrlib" useByScannerDiscovery="false" value="com.crt.advproject.gcc.link.hdrlib.codered.semihost" valueType="enumerated"/>
 								<option id="com.crt.advproject.link.crpenable.1651279417" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.crpenable"/>
 								<option id="com.crt.advproject.link.gcc.multicore.slave.1228683464" name="Multicore configuration" superClass="com.crt.advproject.link.gcc.multicore.slave"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.556850989" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
@@ -98,13 +91,16 @@
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.1202012230" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/I2C}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/gpio}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Inicializacion}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/pll}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/systick}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Display}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Temporizadores}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/BMP280}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/LCD}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/GPIO}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Aplicacion}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Teclado}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/BME280}&quot;"/>
 								</option>
 								<inputType id="com.crt.advproject.compiler.input.1880011747" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
@@ -125,13 +121,16 @@
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.1907762991" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/I2C}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/gpio}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Inicializacion}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/pll}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/systick}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Display}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Temporizadores}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/BMP280}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/LCD}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/GPIO}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Aplicacion}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/Teclado}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/TPO/src/BME280}&quot;"/>
 								</option>
 								<inputType id="com.crt.advproject.compiler.input.1831475316" superClass="com.crt.advproject.compiler.input"/>
 							</tool>

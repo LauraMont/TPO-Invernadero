@@ -10,12 +10,15 @@ RM := rm -rf
 -include sources.mk
 -include src/systick/subdir.mk
 -include src/pll/subdir.mk
--include src/gpio/subdir.mk
 -include src/Temporizadores/subdir.mk
+-include src/Teclado/subdir.mk
+-include src/LCD/subdir.mk
 -include src/Inicializacion/subdir.mk
 -include src/I2C/subdir.mk
+-include src/GPIO/subdir.mk
 -include src/Display/subdir.mk
--include src/BMP280/subdir.mk
+-include src/BME280/subdir.mk
+-include src/Aplicacion/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk

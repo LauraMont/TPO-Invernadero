@@ -14,13 +14,16 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-src/BMP280 \
+src/Aplicacion \
+src/BME280 \
 src/Display \
+src/GPIO \
 src/I2C \
 src/Inicializacion \
+src/LCD \
+src/Teclado \
 src/Temporizadores \
 src \
-src/gpio \
 src/pll \
 src/systick \
 

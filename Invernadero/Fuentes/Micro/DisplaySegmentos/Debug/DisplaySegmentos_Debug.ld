@@ -6,7 +6,7 @@
  * Generated linker script file for LPC1769
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v11.2.1 [Build 4149] [2020-10-07] on 20-nov-2020 22:32:00
+ * MCUXpresso IDE v11.2.1 [Build 4149] [2020-10-07] on 02-dic-2020 10:12:20
  */
 
 INCLUDE "DisplaySegmentos_Debug_library.ld"
