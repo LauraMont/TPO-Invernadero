@@ -77,22 +77,25 @@ static int32_t temp;
 void BME280_init(uint32_t portNum)
 {
 	/* Write SLA(W), register configuration, SLA(R), and read one byte back. */
-	I2CWriteLength[portNum] = 6; //Voy a enviar 6 datos de escritura
+	I2CWriteLength[portNum] = 8; //Cantidad de veces a escribir
 
-	I2CReadLength[portNum] = CANT_CALIB_PARAMS_TP; //Voy a leer 25 datos
+	I2CReadLength[portNum] = CANT_CALIB_PARAMS_TP; //Cantidad de veces que voy a leer
 
-	I2CMasterBuffer[portNum][0] = BME280_WR;	 //Dirección en modo de escritura
+	I2CMasterBuffer[portNum][0] = BME280_WR;//Dirección en modo de escritura
 
 	//Configuración para las mediciones
-	I2CMasterBuffer[portNum][1] = CTRL_MEAS;	 //Dirección del registro a escribir
-	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | NORMAL_MODE; //Configuración del registro
+	I2CMasterBuffer[portNum][1] = CTRL_MEAS;//Dirección del registro de configuracion de mediciones
+	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | NORMAL_MODE; //Configuro sobremuestreo normal y modo normal
 
-	I2CMasterBuffer[portNum][3] = CONFIG;	 //Dirección del registro a escribir
-	I2CMasterBuffer[portNum][4] = T1MS | FILTER_OFF | SPI3E_OFF; //Configuración del registro
+	I2CMasterBuffer[portNum][3] = CTRL_HUM;	 //Dirección del registro a escribir
+	I2CMasterBuffer[portNum][4] = MIN_OSRS_H; //Configuro sobremuestreo normal
+
+	I2CMasterBuffer[portNum][5] = CONFIG;	 //Dirección del registro de configuraciones
+	I2CMasterBuffer[portNum][6] = T1MS | FILTER_OFF | SPI3E_OFF; //Configuración del registro
 
 	//Lectura de los valores de calibracion de temperatura y presion
-	I2CMasterBuffer[portNum][5] = 0x88; //Registro del que comenzar a leer
-	I2CMasterBuffer[portNum][6] = BME280_RD;  //Dirección en modo de lectura
+	I2CMasterBuffer[portNum][7] = 0x88; //Registro del que comenzar a leer
+	I2CMasterBuffer[portNum][8] = BME280_RD;  //Dirección en modo de lectura
 
 	I2CEngine(portNum); //Va a escribir y leer tantas veces como se configuro en las líneas anteriores
 
@@ -179,13 +182,12 @@ void parse_humidity_calib_data(void)
 
     dig_h4_msb = (int16_t)(int8_t)calib_params_H[3] * 16;
     dig_h4_lsb = (int16_t)(calib_params_H[4] & 0x0F);
-
     calib_data->dig_h4 = dig_h4_msb | dig_h4_lsb;
 
     dig_h5_msb = (int16_t)(int8_t)calib_params_H[5] * 16;
     dig_h5_lsb = (int16_t)(calib_params_H[4] >> 4);
-
     calib_data->dig_h5 = dig_h5_msb | dig_h5_lsb;
+
     calib_data->dig_h6 = (int8_t)calib_params_H[6];
 }
 
@@ -281,7 +283,7 @@ uint32_t get_pres(uint32_t portNum)
 {
 	BME280_get_meas_values(portNum);
 	compensate_pres(&pres, uncomp_data.pressure);
-	return pres; //Elimino los dos ultimos digitos asi queda sin comas
+	return pres/100; //Elimino los dos ultimos digitos asi queda sin comas
 }
 
 /*
@@ -394,7 +396,7 @@ void compensate_pres(uint32_t *comp_pres, uint32_t uncomp_pres)
 void compensate_hum(uint32_t *comp_hum,  uint32_t uncomp_hum)
 {
     double humidity_min = 0.0;
-    double humidity_max = 100.0;
+    double humidity_max = 99.0; //Originalmente es 100.0
     double var1;
     double var2;
     double var3;
@@ -409,7 +411,7 @@ void compensate_hum(uint32_t *comp_hum,  uint32_t uncomp_hum)
     var5 = (1.0 + (((double)dev.calib_data.dig_h3) / 67108864.0) * var1);
     var6 = 1.0 + (((double)dev.calib_data.dig_h6) / 67108864.0) * var1 * var5;
     var6 = var3 * var4 * (var5 * var6);
-    *comp_hum = var6 * (1.0 - ((double)dev.calib_data.dig_h1) * var6 / 524288.0);
+    *comp_hum = (var6) * (1.0 - ((double)dev.calib_data.dig_h1) * var6 / 524288.0);
 
     if (*comp_hum > humidity_max)
     {

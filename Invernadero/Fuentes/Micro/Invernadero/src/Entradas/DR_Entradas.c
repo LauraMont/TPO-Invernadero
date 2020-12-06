@@ -1,18 +1,17 @@
 /*******************************************************************************************************************************//**
  *
- * @file		AP_funciones.c
+ * @file		DR_Entradas.c
  * @brief		Descripcion del modulo
- * @date		23 nov. 2020
- * @author		Taurozzi, Nicolás
+ * @date		6 dic. 2020
+ * @author		Nicolas Taurozzi
  *
  **********************************************************************************************************************************/
 
 /***********************************************************************************************************************************
  *** INCLUDES
  **********************************************************************************************************************************/
-#include "AP_funciones.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include "DR_Entradas.h"
+
 /***********************************************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
  **********************************************************************************************************************************/
@@ -32,15 +31,12 @@
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PUBLICAS
  **********************************************************************************************************************************/
-extern volatile uint8_t carga_timeout_flag;
-extern volatile uint8_t reset_flag;
+volatile uint8_t BufferEntradas_Dig = 0;
 
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
-volatile uint32_t Temp = 0;
-volatile uint32_t Pres= 0;
-volatile uint32_t Hum= 0;
+
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
@@ -52,130 +48,54 @@ volatile uint32_t Hum= 0;
  /***********************************************************************************************************************************
  *** FUNCIONES GLOBALES AL MODULO
  **********************************************************************************************************************************/
-
 /**
-	\fn  	Inicializar(void)
-	\brief 	Inicializa todos los periféricos
- 	\author Taurozzi, Nicolás
- 	\date 	24/11/20
-	\return No hay retorno
+	\fn  		InitDigIN
+	\brief		Inicializacion de las entradas digitales
+ 	\author 	Nicolas Taurozzi
+ 	\date 6 	dic. 2020
+	\return 	No hay retorno
 */
-void Inicializar(void)
+void InitDigIN(void)
 {
-	InicializarPLL( );
-	InicializarSysTick ( );
-	InicializarUART0();
-	ADC_init();
-	Init_I2C1();
-
-	InitLCD();
-	InicializarDisplay();
-	InicializarTeclado();
-	InicializarEntradasDig();
-	InicializarRelays();
-	InicializarBuzzer();
-
-	BME280_init(1); //Configura los parámetros de medición y toma los valores necesarios en el canal 1 del I2C
+	SetDIR(D_IN0, ENTRADA);
 }
 
 /**
-	\fn  	void Medir(void)
-	\brief 	Inicializa la medició
- 	\author Taurozzi, Nicolás
- 	\date 	24/11/20
-	\return No hay retorno
+	\fn  		InitDigIN
+	\brief		Debounce de las entradas digitales
+ 	\author 	Nicolas Taurozzi
+ 	\date 6 	dic. 2020
+	\return 	No hay retorno
 */
-void Medir(void)
+void DebounceEntradas (void)
 {
-	uint8_t i = 0;
-	int8_t auxT[] = {"Temp:  C"};
-	int8_t auxH[] = {"Hum:  %"};
-	int8_t auxP[] = {"Pres:    hPa"};
-	Temp = get_temp(1);
-	Pres = get_pres(1);
-	Hum =  get_hum(1);
+	static uint8_t ContadorEntradas_Dig[MAX_ENTRADAS] = {0};
+	uint8_t in = 0, x;
+	uint8_t i;
 
-	auxT[5] = Temp/10 + '0';
-	auxT[6] = Temp%10 + '0';
+	if ( GetPIN( D_IN0 , ALTO) )
+		in = 1;
 
-	auxH[4] = Hum/10 + '0';
-	auxH[5] = Hum%10 + '0';
+	x = in ^ BufferEntradas_Dig;
 
-	for(uint8_t i=0; i<4 ; i++)//Repito la cantidad de digitos de la presión
+	if ( !x )
 	{
-		uint8_t aux;
-		aux = Pres%10;
-		Pres /= 10;
-		auxP[8-i] = aux + '0';
+		for ( i=0 ; i < MAX_ENTRADAS ; i++ )
+			ContadorEntradas_Dig[i] = 0;
 	}
-
-	if(!i)
+	else
 	{
-		Display_LCD( auxT , RENGLON_1 , 0 );
-		Display_LCD( auxH , RENGLON_1 , 9 );
-		Display_LCD( auxP , RENGLON_2 , 0 );
-		i=i;
-	}
-
-	TimerStart( 1, 1, Ev_Estado1, SEG );    //  Las líneas comentadas son para que la medición se repita cada 1 segundo
-}
-
-
-/**
-	\fn  	LeerTeclado(void)
-	\brief 	Toma la tecla del teclado
- 	\author Taurozzi, Nicolás
- 	\date 	24/11/20
-	\return No hay retorno
-*/
-void LeerTeclado(void)
-{
-	uint8_t Tecla = GetKey();
-//	uint8_t auxT[16];
-//	uint8_t auxP[16];
-
-	switch (Tecla)
-	{
-		case 5:
-				Display(Temp);
-				break;
-		case 4:
-				Display(Pres);
-				break;
-
-		case 3:
-				Display(Hum);
-				break;
-
-		default:
-				 break;
+		for ( i=0 ; i<MAX_ENTRADAS ; i++ )
+		{
+			if ( x & (1<<i) )
+			{
+				ContadorEntradas_Dig[i]++;
+				if ( ContadorEntradas_Dig[i] >= REBOTES )
+						BufferEntradas_Dig = BufferEntradas_Dig ^ (1<<i);
+			}
+			else
+				ContadorEntradas_Dig[i] = 0;
+		}
 	}
 }
 
-/**
-	\fn  	LeerTeclado(void)
-	\brief 	Toma la tecla del teclado
- 	\author Taurozzi, Nicolás
- 	\date 	24/11/20
-	\return No hay retorno
-*/
-void ApagarLuces(void)
-{
-	SetDIR(led0, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(led1, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(led2, SALIDA);//Seteo el relay 0 como salida
-
-	SetDIR(RELAY0, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(RELAY1, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(RELAY2, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(RELAY3, SALIDA);//Seteo el relay 0 como salida
-
-	SetPIN(led0, OFF);
-	SetPIN(led1, OFF);
-	SetPIN(led2, OFF);
-
-	SetPIN(RELAY0, OFF);
-	SetPIN(RELAY1, OFF);
-	SetPIN(RELAY2, OFF);
-	SetPIN(RELAY3, OFF);
-}

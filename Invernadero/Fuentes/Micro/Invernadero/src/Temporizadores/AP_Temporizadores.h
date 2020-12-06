@@ -42,12 +42,8 @@ extern uint8_t	fEventoTiempo_2 ;
 /***********************************************************************************************************************************
  *** PROTOTIPOS DE FUNCIONES GLOBALES
  **********************************************************************************************************************************/
-void Ev_Relay0 (void);
-
 void Ev_Estado1 ( void );
-void Ev_Estado2 ( void );
 void Ev_Display ( void );
-
-
+void Ev_Buzzer(void);
 
 #endif /* TEMPORIZADORES_AP_TEMPORIZADORES_H_ */

@@ -10,11 +10,11 @@
 /***********************************************************************************************************************************
  *** INCLUDES
  **********************************************************************************************************************************/
-#include "../SysTick/DR_SysTick.h"
-
+#include "DR_SysTick.h"
 #include "PR_Temporizadores.h"
 #include "DR_LCD.h"
 #include "DR_Teclado.h"
+#include "DR_Entradas.h"
 #include "DR_Display.h"
 /***********************************************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
@@ -71,7 +71,8 @@ void SysTick_Handler(void)
 {
 	TimerDescount ( );
 	TecladoSW();
-	BarridoDisplay();
+//	BarridoDisplay();
+	DebounceEntradas();
 	if(Demora_LCD)
 				Demora_LCD--;
 

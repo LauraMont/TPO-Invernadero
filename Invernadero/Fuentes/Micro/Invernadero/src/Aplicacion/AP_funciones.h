@@ -43,6 +43,5 @@ void Inicializar(void);
 void LeerTeclado(void);
 void ApagarLuces(void);
 void Medir(void);
-void MySprintf(int8_t * lugar, int32_t valor);
 
 #endif /* APLICACION_AP_FUNCIONES_H_ */

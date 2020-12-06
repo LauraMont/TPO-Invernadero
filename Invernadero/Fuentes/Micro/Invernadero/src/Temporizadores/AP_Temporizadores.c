@@ -11,7 +11,7 @@
  *** INCLUDES
  **********************************************************************************************************************************/
 #include "DR_GPIO.h"
-#include "PR_BME280.h"
+#include "PR_Buzzer.h"
 #include "AP_Temporizadores.h"
 #include "AP_funciones.h"
 #include "PR_Temporizadores.h"
@@ -63,22 +63,6 @@ uint8_t	fEventoTiempo_2 = 0 ;
 	\return tipo y descripcion de retorno
 */
 
-void Ev_Relay0 (void)
-{
-	static uint8_t modulo = 0;
-
-//	SetTOGGLE( RELAY0 );
-
-	if ( modulo )
-		TimerStart( 0 , 2 , Ev_Relay0 , SEG );
-	else
-		TimerStart( 0 , 5 , Ev_Relay0 , DEC );
-
-	modulo ++;
-	modulo %=2;
-}
-
-
 void Ev_Estado1 ( void )
 {
 	Medir();
@@ -87,6 +71,11 @@ void Ev_Estado1 ( void )
 void Ev_Display ( void )
 {
 	BarridoDisplay();
+}
+
+void Ev_Buzzer(void)
+{
+	BuzzerOFF();
 }
 
 

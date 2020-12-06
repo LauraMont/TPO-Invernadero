@@ -100,6 +100,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Invernadero/src/SysTick}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Invernadero/src/ADC}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Invernadero/src/UART}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Invernadero/src/Entradas}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Invernadero/src/Relay}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Invernadero/src/Buzzer}&quot;"/>
 								</option>
 								<inputType id="com.crt.advproject.compiler.input.834093773" superClass="com.crt.advproject.compiler.input"/>
 							</tool>

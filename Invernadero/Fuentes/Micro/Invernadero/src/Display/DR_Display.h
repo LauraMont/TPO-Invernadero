@@ -15,23 +15,6 @@ extern volatile uint8_t cantDispl;
 #define 	CANT_DISP2 		2
 #define 	COMA 			3
 
-
-// PLACA EXPANSION 2
-#define 	EXPANSION0		PORT2,7
-#define 	EXPANSION1		PORT1,29
-#define     EXPANSION2		PORT4,28
-#define 	EXPANSION3		PORT1,23
-#define 	EXPANSION4   	PORT1,20
-#define 	EXPANSION5		PORT0,19
-#define 	EXPANSION6	  	PORT3,26
-#define 	EXPANSION9	    PORT1,19
-#define 	EXPANSION10	    PORT0,20
-#define 	EXPANSION11	    PORT3,25
-#define 	EXPANSION12     PORT1,27
-#define 	EXPANSION13	    PORT1,24
-#define 	EXPANSION14    	PORT1,21
-#define 	EXPANSION15    	PORT1,18
-
 #define    	digito0        		EXPANSION0
 #define    	digito1        		EXPANSION1
 #define    	digito2        		EXPANSION2
