@@ -16,6 +16,11 @@
 /***********************************************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
  **********************************************************************************************************************************/
+#define 	ON 			1
+#define 	OFF			0
+#define     EN_AGUA		1400
+#define     EN_AIRE		4095
+#define 	i2c1		1
 
 /***********************************************************************************************************************************
  *** MACROS PRIVADAS AL MODULO
@@ -41,6 +46,7 @@ extern volatile uint8_t reset_flag;
 volatile uint32_t Temp = 0;
 volatile uint32_t Pres= 0;
 volatile uint32_t Hum= 0;
+
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
@@ -87,13 +93,17 @@ void Inicializar(void)
 */
 void Medir(void)
 {
-	uint8_t i = 0;
+	uint8_t humedad, TanqueVacio = 0;
 	int8_t auxT[] = {"Temp:  C"};
 	int8_t auxH[] = {"Hum:  %"};
 	int8_t auxP[] = {"Pres:    hPa"};
-	Temp = get_temp(1);
-	Pres = get_pres(1);
-	Hum =  get_hum(1);
+	int32_t adc = ADC_get_average();
+	humedad = 100 - (adc - EN_AGUA) * 0.03710575139;
+	TanqueVacio = GetIN();
+	MeasureBME280(i2c1);
+//	Temp = get_temp(1);
+//	Pres = get_pres(1);
+//	Hum =  get_hum(1);
 
 	auxT[5] = Temp/10 + '0';
 	auxT[6] = Temp%10 + '0';
@@ -109,13 +119,18 @@ void Medir(void)
 		auxP[8-i] = aux + '0';
 	}
 
-	if(!i)
+	if(humedad > 70) 	Display_LCD( "HUMEDO!!!" , RENGLON_1 , 0 );
+	else
 	{
 		Display_LCD( auxT , RENGLON_1 , 0 );
 		Display_LCD( auxH , RENGLON_1 , 9 );
 		Display_LCD( auxP , RENGLON_2 , 0 );
-		i=i;
 	}
+
+	if(TanqueVacio)
+		Alarma(ON);
+	else
+		Alarma(OFF);
 
 	TimerStart( 1, 1, Ev_Estado1, SEG );    //  Las líneas comentadas son para que la medición se repita cada 1 segundo
 }
@@ -131,8 +146,6 @@ void Medir(void)
 void LeerTeclado(void)
 {
 	uint8_t Tecla = GetKey();
-//	uint8_t auxT[16];
-//	uint8_t auxP[16];
 
 	switch (Tecla)
 	{
@@ -150,6 +163,42 @@ void LeerTeclado(void)
 		default:
 				 break;
 	}
+}
+
+
+/**
+	\fn  	Alarma
+	\brief 	Toma las acciones necesarias en caso de que el tanque este vacio
+ 	\author Taurozzi, Nicolás
+ 	\date 	24/11/20
+ 	\params [in] activar: ON u OFF según se prenda o no
+	\return No hay retorno
+*/
+void Alarma(uint8_t activar)
+{
+	static uint8_t flag = 0;
+	static uint8_t contador = 0;
+
+	/*Los valores de los tiempos de funcionamiento estan divididos por 2
+	  porque el programa tarda aproximadamente dos segundo en aumentar en 1
+	  El valor de contador, por lo que reduciendo a la mitad los valores se
+	  consiguen tiempos aproximados a los que se necesitan */
+	if (activar && (contador == 0 ||contador == 5))//Solo prendo el buzzer durante 1 segundo si modo es 1 y cada 10 segundos
+	{
+		RelayON(0);
+		TimedBuzzer(5,DEC);
+		flag = 1;
+	}
+	else if (!activar)
+	{
+		BuzzerOFF();
+		RelaysOFF();
+		flag = 0;
+		contador = 0;
+	}
+	if(flag) contador ++;
+	if(contador == 11) contador = 0; //Reinicio el contador si llega a 10
+
 }
 
 /**

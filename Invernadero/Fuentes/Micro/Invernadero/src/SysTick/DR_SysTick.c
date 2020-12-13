@@ -13,6 +13,7 @@
 #include "DR_SysTick.h"
 #include "PR_Temporizadores.h"
 #include "DR_LCD.h"
+#include "DR_ADC.h"
 #include "DR_Teclado.h"
 #include "DR_Entradas.h"
 #include "DR_Display.h"
@@ -71,10 +72,9 @@ void SysTick_Handler(void)
 {
 	TimerDescount ( );
 	TecladoSW();
-//	BarridoDisplay();
 	DebounceEntradas();
+	TimeADC();
 	if(Demora_LCD)
 				Demora_LCD--;
-
 	Dato_LCD();
 }

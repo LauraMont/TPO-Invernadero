@@ -45,6 +45,8 @@
 #define SPI3E_OFF 0x00
 
 #define NORMAL_MODE 0x03
+#define FORCED_MODE 0x02
+#define SLEEP_MODE 0x00
 #define MIN_OSRS_T (0x01 << 5)
 #define MIN_OSRS_P (0x01 << 2)
 #define MIN_OSRS_H (0x01)
@@ -68,6 +70,7 @@ void BME280_init(uint32_t portNum);
 void BME280_get_meas_values(uint32_t portNum);
 void bme280_get_uncomp_data(uint8_t * data);
 
+void MeasureBME280(uint32_t portNum);
 int32_t get_temp(uint32_t portNum);
 uint32_t get_pres(uint32_t portNum);
 uint32_t get_hum(uint32_t portNum);

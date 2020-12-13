@@ -37,6 +37,10 @@ extern volatile uint8_t I2CSlaveBuffer[I2C_PORT_NUM][BUFSIZE];
 extern volatile uint32_t I2CReadLength[I2C_PORT_NUM];
 extern volatile uint32_t I2CWriteLength[I2C_PORT_NUM];
 
+extern volatile uint32_t Temp;
+extern volatile uint32_t Pres;
+extern volatile uint32_t Hum;
+
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
@@ -85,7 +89,7 @@ void BME280_init(uint32_t portNum)
 
 	//Configuración para las mediciones
 	I2CMasterBuffer[portNum][1] = CTRL_MEAS;//Dirección del registro de configuracion de mediciones
-	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | NORMAL_MODE; //Configuro sobremuestreo normal y modo normal
+	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | SLEEP_MODE; //Configuro sobremuestreo normal y modo normal
 
 	I2CMasterBuffer[portNum][3] = CTRL_HUM;	 //Dirección del registro a escribir
 	I2CMasterBuffer[portNum][4] = MIN_OSRS_H; //Configuro sobremuestreo normal
@@ -204,15 +208,19 @@ void parse_humidity_calib_data(void)
 
 void BME280_get_meas_values(uint32_t portNum)
 {
-	I2CWriteLength[portNum] = 2; //Voy a enviar 6 datos de escritura
+	I2CWriteLength[portNum] = 4; //Voy a enviar 4 datos de escritura
 
 	I2CReadLength[portNum] = CANT_DATA_REGS;
 
 	I2CMasterBuffer[portNum][0] = BME280_WR;	 //Dirección en modo de escritura
 
-	I2CMasterBuffer[portNum][1] = 0xF7; //Registro del que comenzar a leer
+	I2CMasterBuffer[portNum][1] = CTRL_MEAS;//Dirección del registro de configuracion de mediciones
 
-	I2CMasterBuffer[portNum][2] = BME280_RD;  //Dirección en modo de lectura
+	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | FORCED_MODE; //Configuro sobremuestreo normal y modo forzado
+
+	I2CMasterBuffer[portNum][3] = 0xF7; //Registro del que comenzar a leer
+
+	I2CMasterBuffer[portNum][4] = BME280_RD;  //Dirección en modo de lectura
 
 	I2CEngine(1); //Va a escribir y leer tantas veces como se configuro en las líneas anteriores
 
@@ -253,6 +261,29 @@ void bme280_get_uncomp_data(uint8_t * data)
     data_msb = (uint32_t)data[6] << 8;
     data_lsb = (uint32_t)data[7];
     uncomp_data.humidity = data_msb | data_lsb;
+}
+
+/*
+ * \fn  	MeasureBME280
+ * \@brief  Toma todas las mediciones del sensor
+ * \author  Taurozzi, Nicolás
+ * \date 	24/11/20
+ * \param 	[in] uint32_t portNum: Numero de canal del I2C del micro
+ * \param 	[out] Temp: valor de la temperatura que pasa a la aplicacion
+ * \param 	[out] Pres: valor de la presion que pasa a la aplicacion
+ * \param 	[out] Hum:  valor de la humedad que pasa a la aplicacion
+ * \return	No hay retorno
+ */
+void MeasureBME280(uint32_t portNum)
+{
+	BME280_get_meas_values(portNum);
+	compensate_temp(&temp, uncomp_data.temperature);
+	compensate_pres(&pres, uncomp_data.pressure);
+	compensate_hum(&hum, uncomp_data.humidity);
+
+	Temp = temp;
+	Pres = pres;
+	Hum = hum;
 }
 
 /*
@@ -297,7 +328,7 @@ uint32_t get_pres(uint32_t portNum)
 uint32_t get_hum(uint32_t portNum)
 {
 	BME280_get_meas_values(portNum);
-	compensate_hum(&hum, uncomp_data.humidity);//, uncomp_data.humidity);
+	compensate_hum(&hum, uncomp_data.humidity);
 	return hum;
 }
 

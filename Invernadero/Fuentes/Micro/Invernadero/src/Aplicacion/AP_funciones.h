@@ -43,5 +43,6 @@ void Inicializar(void);
 void LeerTeclado(void);
 void ApagarLuces(void);
 void Medir(void);
+void Alarma(uint8_t modo);
 
 #endif /* APLICACION_AP_FUNCIONES_H_ */

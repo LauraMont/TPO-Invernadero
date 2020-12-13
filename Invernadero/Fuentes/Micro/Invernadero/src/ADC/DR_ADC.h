@@ -139,5 +139,6 @@ void ADC_start_conversion(void);
 
 uint32_t ADC_get_average(void);
 
+void TimeADC(void);
 
 #endif /* ADC_DR_ADC_H_ */

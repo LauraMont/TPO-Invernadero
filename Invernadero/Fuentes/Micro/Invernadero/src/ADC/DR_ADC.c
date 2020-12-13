@@ -139,3 +139,22 @@ void ADC_IRQHandler(void)
 	}
 }
 
+/**
+	\fn  	TimeADC
+	\brief 	Contador para iniciar cada medicion del ADC
+ 	\author Taurozzi, Nicolás
+ 	\date 	24/11/20
+	\return No hay retorno
+*/
+void TimeADC(void)
+{
+	static uint32_t adc_counter = 0;
+
+	adc_counter++;
+	adc_counter %= 10;//Cantidad de ms
+
+	if(!adc_counter)
+	{
+		ADC_start_conversion();
+	}
+}
