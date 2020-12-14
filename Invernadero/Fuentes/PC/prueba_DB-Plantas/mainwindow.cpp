@@ -294,26 +294,30 @@ void MainWindow::enviar_datos()
 
     QByteArray data;
     data.append('$');
+    data.append('1');
     valor = consultar.value(2).toUInt();
     qDebug() << "Valor: " << valor;
     data.append(valor/10 + '0');
     valor%= 10;
     data.append(valor + '0');
-    data.append('%');
     valor = consultar.value(3).toUInt();
     data.append(valor/10 + '0');
     valor%= 10;
     data.append(valor + '0');
-    data.append('%');
     valor = consultar.value(4).toUInt();
     data.append(valor + '0');
+    data.append('%');
+    data.append(consultar.value(1).toString());
     data.append('&');
+    data.append('#');
     puerto->write(data);
 }
 
 void MainWindow::terminar()
 {
     QByteArray data;
+    data.append('$');
+    data.append('2');
     data.append('#');
     puerto->write(data);
 }
