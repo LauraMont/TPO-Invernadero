@@ -45,8 +45,13 @@ static uint8_t rx_timeout_flag = 0;
 static uint8_t err_timeout_flag = 0;
 static uint8_t datos_timeout_flag = 0;
 
+static uint8_t iniciar_flag = 0;
+static uint8_t detener_flag = 1;
+
 static uint8_t data_buffer[DATA_BUFFER_SIZE];
+static uint8_t name_buffer[DATA_BUFNAME_SIZE];
 static uint8_t data_counter = 0;
+static uint8_t name_counter = 0;
 
 static uint8_t datos_enviar_buffer[DATOS_BUFFER_SIZE];
 
@@ -57,8 +62,12 @@ static uint8_t datos_enviar_buffer[DATOS_BUFFER_SIZE];
 /***********************************************************************************************************************************
 *** FUNCIONES PRIVADAS AL MODULO
 **********************************************************************************************************************************/
-/*	TRAMA
+/*	TRAMA Vieja
  * $17%20%3&#
+ */
+
+/* Trama nueva
+ * $17203%Nombre&#
  */
 
 /**
@@ -87,12 +96,40 @@ void rx_trama_MDE(void)
 
 			if(dato_rx == START_CHAR)
 			{
-				//start_rx_timeout();
+				start_rx_timeout();
 				data_counter = 0;
+				name_counter = 0;
 				rx_trama_state = WAITING_DATA;
 			}
 
 			if(dato_rx != -1 && dato_rx != START_CHAR)
+			{
+				err_func();
+				rx_trama_state = RX_TRAMA_ERROR;
+			}
+
+			break;
+		}
+
+		case COMANDO:
+		{
+			dato_rx = UART0_pop_rx();
+
+			if(dato_rx == '1')
+			{
+				iniciar_flag=1;
+				restart_rx_timeout();
+				rx_trama_state = WAITING_DATA;
+			}
+
+			if(dato_rx == '2')
+			{
+				detener_flag=1;
+				restart_rx_timeout();
+				rx_trama_state = WAITING_END;
+			}
+
+			if(dato_rx != -1 && dato_rx != '1' && dato_rx !='2')
 			{
 				err_func();
 				rx_trama_state = RX_TRAMA_ERROR;
@@ -107,6 +144,27 @@ void rx_trama_MDE(void)
 			dato_rx = UART0_pop_rx();
 
 			check_data_result = check_if_data_valid(dato_rx);
+
+			if(check_data_result == 1) {
+				restart_rx_timeout();
+				rx_trama_state = WAITING_NAME;
+			}
+
+			if(check_data_result == -1 ||
+				rx_timeout_flag == 1) {
+				err_func();
+				rx_trama_state = RX_TRAMA_ERROR;
+			}
+
+			break;
+		}
+
+		case WAITING_NAME:
+		{
+			int32_t check_data_result;
+			dato_rx = UART0_pop_rx();
+
+			check_data_result = check_if_name_valid(dato_rx);
 
 			if(check_data_result == 1) {
 				stop_rx_timeout();
@@ -124,40 +182,35 @@ void rx_trama_MDE(void)
 			break;
 		}
 
-		case WAITING_END: {
+		case WAITING_END:
+		{
 			dato_rx = UART0_pop_rx();
 
-			if(dato_rx == END_CHAR) {
+			if(dato_rx == END_CHAR && iniciar_flag == 1) {
 
-				stop_datos_timeout();
+				detener_flag=0;
 				rx_trama_state = WAITING_START;
 			}
 
-			if(datos_timeout_flag==1){
+			if(dato_rx == END_CHAR && detener_flag== 1) {
 
-				update_datos();
-				UART0_push_tx(START_CHAR);
-				UART0_transmitir(datos_enviar_buffer);
-				UART0_push_tx(END_CHAR);
-				start_datos_timeout();
-
+				iniciar_flag=0;
+				stop_datos_timeout();
+				rx_trama_state = WAITING_START;
 			}
 
 			if((dato_rx != -1 && dato_rx != END_CHAR)) {
 				err_func();
 				rx_trama_state = RX_TRAMA_ERROR;
 			}
-
 			break;
 		}
 
 		case RX_TRAMA_ERROR: {
-			//if(err_timeout_flag == 1) {
-				//rgb_set(0, 0 ,0);
+			if(err_timeout_flag == 1) {
 				err_timeout_flag = 0;
 				rx_trama_state = WAITING_START;
-			//}
-
+			}
 			break;
 		}
 
@@ -206,7 +259,33 @@ static int32_t check_if_data_valid(int32_t dato_rx)
 	data_buffer[data_counter] = (uint8_t) dato_rx;
 	data_counter++;
 
+	if((uint8_t) dato_rx == '%') {
+		data_counter = 0;
+		return 1;
+	}
+
+	return 0;
+}
+
+static int32_t check_if_name_valid(int32_t dato_rx)
+{
+	if(dato_rx == -1)
+	{
+		return 0;
+	}
+
+	if(!(dato_rx >= 'A' || dato_rx <= 'Z') && !(dato_rx >= 'a' || dato_rx <= 'z') && (dato_rx != '&'))
+	{
+		return -1;
+	}
+
+	restart_rx_timeout();
+
+	name_buffer[data_counter] = (uint8_t) dato_rx;
+	data_counter++;
+
 	if((uint8_t) dato_rx == '&') {
+		name_counter = data_counter;
 		data_counter = 0;
 		return 1;
 	}
@@ -261,6 +340,11 @@ static void stop_rx_timeout(void) {
 static void rx_timeout_callback(void)
 {
 	rx_timeout_flag = 1;
+	update_datos();
+	UART0_push_tx(START_CHAR);
+	UART0_transmitir(datos_enviar_buffer);
+	UART0_push_tx(END_CHAR);
+	start_datos_timeout();
 }
 
 /**
@@ -349,15 +433,15 @@ uint32_t get_temp_min(void)
 
 uint32_t get_temp_max(void)
 {
-    uint32_t temperatura = (data_buffer[4]-'0');
+    uint32_t temperatura = (data_buffer[3]-'0');
 
-	temperatura += (data_buffer[3]-'0')*10;
+	temperatura += (data_buffer[2]-'0')*10;
 
 	return temperatura;
 }
 
 uint32_t get_riego(void) {
-	uint32_t riego = (data_buffer[6]-'0');
+	uint32_t riego = (data_buffer[4]-'0');
 
 	return riego;
 }
@@ -367,6 +451,18 @@ uint8_t is_ready(void){
 		return 1;
 	}
 	else return 0;
+}
+
+uint32_t * get_name(void)
+{
+    uint32_t name[DATA_BUFNAME_SIZE];
+    int32_t i;
+
+    for(i=0;i<name_counter;i++){
+    	name[i]=name_buffer[DATA_BUFNAME_SIZE-1-i];
+    }
+
+	return name;
 }
 
 static void update_datos(void) {

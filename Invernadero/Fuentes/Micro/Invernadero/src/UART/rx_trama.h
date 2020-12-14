@@ -31,7 +31,8 @@
 #define		TIMER_ID_DATOS		(2)
 #define		DATOS_TIMEOUT_SECS	(5)
 
-#define		DATA_BUFFER_SIZE	(8)
+#define		DATA_BUFFER_SIZE	(5)
+#define 	DATA_BUFNAME_SIZE	(35)
 #define 	DATOS_BUFFER_SIZE	(4)
 
 /***********************************************************************************************************************************
@@ -44,7 +45,10 @@
 typedef enum {
 	RX_TRAMA_RESET = 0,
 	WAITING_START,
+	COMANDO,
+	DETENER,
 	WAITING_DATA,
+	WAITING_NAME,
 	WAITING_END,
 	RX_TRAMA_ERROR
 } rx_trama_state_en;
@@ -84,4 +88,5 @@ static uint32_t get_humedad(void);				//Funcion que regresará los valores medid
 static uint32_t get_temp(void);					//Funcion que regresará los valores medidos
 
 static int32_t check_if_data_valid(int32_t dato_rx);
+static int32_t check_if_name_valid(int32_t dato_rx);
 #endif /* RX_TRAMA_H_ */
