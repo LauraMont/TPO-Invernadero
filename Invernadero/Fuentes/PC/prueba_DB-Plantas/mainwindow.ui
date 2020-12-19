@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>384</width>
-    <height>490</height>
+    <height>454</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -65,8 +65,8 @@
      <rect>
       <x>10</x>
       <y>230</y>
-      <width>81</width>
-      <height>65</height>
+      <width>97</width>
+      <height>79</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -96,22 +96,22 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>110</x>
       <y>230</y>
       <width>71</width>
-      <height>65</height>
+      <height>79</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label_TMAX">
+      <widget class="QLabel" name="label_TMIN">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_TMIN">
+      <widget class="QLabel" name="label_TMAX">
        <property name="text">
         <string/>
        </property>
@@ -129,24 +129,31 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>190</x>
       <y>230</y>
-      <width>100</width>
-      <height>42</height>
+      <width>120</width>
+      <height>79</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QLabel" name="label_nriego">
+      <widget class="QLabel" name="label_h_tierra">
        <property name="text">
-        <string>Nivel de riego:</string>
+        <string>Hum Tierra:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_nluz">
+      <widget class="QLabel" name="label_h_amb">
        <property name="text">
-        <string>Nivel de luz:</string>
+        <string>Hum Amb:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_nriego">
+       <property name="text">
+        <string>Nivel de riego:</string>
        </property>
       </widget>
      </item>
@@ -155,22 +162,29 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>310</x>
       <y>230</y>
       <width>51</width>
-      <height>42</height>
+      <height>79</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_4">
      <item>
-      <widget class="QLabel" name="label_NRIEGO">
+      <widget class="QLabel" name="label_HTIERRA">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_NLUZ">
+      <widget class="QLabel" name="label_HAMB">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_NRIEGO">
        <property name="text">
         <string/>
        </property>
@@ -182,7 +196,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>310</y>
+      <y>330</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -195,7 +209,7 @@
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>360</y>
+      <y>380</y>
       <width>69</width>
       <height>17</height>
      </rect>
@@ -208,7 +222,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>360</y>
+      <y>380</y>
       <width>51</width>
       <height>17</height>
      </rect>
@@ -221,7 +235,7 @@
     <property name="geometry">
      <rect>
       <x>230</x>
-      <y>360</y>
+      <y>380</y>
       <width>51</width>
       <height>17</height>
      </rect>
@@ -234,7 +248,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>360</y>
+      <y>380</y>
       <width>69</width>
       <height>17</height>
      </rect>
@@ -250,12 +264,17 @@
      <x>0</x>
      <y>0</y>
      <width>384</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>comboBox</tabstop>
+  <tabstop>configuraciones</tabstop>
+  <tabstop>iniciar</tabstop>
+ </tabstops>
  <resources>
   <include location="Recursos.qrc"/>
  </resources>

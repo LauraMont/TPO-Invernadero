@@ -208,7 +208,7 @@ void parse_humidity_calib_data(void)
 
 void BME280_get_meas_values(uint32_t portNum)
 {
-	I2CWriteLength[portNum] = 4; //Voy a enviar 4 datos de escritura
+	I2CWriteLength[portNum] = 6; //Voy a enviar 4 datos de escritura
 
 	I2CReadLength[portNum] = CANT_DATA_REGS;
 
@@ -218,9 +218,13 @@ void BME280_get_meas_values(uint32_t portNum)
 
 	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | FORCED_MODE; //Configuro sobremuestreo normal y modo forzado
 
-	I2CMasterBuffer[portNum][3] = 0xF7; //Registro del que comenzar a leer
+	I2CMasterBuffer[portNum][3] = CTRL_HUM;	 //Dirección del registro a escribir
 
-	I2CMasterBuffer[portNum][4] = BME280_RD;  //Dirección en modo de lectura
+	I2CMasterBuffer[portNum][4] = MIN_OSRS_H; //Configuro sobremuestreo normal
+
+	I2CMasterBuffer[portNum][5] = 0xF7; //Registro del que comenzar a leer
+
+	I2CMasterBuffer[portNum][6] = BME280_RD;  //Dirección en modo de lectura
 
 	I2CEngine(1); //Va a escribir y leer tantas veces como se configuro en las líneas anteriores
 

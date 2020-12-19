@@ -31,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_tactual->setVisible(false);
     ui->label_HUMEDAD->setVisible(false);
     ui->label_humedad->setVisible(false);
+    ui->iniciar->setEnabled(false);
 
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     crearTablaPlantas();
@@ -70,11 +71,12 @@ void MainWindow::crearTablaPlantas()
     consulta.append("CREATE TABLE IF NOT EXISTS   plantas  (   "
                     "id INTEGER PRIMARY KEY AUTOINCREMENT ,"
                     "planta VARCHAR(100),"
-                    "temp_min VARCHAR(100),"
-                    "temp_max VARCHAR(100),"
+                    "temp_min    VARCHAR(100),"
+                    "temp_max    VARCHAR(100),"
+                    "hum_tierra  VARCHAR(100),"
+                    "hum_amb     VARCHAR(100),"
                     "nivel_riego VARCHAR(100),"
-                    "nivel_luz VARCHAR(100),"
-                    "precaucion VARCHAR(100),"
+                    "precaucion  VARCHAR(100),"
                     "ruta_imagen VARCHAR(200)"
                     ");");
    QSqlQuery crear(db);
@@ -136,15 +138,16 @@ void MainWindow::cargarDatos()
     consultar.next();
     //Como tomo toda la fila también estan el id y el nombre de la planta,
     //por eso arranca desde el 2
-    ui->label_TMIN->setText(consultar.value(2).toString() + " °C");
-    ui->label_TMAX->setText(consultar.value(3).toString() + " °C");
-    ui->label_NRIEGO->setText(consultar.value(4).toString() + " %");
-    ui->label_NLUZ->setText(consultar.value(5).toString() + " %");
-    ui->label_PREC->setText(consultar.value(6).toString());
-    imagen = consultar.value(7).toString();
+    ui->label_TMAX->setText(consultar.value(2).toString() + " °C");
+    ui->label_TMIN->setText(consultar.value(3).toString() + " °C");
+    ui->label_HTIERRA->setText(consultar.value(4).toString() + " %");
+    ui->label_HAMB->setText(consultar.value(5).toString() + " %");
+    ui->label_NRIEGO->setText(consultar.value(6).toString() + " %");
+    ui->label_PREC->setText(consultar.value(7).toString());
+    imagen = consultar.value(8).toString();
     if(imagen.length()) //Si tiene una imagen asociada la cargo, sino cargo la default
     {
-        QPixmap* MiPixMap = new QPixmap(consultar.value(7).toString());
+        QPixmap* MiPixMap = new QPixmap(imagen);
         ui->label_invernadero->setPixmap(*MiPixMap);
         ui->label_invernadero->setScaledContents(true);
     }
@@ -154,7 +157,7 @@ void MainWindow::cargarDatos()
         ui->label_invernadero->setPixmap(*MiPixMap);
         ui->label_invernadero->setScaledContents(true);
     }
-
+    ui->iniciar->setEnabled(true);
 }
 
 /**
@@ -164,12 +167,14 @@ void MainWindow::cargarDatos()
 void MainWindow::cargarDefault()
 {
     QPixmap* MiPixMap = new QPixmap(rutaFotos + "invernadero.png");
+    ui->iniciar->setEnabled(false);
     ui->label_invernadero->setPixmap(*MiPixMap);
     ui->label_invernadero->setScaledContents(true);
     ui->label_TMAX->clear();
     ui->label_TMIN->clear();
+    ui->label_HAMB->clear();
+    ui->label_HTIERRA->clear();
     ui->label_NRIEGO->clear();
-    ui->label_NLUZ->clear();
     ui->label_PREC->clear();
 }
 
@@ -295,22 +300,30 @@ void MainWindow::enviar_datos()
     QByteArray data;
     data.append('$');
     data.append('1');
-    valor = consultar.value(2).toUInt();
-    qDebug() << "Valor: " << valor;
+    valor = consultar.value(2).toUInt(); //Temperatura Maxima
     data.append(valor/10 + '0');
     valor%= 10;
     data.append(valor + '0');
-    valor = consultar.value(3).toUInt();
+    valor = consultar.value(3).toUInt();//Temperatura Minima
     data.append(valor/10 + '0');
     valor%= 10;
     data.append(valor + '0');
-    valor = consultar.value(4).toUInt();
+    valor = consultar.value(4).toUInt();//Humedad tierra
+    data.append(valor/10 + '0');
+    valor%= 10;
+    data.append(valor + '0');
+    valor = consultar.value(5).toUInt();//Humedad ambiente
+    data.append(valor/10 + '0');
+    valor%= 10;
+    data.append(valor + '0');
+    valor = consultar.value(6).toUInt();//Nivel de Riego
     data.append(valor + '0');
     data.append('%');
     data.append(consultar.value(1).toString());
     data.append('&');
     data.append('#');
     puerto->write(data);
+     qDebug() << data;
 }
 
 void MainWindow::terminar()

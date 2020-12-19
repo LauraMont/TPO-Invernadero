@@ -15,6 +15,8 @@ Datos::Datos(QWidget *parent) :
     ui->lineEdit_foto->setEnabled(false);
     ui->lineEdit_t_min->setValidator( new QIntValidator(0, 99, this) );
     ui->lineEdit_t_max->setValidator( new QIntValidator(0, 99, this) );
+    ui->lineEdit_h_tierra->setValidator( new QIntValidator(0, 99, this) );
+    ui->lineEdit_h_amb->setValidator(new QIntValidator(0,99,this));
     ui->lineEdit_nivel_riego->setValidator( new QIntValidator(0, 9, this) );
 }
 
@@ -37,18 +39,20 @@ void Datos::insertarPlanta()
     QString consulta;
     consulta.append("INSERT INTO  plantas  (   "
                     "planta ,"
-                    "temp_min ,"
                     "temp_max ,"
-                    "nivel_riego, "
-                    "nivel_luz ,"
-                    "precaucion ,"
+                    "temp_min ,"
+                    "hum_tierra,"
+                    "hum_amb,"
+                    "nivel_riego,"
+                    "precaucion,"
                     "ruta_imagen )"
                     "VALUES("//Toma los datos del lineedit
                     "  '"+ ui->lineEdit_planta->text()      + "' , "
                     "  '"+ ui->lineEdit_t_max->text()       + "' , "
                     "  '"+ ui->lineEdit_t_min->text()       + "' , "
+                    "  '"+ ui->lineEdit_h_tierra->text()    + "' , "
+                    "  '"+ ui->lineEdit_h_amb->text()       + "' , "
                     "  '"+ ui->lineEdit_nivel_riego->text() + "' , "
-                    "  '"+ ui->lineEdit_nivel_luz->text()   + "' , "
                     "  '"+ ui->lineEdit_precaucion->text()  + "' , "
                     "  '"+ ui->lineEdit_foto->text()        + "'   "
                     ")");

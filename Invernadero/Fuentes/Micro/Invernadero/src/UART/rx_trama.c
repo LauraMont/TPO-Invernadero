@@ -35,6 +35,7 @@
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PUBLICAS
  **********************************************************************************************************************************/
+volatile uint8_t init_tx = 0;
 
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PRIVADAS AL MODULO
@@ -58,6 +59,28 @@ static uint8_t datos_enviar_buffer[DATOS_BUFFER_SIZE];
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
+static void restart_rx_timeout(void);
+static void stop_rx_timeout(void);
+
+static void start_rx_timeout(void);
+static void rx_timeout_callback(void);
+
+static void start_err_timeout(void);
+static void err_timeout_callback(void);
+
+static void start_datos_timeout(void);
+static void datos_timeout_callback(void);
+static void stop_datos_timeout(void);
+
+static void err_func(void);
+
+static void update_datos(void);				//Funcion que actualiza los datos a enviar
+
+static uint32_t get_humedad(void);				//Funcion que regresará los valores medidos
+static uint32_t getTX_temp(void);					//Funcion que regresará los valores medidos
+
+static int32_t check_if_data_valid(int32_t dato_rx);
+static int32_t check_if_name_valid(int32_t dato_rx);
 
 /***********************************************************************************************************************************
 *** FUNCIONES PRIVADAS AL MODULO
@@ -78,7 +101,7 @@ static uint8_t datos_enviar_buffer[DATOS_BUFFER_SIZE];
 	\return No hay retorno
 */
 
-void rx_trama_MDE(void)
+uint8_t rx_trama_MDE(void)
 {
 	static int32_t dato_rx;
 
@@ -99,7 +122,7 @@ void rx_trama_MDE(void)
 				start_rx_timeout();
 				data_counter = 0;
 				name_counter = 0;
-				rx_trama_state = WAITING_DATA;
+				rx_trama_state = COMANDO;
 			}
 
 			if(dato_rx != -1 && dato_rx != START_CHAR)
@@ -117,14 +140,18 @@ void rx_trama_MDE(void)
 
 			if(dato_rx == '1')
 			{
-				iniciar_flag=1;
+				iniciar_flag = 1;
+				detener_flag = 0;
+				init_tx = 1;
 				restart_rx_timeout();
 				rx_trama_state = WAITING_DATA;
 			}
 
 			if(dato_rx == '2')
 			{
-				detener_flag=1;
+				iniciar_flag = 0;
+				detener_flag = 1;
+				init_tx = 0;
 				restart_rx_timeout();
 				rx_trama_state = WAITING_END;
 			}
@@ -186,14 +213,18 @@ void rx_trama_MDE(void)
 		{
 			dato_rx = UART0_pop_rx();
 
-			if(dato_rx == END_CHAR && iniciar_flag == 1) {
+			if(dato_rx == END_CHAR && iniciar_flag == 1)
+			{
 
+				Cuidando = TRUE; //Significa que tengo todos los datos listos
 				detener_flag=0;
 				rx_trama_state = WAITING_START;
 			}
 
-			if(dato_rx == END_CHAR && detener_flag== 1) {
+			if(dato_rx == END_CHAR && detener_flag== 1)
+			{
 
+				Cuidando = FALSE;
 				iniciar_flag=0;
 				stop_datos_timeout();
 				rx_trama_state = WAITING_START;
@@ -219,6 +250,8 @@ void rx_trama_MDE(void)
 			break;
 		}
 	}
+
+	return rx_trama_state;
 }
 
 /**
@@ -257,6 +290,11 @@ static int32_t check_if_data_valid(int32_t dato_rx)
 	restart_rx_timeout();
 
 	data_buffer[data_counter] = (uint8_t) dato_rx;
+	if(data_counter == 8)
+	{
+		data_counter++;
+		data_counter--;
+	}
 	data_counter++;
 
 	if((uint8_t) dato_rx == '%') {
@@ -340,11 +378,11 @@ static void stop_rx_timeout(void) {
 static void rx_timeout_callback(void)
 {
 	rx_timeout_flag = 1;
-	update_datos();
-	UART0_push_tx(START_CHAR);
-	UART0_transmitir(datos_enviar_buffer);
-	UART0_push_tx(END_CHAR);
-	start_datos_timeout();
+//	update_datos();
+//	UART0_push_tx(START_CHAR);
+//	UART0_transmitir(datos_enviar_buffer);
+//	UART0_push_tx(END_CHAR);
+//	start_datos_timeout();
 }
 
 /**
@@ -440,11 +478,31 @@ uint32_t get_temp_max(void)
 	return temperatura;
 }
 
-uint32_t get_riego(void) {
-	uint32_t riego = (data_buffer[4]-'0');
+uint32_t get_hum_tierra(void)
+{
+    uint32_t hum = (data_buffer[5]-'0');
+
+    hum += (data_buffer[4]-'0')*10;
+
+	return hum;
+}
+
+uint32_t get_hum_amb(void)
+{
+    uint32_t hum = (data_buffer[7]-'0');
+
+    hum += (data_buffer[6]-'0')*10;
+
+	return hum;
+}
+
+uint32_t get_riego(void)
+{
+	uint32_t riego = (data_buffer[8]-'0');
 
 	return riego;
 }
+
 uint8_t is_ready(void){
 
 	if(rx_trama_current_state()==WAITING_END) {
@@ -453,21 +511,23 @@ uint8_t is_ready(void){
 	else return 0;
 }
 
-uint32_t * get_name(void)
+void get_name(char * name)
 {
-    uint32_t name[DATA_BUFNAME_SIZE];
-    int32_t i;
+    int32_t i = 0;
 
-    for(i=0;i<name_counter;i++){
-    	name[i]=name_buffer[DATA_BUFNAME_SIZE-1-i];
+//    for(i=0;i<name_counter;i++)
+    while(name_buffer[i] != '&')
+    {
+    	name[i]=name_buffer[i];
+    	i++;
     }
 
-	return name;
+//	return name;
 }
 
 static void update_datos(void) {
 	uint32_t humedad = get_humedad();
-	uint32_t temp = get_temp();
+	uint32_t temp = getTX_temp();
 
 	datos_enviar_buffer[2]= (humedad/10 +'0');
 	humedad%=10;
@@ -479,14 +539,27 @@ static void update_datos(void) {
 }
 static uint32_t get_humedad(void){
 
-	static uint32_t aux = 1;
-	return aux++;				//funcion de prueba
+	static uint32_t aux;
+	aux++;
+	return aux;				//funcion de prueba
 
 }
 
-static uint32_t get_temp(void){
+static uint32_t getTX_temp(void){
 
-	static uint32_t aux = 2;
-	return aux++;				//funcion de prueba
+	static uint32_t aux;
+	aux++;
+	return aux;				//funcion de prueba
 
+}
+
+void EnviarDatos(void)
+{
+	if(init_tx)
+	{
+		update_datos();
+		UART0_push_tx(START_CHAR);
+		UART0_transmitir(datos_enviar_buffer);
+		UART0_push_tx(END_CHAR);
+	}
 }

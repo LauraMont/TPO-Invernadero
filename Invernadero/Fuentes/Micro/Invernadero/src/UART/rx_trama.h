@@ -13,6 +13,7 @@
 /***********************************************************************************************************************************
  *** INCLUDES GLOBALES
  **********************************************************************************************************************************/
+#include "Aplicacion.h"
 #include "PR_UART0.h"
 #include "PR_Temporizadores.h"
 
@@ -22,16 +23,13 @@
 #define		START_CHAR			('$')
 #define		END_CHAR			('#')
 
-#define		TIMER_ID_RX			(0)
-#define		RX_TIMEOUT_MSECS	(50)
 
-#define		TIMER_ID_ERR		(1)
-#define		ERR_TIMEOUT_MSECS	(250)
+#define 	INICIAR				(1)
+#define		FINALIZAR			(2)
 
-#define		TIMER_ID_DATOS		(2)
-#define		DATOS_TIMEOUT_SECS	(5)
 
-#define		DATA_BUFFER_SIZE	(5)
+
+#define		DATA_BUFFER_SIZE	(15)
 #define 	DATA_BUFNAME_SIZE	(35)
 #define 	DATOS_BUFFER_SIZE	(4)
 
@@ -56,37 +54,21 @@ typedef enum {
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES
  **********************************************************************************************************************************/
-void rx_trama_MDE(void);
+
 
 /***********************************************************************************************************************************
  *** PROTOTIPOS DE FUNCIONES GLOBALES
  **********************************************************************************************************************************/
+uint8_t rx_trama_MDE(void);
+
 rx_trama_state_en rx_trama_current_state(void);
 
 uint32_t get_temp_min(void);
 uint32_t get_temp_max(void);
 uint32_t get_riego(void);
+uint32_t get_hum_amb(void);
+uint32_t get_hum_tierra(void);
+void get_name(char * name);
+void EnviarDatos(void);
 
-static void restart_rx_timeout(void);
-static void stop_rx_timeout(void);
-
-static void start_rx_timeout(void);
-static void rx_timeout_callback(void);
-
-static void start_err_timeout(void);
-static void err_timeout_callback(void);
-
-static void start_datos_timeout(void);
-static void datos_timeout_callback(void);
-static void stop_datos_timeout(void);
-
-static void err_func(void);
-
-static void update_datos(void);				//Funcion que actualiza los datos a enviar
-
-static uint32_t get_humedad(void);				//Funcion que regresará los valores medidos
-static uint32_t get_temp(void);					//Funcion que regresará los valores medidos
-
-static int32_t check_if_data_valid(int32_t dato_rx);
-static int32_t check_if_name_valid(int32_t dato_rx);
 #endif /* RX_TRAMA_H_ */

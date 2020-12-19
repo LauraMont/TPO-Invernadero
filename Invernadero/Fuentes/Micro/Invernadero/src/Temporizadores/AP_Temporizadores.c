@@ -68,10 +68,6 @@ void Ev_Estado1 ( void )
 	Medir();
 }
 
-void Ev_Display ( void )
-{
-	BarridoDisplay();
-}
 
 void Ev_Buzzer(void)
 {

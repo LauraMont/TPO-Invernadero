@@ -60,7 +60,7 @@ extern uint8_t	Demora_LCD;
  */
 void InicializarSysTick ( void )
 {
-	STRELOAD = ( STCALIB / 4 )-1;//Cuento cada una milésima
+	STRELOAD = STCALIB/10;//Cuento cada una milésima
 	STCURR = 0;
 
 	CLKSOURCE = 1;

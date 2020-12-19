@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
+    <width>1002</width>
     <height>461</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Base de Datos</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>721</width>
+     <width>1001</width>
      <height>451</height>
     </rect>
    </property>
@@ -59,12 +59,17 @@
       </column>
       <column>
        <property name="text">
-        <string>Nivel de riego</string>
+        <string>Hum Tierra</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Nivel de luz</string>
+        <string>Hum Amb</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Nivel de riego</string>
        </property>
       </column>
       <column>

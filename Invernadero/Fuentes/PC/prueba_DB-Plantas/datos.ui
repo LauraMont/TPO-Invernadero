@@ -7,32 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>515</width>
-    <height>397</height>
+    <height>467</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Nueva Planta</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>10</y>
-     <width>101</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Nueva Planta</string>
-   </property>
-  </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>170</x>
      <y>340</y>
-     <width>180</width>
-     <height>27</height>
+     <width>183</width>
+     <height>32</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -83,8 +70,8 @@
     <rect>
      <x>40</x>
      <y>41</y>
-     <width>154</width>
-     <height>271</height>
+     <width>184</width>
+     <height>281</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -110,16 +97,23 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Nivel de Riego :</string>
+       <string>Humedad de la tierra:</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>Nivel de luz :</string>
+       <string>Humedad ambiente:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Nivel de Riego :</string>
       </property>
      </widget>
     </item>
@@ -145,7 +139,7 @@
      <x>223</x>
      <y>40</y>
      <width>221</width>
-     <height>281</height>
+     <height>283</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -167,14 +161,21 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_nivel_riego">
+     <widget class="QLineEdit" name="lineEdit_h_tierra">
+      <property name="maxLength">
+       <number>5</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit_h_amb">
       <property name="maxLength">
        <number>1</number>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_nivel_luz"/>
+     <widget class="QLineEdit" name="lineEdit_nivel_riego"/>
     </item>
     <item>
      <widget class="QLineEdit" name="lineEdit_precaucion"/>
