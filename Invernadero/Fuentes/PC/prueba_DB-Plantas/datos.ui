@@ -111,13 +111,6 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>Nivel de Riego :</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QLabel" name="label_6">
       <property name="text">
        <string>Precacucion :</string>
@@ -139,7 +132,7 @@
      <x>223</x>
      <y>40</y>
      <width>221</width>
-     <height>283</height>
+     <height>291</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -168,14 +161,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_h_amb">
-      <property name="maxLength">
-       <number>1</number>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="lineEdit_nivel_riego"/>
+     <widget class="QLineEdit" name="lineEdit_h_amb"/>
     </item>
     <item>
      <widget class="QLineEdit" name="lineEdit_precaucion"/>

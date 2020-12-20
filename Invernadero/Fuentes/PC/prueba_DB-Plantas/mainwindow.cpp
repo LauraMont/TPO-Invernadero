@@ -29,9 +29,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->label_TACTUAL->setVisible(false);
     ui->label_tactual->setVisible(false);
-    ui->label_HUMEDAD->setVisible(false);
-    ui->label_humedad->setVisible(false);
+    ui->label_HUM_AMB->setVisible(false);
+    ui->label_hum_amb->setVisible(false);
+    ui->label_HUM_TIERRA->setVisible(false);
+    ui->label_hum_tierra->setVisible(false);
     ui->iniciar->setEnabled(false);
+    ui->radioButton_Red->toggle();
 
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     crearTablaPlantas();
@@ -75,7 +78,6 @@ void MainWindow::crearTablaPlantas()
                     "temp_max    VARCHAR(100),"
                     "hum_tierra  VARCHAR(100),"
                     "hum_amb     VARCHAR(100),"
-                    "nivel_riego VARCHAR(100),"
                     "precaucion  VARCHAR(100),"
                     "ruta_imagen VARCHAR(200)"
                     ");");
@@ -142,9 +144,8 @@ void MainWindow::cargarDatos()
     ui->label_TMIN->setText(consultar.value(3).toString() + " °C");
     ui->label_HTIERRA->setText(consultar.value(4).toString() + " %");
     ui->label_HAMB->setText(consultar.value(5).toString() + " %");
-    ui->label_NRIEGO->setText(consultar.value(6).toString() + " %");
-    ui->label_PREC->setText(consultar.value(7).toString());
-    imagen = consultar.value(8).toString();
+    ui->label_PREC->setText(consultar.value(6).toString());
+    imagen = consultar.value(7).toString();
     if(imagen.length()) //Si tiene una imagen asociada la cargo, sino cargo la default
     {
         QPixmap* MiPixMap = new QPixmap(imagen);
@@ -174,7 +175,6 @@ void MainWindow::cargarDefault()
     ui->label_TMIN->clear();
     ui->label_HAMB->clear();
     ui->label_HTIERRA->clear();
-    ui->label_NRIEGO->clear();
     ui->label_PREC->clear();
 }
 
@@ -268,8 +268,10 @@ void MainWindow::enable_gui()
 
     ui->label_TACTUAL->setVisible(true);
     ui->label_tactual->setVisible(true);
-    ui->label_HUMEDAD->setVisible(true);
-    ui->label_humedad->setVisible(true);
+    ui->label_HUM_AMB->setVisible(true);
+    ui->label_hum_amb->setVisible(true);
+    ui->label_HUM_TIERRA->setVisible(true);
+    ui->label_hum_tierra->setVisible(true);
 }
 
 void MainWindow::disable_gui()
@@ -280,8 +282,10 @@ void MainWindow::disable_gui()
 
     ui->label_TACTUAL->setVisible(false);
     ui->label_tactual->setVisible(false);
-    ui->label_HUMEDAD->setVisible(false);
-    ui->label_humedad->setVisible(false);
+    ui->label_HUM_AMB->setVisible(false);
+    ui->label_hum_amb->setVisible(false);
+    ui->label_HUM_TIERRA->setVisible(false);
+    ui->label_hum_tierra->setVisible(false);
 }
 
 void MainWindow::enviar_datos()
@@ -316,7 +320,8 @@ void MainWindow::enviar_datos()
     data.append(valor/10 + '0');
     valor%= 10;
     data.append(valor + '0');
-    valor = consultar.value(6).toUInt();//Nivel de Riego
+//    valor = consultar.value(6).toUInt();//Nivel de Riego
+    valor = ui->radioButton_Red->isChecked();
     data.append(valor + '0');
     data.append('%');
     data.append(consultar.value(1).toString());
@@ -435,9 +440,12 @@ int MainWindow::check_if_data_valid(int dato_rx) {
 
 void MainWindow::actualizar_datos()
 {
-    //Trama $TEHU#      TE: dos digitos de temp, HU:dos digitos de humedad
+    //Trama $TEHUHT#      TE: dos digitos de temp, HU:dos digitos de humedad, HT: dos digitos de humedad de la tierra
 
-    int humedad, temperatura;
+    int humedad, temperatura, humedad_tierra;
+
+//    humedad_tierra=(data_buffer[5]-'0');
+//    humedad_tierra+=(data_buffer[4]-'0')*10;
 
     humedad=(data_buffer[3]-'0');
     humedad+=(data_buffer[2]-'0')*10;
@@ -445,8 +453,7 @@ void MainWindow::actualizar_datos()
     temperatura=(data_buffer[1]-'0');
     temperatura+=(data_buffer[0]-'0')*10;
 
-    qDebug() << "Recibí: " << temperatura << " °C" ;
-    qDebug() << "Recibí: " << humedad << " %";
     ui->label_TACTUAL->setText( QString::number(temperatura) + " °C");
-    ui->label_HUMEDAD->setText( QString::number(humedad) + " %");
+    ui->label_HUM_AMB->setText( QString::number(humedad) + " %");
+    ui->label_HUM_TIERRA->setText( QString::number(humedad) + " %");
 }

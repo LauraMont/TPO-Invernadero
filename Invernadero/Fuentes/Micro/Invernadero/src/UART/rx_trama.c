@@ -35,13 +35,17 @@
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PUBLICAS
  **********************************************************************************************************************************/
-volatile uint8_t init_tx = 0;
+extern volatile uint32_t Temp;
+extern volatile uint32_t Hum;
+extern volatile uint32_t Hum_tierra;
 
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
+
 static rx_trama_state_en rx_trama_state = RX_TRAMA_RESET;
 
+volatile uint8_t init_tx = 0;
 static uint8_t rx_timeout_flag = 0;
 static uint8_t err_timeout_flag = 0;
 static uint8_t datos_timeout_flag = 0;
@@ -49,12 +53,12 @@ static uint8_t datos_timeout_flag = 0;
 static uint8_t iniciar_flag = 0;
 static uint8_t detener_flag = 1;
 
-static uint8_t data_buffer[DATA_BUFFER_SIZE];
+static uint8_t data_buffer[DATA_BUFFER_RX_SIZE];
 static uint8_t name_buffer[DATA_BUFNAME_SIZE];
 static uint8_t data_counter = 0;
 static uint8_t name_counter = 0;
 
-static uint8_t datos_enviar_buffer[DATOS_BUFFER_SIZE];
+static uint8_t datos_enviar_buffer[DATA_BUFFER_TX_SIZE];
 
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
@@ -75,9 +79,6 @@ static void stop_datos_timeout(void);
 static void err_func(void);
 
 static void update_datos(void);				//Funcion que actualiza los datos a enviar
-
-static uint32_t get_humedad(void);				//Funcion que regresará los valores medidos
-static uint32_t getTX_temp(void);					//Funcion que regresará los valores medidos
 
 static int32_t check_if_data_valid(int32_t dato_rx);
 static int32_t check_if_name_valid(int32_t dato_rx);
@@ -496,11 +497,11 @@ uint32_t get_hum_amb(void)
 	return hum;
 }
 
-uint32_t get_riego(void)
+uint32_t get_suministro(void)
 {
-	uint32_t riego = (data_buffer[8]-'0');
+	uint32_t suministro = (data_buffer[8]-'0');
 
-	return riego;
+	return suministro;
 }
 
 uint8_t is_ready(void){
@@ -515,42 +516,30 @@ void get_name(char * name)
 {
     int32_t i = 0;
 
-//    for(i=0;i<name_counter;i++)
     while(name_buffer[i] != '&')
     {
     	name[i]=name_buffer[i];
     	i++;
     }
-
-//	return name;
 }
 
-static void update_datos(void) {
-	uint32_t humedad = get_humedad();
-	uint32_t temp = getTX_temp();
+static void update_datos(void)
+{
+	uint32_t Humedad = Hum;
+	uint32_t Humedad_tierra = Hum_tierra;
+	uint32_t Temperatura = Temp;
 
-	datos_enviar_buffer[2]= (humedad/10 +'0');
-	humedad%=10;
-	datos_enviar_buffer[3]=(humedad + '0');
+//	datos_enviar_buffer[4]= (Humedad_tierra/10 +'0');
+//	Humedad_tierra%=10;
+//	datos_enviar_buffer[5]=(Humedad_tierra + '0');
 
-	datos_enviar_buffer[0]= (temp/10 +'0');
-	temp%=10;
-	datos_enviar_buffer[1]=(temp + '0');
-}
-static uint32_t get_humedad(void){
+	datos_enviar_buffer[2]= (Humedad/10 +'0');
+	Humedad%=10;
+	datos_enviar_buffer[3]=(Humedad + '0');
 
-	static uint32_t aux;
-	aux++;
-	return aux;				//funcion de prueba
-
-}
-
-static uint32_t getTX_temp(void){
-
-	static uint32_t aux;
-	aux++;
-	return aux;				//funcion de prueba
-
+	datos_enviar_buffer[0]= (Temperatura/10 +'0');
+	Temperatura%=10;
+	datos_enviar_buffer[1]=(Temperatura + '0');
 }
 
 void EnviarDatos(void)

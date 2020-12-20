@@ -1,2 +1,0 @@
-DR_SYSTICK.c:55:6:SYSTICK_init	4	static
-DR_SYSTICK.c:71:6:SysTick_Handler	8	static

@@ -12,7 +12,7 @@
 #include "tabla.h"
 
 #define RUTA_FOTOS "../prueba_DB-Plantas/Recursos/"
-#define DATA_BUFFER_SIZE 4
+#define DATA_BUFFER_SIZE 6
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

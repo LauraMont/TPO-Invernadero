@@ -222,6 +222,7 @@ DIST          = /home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_pre.prf 
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
+		../prueba_DB-Plantas/.qmake.stash \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -411,6 +412,7 @@ Makefile: ../prueba_DB-Plantas/prueba_DB-Plantas.pro /home/nico/Qt5.12.9/5.12.9/
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf \
@@ -587,6 +589,7 @@ Makefile: ../prueba_DB-Plantas/prueba_DB-Plantas.pro /home/nico/Qt5.12.9/5.12.9/
 /home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/qt_config.prf:
 /home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/toolchain.prf:
 /home/nico/Qt5.12.9/5.12.9/gcc_64/mkspecs/features/default_pre.prf:

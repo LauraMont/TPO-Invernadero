@@ -20,18 +20,15 @@
 /***********************************************************************************************************************************
  *** DEFINES GLOBALES
  **********************************************************************************************************************************/
-#define		START_CHAR			('$')
-#define		END_CHAR			('#')
+#define		START_CHAR				('$')
+#define		END_CHAR				('#')
 
+#define 	INICIAR					(1)
+#define		FINALIZAR				(2)
 
-#define 	INICIAR				(1)
-#define		FINALIZAR			(2)
-
-
-
-#define		DATA_BUFFER_SIZE	(15)
-#define 	DATA_BUFNAME_SIZE	(35)
-#define 	DATOS_BUFFER_SIZE	(4)
+#define		DATA_BUFFER_RX_SIZE		(15)
+#define 	DATA_BUFNAME_SIZE		(35)
+#define 	DATA_BUFFER_TX_SIZE		(6)
 
 /***********************************************************************************************************************************
  *** MACROS GLOBALES
@@ -65,7 +62,7 @@ rx_trama_state_en rx_trama_current_state(void);
 
 uint32_t get_temp_min(void);
 uint32_t get_temp_max(void);
-uint32_t get_riego(void);
+uint32_t get_suministro(void);
 uint32_t get_hum_amb(void);
 uint32_t get_hum_tierra(void);
 void get_name(char * name);

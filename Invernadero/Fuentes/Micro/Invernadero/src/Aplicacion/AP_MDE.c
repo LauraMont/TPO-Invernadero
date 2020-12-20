@@ -60,6 +60,7 @@ volatile uint8_t F_LeerDatos ;        		//!< Coloque aqui una descripcion
 volatile uint8_t F_DatosListos ;      		//!< Coloque aqui una descripcion
 volatile uint8_t Cuidando = FALSE;      		//!< Coloque aqui una descripcion
 
+volatile uint8_t Suministro;
 volatile uint8_t AmbienteMedido ;     		//!< Coloque aqui una descripcion
 volatile uint8_t AmbienteMax ;        		//!< Coloque aqui una descripcion
 volatile uint8_t AmbienteMin ;        		//!< Coloque aqui una descripcion
@@ -67,8 +68,7 @@ volatile uint8_t HumedadMedida ;      		//!< Coloque aqui una descripcion
 volatile uint8_t HumedadMin;         		//!< Coloque aqui una descripcion
 volatile uint8_t Control = FALSE ;            		//!< Coloque aqui una descripcion
 volatile uint8_t TempMedida ;         		//!< Coloque aqui una descripcion
-//volatile uint8_t TempMax ;            		//!< Coloque aqui una descripcion
-//volatile uint8_t TempMin ;            		//!< Coloque aqui una descripcion
+
 volatile uint8_t TempBajaMin ;        		//!< Coloque aqui una descripcion
 volatile uint8_t TempBajaMax ;        		//!< Coloque aqui una descripcion
 volatile uint8_t TempAltaMin ;        		//!< Coloque aqui una descripcion
@@ -83,8 +83,8 @@ volatile uint8_t TimerEspera = 0;
 static char name[DATA_BUFNAME_SIZE];
 volatile uint8_t name_lng = 0;
 
+
 extern volatile uint32_t Temp;
-extern volatile uint32_t Pres;
 extern volatile uint32_t Hum;
 extern volatile uint32_t Hum_tierra;
 
@@ -119,10 +119,8 @@ static uint8_t ControlInvernadero ( uint8_t  Estado )
         case ESPERA :
         	if(!i)
         	{
-        		if(!name_lng)
-        			Display_LCD( ":ESPERA" , RENGLON_1 , 9 );
-        		else
-        			Display_LCD( ":ESPERA" , RENGLON_1 , name_lng );
+        		CleanLCD(RENGLON_1);
+      			Display_LCD( "ESPERA" , RENGLON_1 , 5 );
         		i++;
         	}
         	if ( Cuidando == TRUE )
@@ -136,6 +134,7 @@ static uint8_t ControlInvernadero ( uint8_t  Estado )
 				HumedadMin  = get_hum_tierra();
 				TempBajaMax = get_temp_min();
 				TempAltaMax = get_temp_max();
+				Suministro = get_suministro();
 
 				//Valores de referencia
 				AmbienteMax = AmbienteMin + 5;
@@ -187,7 +186,10 @@ static uint8_t ControlRiego ( uint8_t  Estado )
 {
 	static uint8_t TanqueVacio = 0;
 	static uint8_t i = 0;
-	TanqueVacio = GetIN();
+	if(Suministro == RED)
+		TanqueVacio  = 0;
+	else
+		TanqueVacio = GetIN();
 	HumedadMedida = Hum_tierra;
 
     switch ( Estado )

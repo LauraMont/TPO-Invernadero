@@ -16,8 +16,7 @@ Datos::Datos(QWidget *parent) :
     ui->lineEdit_t_min->setValidator( new QIntValidator(0, 99, this) );
     ui->lineEdit_t_max->setValidator( new QIntValidator(0, 99, this) );
     ui->lineEdit_h_tierra->setValidator( new QIntValidator(0, 99, this) );
-    ui->lineEdit_h_amb->setValidator(new QIntValidator(0,99,this));
-    ui->lineEdit_nivel_riego->setValidator( new QIntValidator(0, 9, this) );
+    ui->lineEdit_h_amb->setValidator( new QIntValidator(0, 99, this) );
 }
 
 /**
@@ -43,7 +42,6 @@ void Datos::insertarPlanta()
                     "temp_min ,"
                     "hum_tierra,"
                     "hum_amb,"
-                    "nivel_riego,"
                     "precaucion,"
                     "ruta_imagen )"
                     "VALUES("//Toma los datos del lineedit
@@ -52,16 +50,15 @@ void Datos::insertarPlanta()
                     "  '"+ ui->lineEdit_t_min->text()       + "' , "
                     "  '"+ ui->lineEdit_h_tierra->text()    + "' , "
                     "  '"+ ui->lineEdit_h_amb->text()       + "' , "
-                    "  '"+ ui->lineEdit_nivel_riego->text() + "' , "
                     "  '"+ ui->lineEdit_precaucion->text()  + "' , "
                     "  '"+ ui->lineEdit_foto->text()        + "'   "
                     ")");
    QSqlQuery insertar;
    insertar.prepare(consulta);
    if(insertar.exec())//Devuelve un booleano
-       qDebug()<<"El usuario existe o se ha insertado correctamente";
+       qDebug()<<"Se ha insertado correctamente";
    else{
-       qDebug()<<"El usuario NO existe o NO se ha insertado correctamente";
+       qDebug()<<"NO se ha insertado correctamente";
        qDebug()<<"ERROR!"<<insertar.lastError();
    }
 }

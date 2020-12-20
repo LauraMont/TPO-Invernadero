@@ -92,16 +92,13 @@ void Inicializar(void)
 */
 void Medir(void)
 {
-//	EnviarDatos();
-//	uint8_t  TanqueVacio = 0;
-	int8_t auxT[] = {"T:  c"};
-	int8_t auxHT[] = {"R:  %"};
+	int8_t auxT[] = {"T:  C"};
+	int8_t auxHT[] = {"r:  %"};
 	int8_t auxHA[] = {"HA:  %"};
 //	int32_t adc = ADC_get_average();
 //	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;
-//	TanqueVacio = GetIN();
 //	MeasureBME280(i2c1);
-//
+
 	auxT[2] = Temp/10 + '0';
 	auxT[3] = Temp%10 + '0';
 
@@ -111,29 +108,11 @@ void Medir(void)
 	auxHA[3] = Hum/10 + '0';
 	auxHA[4] = Hum%10 + '0';
 
+	Display_LCD( auxT , RENGLON_2 , 0 );
+	Display_LCD( auxHT , RENGLON_2 , 5 );
+	Display_LCD( auxHA , RENGLON_2 , 10 );
 
-//
-//	for(uint8_t i=0; i<4 ; i++)//Repito la cantidad de digitos de la presión
-//	{
-//		uint8_t aux;
-//		aux = Pres%10;
-//		Pres /= 10;
-//		auxP[8-i] = aux + '0';
-//	}
-//
-//	if(humedad > 70) 	Display_LCD( "HUMEDO!!!" , RENGLON_1 , 0 );
-//	else
-//	{
-		Display_LCD( auxT , RENGLON_2 , 0 );
-		Display_LCD( auxHT , RENGLON_2 , 5 );
-		Display_LCD( auxHA , RENGLON_2 , 11 );
-
-//	}
-//
-//	if(TanqueVacio)
-//		Alarma(ON);
-//	else
-//		Alarma(OFF);
+	EnviarDatos();
 
 	TimerStart( TM_MEDICION, MEDICION_TIME_SEG, Medir, SEG );
 }
