@@ -801,6 +801,8 @@ moc_datos.cpp: ../prueba_DB-Plantas/datos.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QSize \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QCloseEvent \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPort \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialport.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportglobal.h \
@@ -922,9 +924,11 @@ moc_mainwindow.cpp: ../prueba_DB-Plantas/mainwindow.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QDialog \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qdialog.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QSize \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QDebug \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QMessageBox \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmessagebox.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QCloseEvent \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/QSqlDatabase \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/qsqldatabase.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/qtsqlglobal.h \
@@ -1076,6 +1080,8 @@ moc_tabla.cpp: ../prueba_DB-Plantas/tabla.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QSize \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QCloseEvent \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPort \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialport.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportglobal.h \
@@ -1241,6 +1247,8 @@ datos.o: ../prueba_DB-Plantas/datos.cpp ../prueba_DB-Plantas/datos.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QSize \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QCloseEvent \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPort \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialport.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportglobal.h \
@@ -1360,9 +1368,11 @@ main.o: ../prueba_DB-Plantas/main.cpp ../prueba_DB-Plantas/mainwindow.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QDialog \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qdialog.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QSize \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QDebug \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QMessageBox \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmessagebox.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QCloseEvent \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/QSqlDatabase \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/qsqldatabase.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/qtsqlglobal.h \
@@ -1501,9 +1511,11 @@ mainwindow.o: ../prueba_DB-Plantas/mainwindow.cpp ../prueba_DB-Plantas/mainwindo
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QDialog \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qdialog.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QSize \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QDebug \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/QMessageBox \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmessagebox.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QCloseEvent \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/QSqlDatabase \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/qsqldatabase.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSql/qtsqlglobal.h \
@@ -1653,6 +1665,8 @@ tabla.o: ../prueba_DB-Plantas/tabla.cpp ../prueba_DB-Plantas/tabla.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/qicon.h \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtCore/QSize \
+		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtGui/QCloseEvent \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/QSerialPort \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialport.h \
 		/home/nico/Qt5.12.9/5.12.9/gcc_64/include/QtSerialPort/qserialportglobal.h \

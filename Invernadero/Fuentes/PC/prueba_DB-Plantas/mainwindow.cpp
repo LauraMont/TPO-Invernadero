@@ -37,6 +37,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->radioButton_Red->toggle();
     iniciado = 0;
 
+    Inicio.setWidth(INICIO_WIDTH); //Seteo los tamaños en los Qsize
+    Inicio.setHeight(INICIO_HEIGTH);
+
+    Datos.setWidth(DATOS_WIDTH); //Seteo los tamaños en los Qsize
+    Datos.setHeight(DATOS_HEIGTH);
+    this->resize(Inicio); // Seteo el tamaño inicial
+
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     crearTablaPlantas();
     QPixmap* MiPixMap = new QPixmap(rutaFotos + "invernadero.png");
@@ -45,7 +52,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_invernadero->setScaledContents(true);
     cargarPlantas();
     connect(puerto, &QSerialPort::readyRead, this, &MainWindow::data_in);
-//    this->closeEvent();
 }
 
 /**
@@ -246,6 +252,7 @@ void MainWindow::on_iniciar_clicked()
             if(puerto->open(QSerialPort::ReadWrite))
             {
                 iniciado = 1;
+                this->resize(Datos); //Agrando el tamaño para que entren los datos
                 enable_gui();
                 enviar_datos();
             }
@@ -259,6 +266,7 @@ void MainWindow::on_iniciar_clicked()
     else
     {
         iniciado  = 0;
+        this->resize(Inicio);//Achico el tamaño para sacar los datos
         disable_gui();
         terminar();
         puerto->flush();//Envio el ultimo dato que quede en el buffer antes de cerrar el puerto
@@ -457,13 +465,9 @@ int MainWindow::check_if_data_valid(int dato_rx) {
 
 void MainWindow::actualizar_datos()
 {
-    //Trama $TEHUHT#      TE: dos digitos de temp, HU:dos digitos de humedad, HT: dos digitos de humedad de la tierra
+    //Trama $TEHUHT# TE: dos digitos de temp, HU:dos digitos de humedad, HT: dos digitos de humedad de la tierra
 
     int humedad, temperatura, humedad_tierra;
-
-    data_buffer[5] = '0';
-    data_buffer[4] = '1';
-
 
     humedad_tierra=(data_buffer[5]-'0');
     humedad_tierra+=(data_buffer[4]-'0')*10;

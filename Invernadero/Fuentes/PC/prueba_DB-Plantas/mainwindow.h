@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDialog>
+#include <QSize>
 #include <QDebug>
 #include <QMessageBox>
 #include <QCloseEvent>
@@ -14,6 +15,12 @@
 
 #define RUTA_FOTOS "../prueba_DB-Plantas/Recursos/"
 #define DATA_BUFFER_SIZE 6
+
+#define INICIO_WIDTH    381
+#define INICIO_HEIGTH   450
+
+#define DATOS_WIDTH     381
+#define DATOS_HEIGTH    624
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -72,7 +79,8 @@ private:
     Ui::MainWindow *ui;
     QString eleccion;
     QSerialPort* puerto;
-
+    QSize Inicio;
+    QSize Datos;
     QByteArray data;
     bool comm_started;
 
