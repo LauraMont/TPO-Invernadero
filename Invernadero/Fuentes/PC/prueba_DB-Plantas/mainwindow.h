@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QDebug>
 #include <QMessageBox>
+#include <QCloseEvent>
 #include <QtSql/QSqlDatabase>//Contiene los recursos  para el manejo de bases de datos
 #include <QSqlQuery>//Consultas y requerimientos a la base de datos
 #include <QSqlError>//Nos permite conocer los tipos de errores en las bases de datos
@@ -51,6 +52,9 @@ private slots:
     int check_if_data_valid(int);
 
     void actualizar_datos();
+
+    void closeEvent(QCloseEvent * event);
+
 private:
 
     void rx_SM(QByteArray byte_in);
@@ -73,7 +77,8 @@ private:
     bool comm_started;
 
     rx_sm_state_en rx_state;
-    char data_buffer[DATA_BUFFER_SIZE];
+    int iniciado;
+    char data_buffer[DATA_BUFFER_SIZE] = {0};
 
 };
 #endif // MAINWINDOW_H

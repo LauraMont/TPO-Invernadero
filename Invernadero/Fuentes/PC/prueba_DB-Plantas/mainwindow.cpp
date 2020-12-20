@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_hum_tierra->setVisible(false);
     ui->iniciar->setEnabled(false);
     ui->radioButton_Red->toggle();
+    iniciado = 0;
 
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     crearTablaPlantas();
@@ -44,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_invernadero->setScaledContents(true);
     cargarPlantas();
     connect(puerto, &QSerialPort::readyRead, this, &MainWindow::data_in);
+//    this->closeEvent();
 }
 
 /**
@@ -237,11 +239,13 @@ void MainWindow::on_iniciar_clicked()
 {
     if(ui->iniciar->text() == "INICIAR")
     {
-        if(!puerto->isOpen()) {
+        if(!puerto->isOpen())
+        {
             puerto->setPortName("/dev/ttyUSB0");
 
-            if(puerto->open(QSerialPort::ReadWrite)) {
-
+            if(puerto->open(QSerialPort::ReadWrite))
+            {
+                iniciado = 1;
                 enable_gui();
                 enviar_datos();
             }
@@ -252,12 +256,25 @@ void MainWindow::on_iniciar_clicked()
             }
         }
     }
-    else {
+    else
+    {
+        iniciado  = 0;
         disable_gui();
         terminar();
-        puerto->flush();
-        puerto->close();   //PREGUNTAR AUGUSTO Cómo cerrar el puerto y que envie el dato anterior.
+        puerto->flush();//Envio el ultimo dato que quede en el buffer antes de cerrar el puerto
+        puerto->close();
     }
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if (iniciado)
+    {
+        QMessageBox::critical(this,"Error", "Detenga el proceso antes de ccerrar");
+        event->ignore();
+    }
+    else
+        event->accept();
 }
 
 void MainWindow::enable_gui()
@@ -444,8 +461,12 @@ void MainWindow::actualizar_datos()
 
     int humedad, temperatura, humedad_tierra;
 
-//    humedad_tierra=(data_buffer[5]-'0');
-//    humedad_tierra+=(data_buffer[4]-'0')*10;
+    data_buffer[5] = '0';
+    data_buffer[4] = '1';
+
+
+    humedad_tierra=(data_buffer[5]-'0');
+    humedad_tierra+=(data_buffer[4]-'0')*10;
 
     humedad=(data_buffer[3]-'0');
     humedad+=(data_buffer[2]-'0')*10;
@@ -455,5 +476,5 @@ void MainWindow::actualizar_datos()
 
     ui->label_TACTUAL->setText( QString::number(temperatura) + " °C");
     ui->label_HUM_AMB->setText( QString::number(humedad) + " %");
-    ui->label_HUM_TIERRA->setText( QString::number(humedad) + " %");
+    ui->label_HUM_TIERRA->setText( QString::number(humedad_tierra) + " %");
 }

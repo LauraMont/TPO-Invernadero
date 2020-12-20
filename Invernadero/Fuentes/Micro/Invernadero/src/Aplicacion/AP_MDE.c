@@ -120,7 +120,7 @@ static uint8_t ControlInvernadero ( uint8_t  Estado )
         	if(!i)
         	{
         		CleanLCD(RENGLON_1);
-      			Display_LCD( "ESPERA" , RENGLON_1 , 5 );
+      			Display_LCD( "ESPERANDO..." , RENGLON_1 , 2 );
         		i++;
         	}
         	if ( Cuidando == TRUE )
