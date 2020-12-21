@@ -3,10 +3,12 @@
 
 #include <QMainWindow>
 #include <QDialog>
+#include <QFile>
 #include <QSize>
 #include <QDebug>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QTimer>
 #include <QtSql/QSqlDatabase>//Contiene los recursos  para el manejo de bases de datos
 #include <QSqlQuery>//Consultas y requerimientos a la base de datos
 #include <QSqlError>//Nos permite conocer los tipos de errores en las bases de datos
@@ -14,13 +16,17 @@
 #include "tabla.h"
 
 #define RUTA_FOTOS "../prueba_DB-Plantas/Recursos/"
-#define DATA_BUFFER_SIZE 6
+#define DATA_BUFFER_SIZE 7
 
 #define INICIO_WIDTH    381
 #define INICIO_HEIGTH   450
 
 #define DATOS_WIDTH     381
 #define DATOS_HEIGTH    624
+
+#define WARNING_WIDTH   381
+#define WARNING_HEIGTH  500
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -62,6 +68,8 @@ private slots:
 
     void closeEvent(QCloseEvent * event);
 
+    void timerEvent(QTimerEvent *event);
+
 private:
 
     void rx_SM(QByteArray byte_in);
@@ -74,19 +82,32 @@ private:
         RX_SM_ERR,
     }rx_sm_state_en;
 
+    typedef enum
+    {
+        WAITING = 0,
+        CARING,
+        WATERING,
+        WARMING,
+        COOLING,
+        VENTILATE,
+        ALARM
+    } estado_invernadero;
 
 private:
     Ui::MainWindow *ui;
     QString eleccion;
     QSerialPort* puerto;
+    QSerialPort::SerialPortError error;
     QSize Inicio;
     QSize Datos;
+    QSize Warning;
     QByteArray data;
     bool comm_started;
 
+    int timerId;
     rx_sm_state_en rx_state;
     int iniciado;
-    char data_buffer[DATA_BUFFER_SIZE] = {0};
+    char data_buffer[DATA_BUFFER_SIZE];
 
 };
 #endif // MAINWINDOW_H

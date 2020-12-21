@@ -19,10 +19,35 @@
  ************************************************************************************************************/
 #define 	RED		1
 #define 	TANQUE  0
+
+//Macros de los mensajes a escribir en la pantalla LCD
+#define 	MSG_ESPERANDO 		"ESPERANDO..." , RENGLON_1 , 2
+#define 	MSG_CUIDANDO  		":CUIDANDO  " , RENGLON_1 , name_lng
+#define 	MSG_REGANDO   		":REGANDO   " , RENGLON_1 , name_lng
+#define 	MSG_TVACIO    		":T.VACIO   " , RENGLON_1 , name_lng
+#define 	MSG_ENFRIANDO 		":ENFRIANDO " , RENGLON_1 , name_lng
+#define 	MSG_VENTILANDO		":VENTILANDO" , RENGLON_1 , name_lng
+#define 	MSG_CALENTANDO		":CALENTANDO" , RENGLON_1 , name_lng
+
+/***********************************************************************************************************************************
+ *** TIPO DE DATOS GLOBALES
+ **********************************************************************************************************************************/
+//Enumeracion de los estados posibles para enviar a la aplicacion,
+//esta tiene la misma enumeracion desde la cual interpreta el estado actual
+typedef enum
+{
+	WAITING = 0,
+	CARING,
+	WATERING,
+	WARMING,
+	COOLING,
+	VENTILATE,
+	ALARM
+} estado_invernadero;
+
 /************************************************************************************************************
  *** VARIABLES GLOBALES PUBLICAS
  ************************************************************************************************************/
-
 extern volatile uint8_t AmbienteMedido ;
 extern volatile uint8_t AmbienteMax ;
 extern volatile uint8_t AmbienteMin ;
@@ -36,15 +61,11 @@ extern volatile uint8_t TempBajaMin ;
 extern volatile uint8_t TempBajaMax ;
 extern volatile uint8_t TempAltaMin ;
 extern volatile uint8_t TempAltaMax ;
-
-//extern volatile uint8_t F_LeerDatos ;
-extern volatile uint8_t F_DatosListos ;
 extern volatile uint8_t F_RecibiDatos ;
-extern volatile uint8_t DataValid ;
 extern volatile uint8_t Cuidando;
-
 extern volatile uint8_t TimerValvula;
 extern volatile uint8_t TimerEspera;
+extern volatile uint8_t name_lng;
 
 /************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES GLOBALES

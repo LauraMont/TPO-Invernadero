@@ -42,7 +42,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     Datos.setWidth(DATOS_WIDTH); //Seteo los tamaños en los Qsize
     Datos.setHeight(DATOS_HEIGTH);
+
+    Warning.setWidth(WARNING_WIDTH);
+    Warning.setWidth(WARNING_HEIGTH);
+
     this->resize(Inicio); // Seteo el tamaño inicial
+    timerId = startTimer(1000);
 
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
     crearTablaPlantas();
@@ -60,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent)
 */
 MainWindow::~MainWindow()
 {
+    killTimer(timerId);
     delete ui;
 }
 
@@ -251,22 +257,17 @@ void MainWindow::on_iniciar_clicked()
 
             if(puerto->open(QSerialPort::ReadWrite))
             {
-                iniciado = 1;
-                this->resize(Datos); //Agrando el tamaño para que entren los datos
                 enable_gui();
                 enviar_datos();
             }
-            else {
-                QMessageBox::critical(this,
-                                      "Error",
-                                      "Error abriendo puerto: " + puerto->errorString());
+            else
+            {
+                QMessageBox::critical(this, "Error", "Error abriendo puerto: " + puerto->errorString());
             }
         }
     }
     else
     {
-        iniciado  = 0;
-        this->resize(Inicio);//Achico el tamaño para sacar los datos
         disable_gui();
         terminar();
         puerto->flush();//Envio el ultimo dato que quede en el buffer antes de cerrar el puerto
@@ -278,7 +279,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     if (iniciado)
     {
-        QMessageBox::critical(this,"Error", "Detenga el proceso antes de ccerrar");
+        QMessageBox::critical(this,"Error", "Detenga el proceso antes de cerrar");
         event->ignore();
     }
     else
@@ -287,6 +288,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::enable_gui()
 {
+    iniciado = 1;
+    this->resize(Datos); //Agrando el tamaño para que entren los datos
+    ui->radioButton_Red->setEnabled(false);
+    ui->radioButton_Tanque->setEnabled(false);
     ui->comboBox->setEnabled(false);
     ui->configuraciones->setEnabled(false);
     ui->iniciar->setText("DETENER");
@@ -301,6 +306,10 @@ void MainWindow::enable_gui()
 
 void MainWindow::disable_gui()
 {
+    iniciado  = 0;
+    this->resize(Inicio);//Achico el tamaño para sacar los datos
+    ui->radioButton_Red->setEnabled(true);
+    ui->radioButton_Tanque->setEnabled(true);
     ui->comboBox->setEnabled(true);
     ui->configuraciones->setEnabled(true);
     ui->iniciar->setText("INICIAR");
@@ -345,7 +354,6 @@ void MainWindow::enviar_datos()
     data.append(valor/10 + '0');
     valor%= 10;
     data.append(valor + '0');
-//    valor = consultar.value(6).toUInt();//Nivel de Riego
     valor = ui->radioButton_Red->isChecked();
     data.append(valor + '0');
     data.append('%');
@@ -353,7 +361,6 @@ void MainWindow::enviar_datos()
     data.append('&');
     data.append('#');
     puerto->write(data);
-     qDebug() << data;
 }
 
 void MainWindow::terminar()
@@ -365,18 +372,19 @@ void MainWindow::terminar()
     puerto->write(data);
 }
 
+
 void MainWindow::data_in()
 {
-    do
-        {
-            rx_SM(puerto->read(1));
+    do{
+        rx_SM(puerto->read(1));
     }while(puerto->bytesAvailable() != 0);
 }
 
 void MainWindow::rx_SM(QByteArray byte_in)
 {
+    QByteArray data;
     switch(rx_state)
-        {
+    {
         case RX_SM_WAITING_START:
         {
             if(!byte_in.compare("$"))
@@ -467,7 +475,9 @@ void MainWindow::actualizar_datos()
 {
     //Trama $TEHUHT# TE: dos digitos de temp, HU:dos digitos de humedad, HT: dos digitos de humedad de la tierra
 
-    int humedad, temperatura, humedad_tierra;
+    int humedad, temperatura, humedad_tierra, estado;
+
+    estado=(data_buffer[6]-'0');
 
     humedad_tierra=(data_buffer[5]-'0');
     humedad_tierra+=(data_buffer[4]-'0')*10;
@@ -481,4 +491,54 @@ void MainWindow::actualizar_datos()
     ui->label_TACTUAL->setText( QString::number(temperatura) + " °C");
     ui->label_HUM_AMB->setText( QString::number(humedad) + " %");
     ui->label_HUM_TIERRA->setText( QString::number(humedad_tierra) + " %");
+
+    switch(estado)
+    {
+        case WAITING: ui->label_ESTADOS->setText("ESPERANDO"); break;
+
+        case CARING: ui->label_ESTADOS->setText("CUIDANDO"); break;
+
+        case WATERING: ui->label_ESTADOS->setText("REGANDO"); break;
+
+        case WARMING: ui->label_ESTADOS->setText("CALENTANDO"); break;
+
+        case COOLING: ui->label_ESTADOS->setText("ENFRIANDO"); break;
+
+        case VENTILATE: ui->label_ESTADOS->setText("VENTILANDO"); break;
+
+        case ALARM: ui->label_ESTADOS->setText("TANQUE VACIO"); break;
+    }
+}
+
+void MainWindow::timerEvent(QTimerEvent *event)
+{
+    static bool desconexion = false;
+    if(iniciado)
+    {
+        if(QFile::exists("/dev/ttyUSB0"))
+        {
+            if(desconexion)
+            {
+                if(!puerto->isOpen())
+                {
+                    puerto->setPortName("/dev/ttyUSB0");
+
+                    if(puerto->open(QSerialPort::ReadWrite))
+                    {
+                        this->resize(Datos);
+                        ui->label_datos->setText("                   Datos en tiempo real");
+                    }
+                }
+                desconexion = false;
+            }
+        }
+        else
+        {
+            desconexion = true;
+            puerto->close();
+            this->resize(381, 500);
+            ui->label_datos->setText("Pérdida de conexión, reconectando...");
+         }
+
+     }
 }

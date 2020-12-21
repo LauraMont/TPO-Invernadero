@@ -244,7 +244,7 @@
       <x>10</x>
       <y>480</y>
       <width>108</width>
-      <height>85</height>
+      <height>81</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -277,7 +277,7 @@
       <x>130</x>
       <y>480</y>
       <width>91</width>
-      <height>79</height>
+      <height>81</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -307,9 +307,9 @@
    <widget class="QLabel" name="label_datos">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>10</x>
       <y>440</y>
-      <width>231</width>
+      <width>361</width>
       <height>21</height>
      </rect>
     </property>
@@ -319,7 +319,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Datos en tiempo real</string>
+     <string>                   Datos en tiempo real</string>
     </property>
    </widget>
    <widget class="Line" name="line">
@@ -334,6 +334,32 @@
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>480</y>
+      <width>131</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QLabel" name="label_estado">
+       <property name="text">
+        <string>Estado:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_ESTADOS">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -222,6 +222,7 @@ void ApagarTimerEspera ( void )
 void AlarmaON(void)
 {
 	TimedBuzzer(1,SEG);
+	Display_LCD(MSG_TVACIO);
 	TimerStart(TM_ALARMA, ALARMA_TIME_SEG, AlarmaON ,SEG);
 }
 

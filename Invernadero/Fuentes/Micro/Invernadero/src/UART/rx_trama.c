@@ -38,6 +38,7 @@
 extern volatile uint32_t Temp;
 extern volatile uint32_t Hum;
 extern volatile uint32_t Hum_tierra;
+extern volatile uint8_t Status;
 
 /***********************************************************************************************************************************
  *** VARIABLES GLOBALES PRIVADAS AL MODULO
@@ -521,6 +522,7 @@ void get_name(char * name)
     	name[i]=name_buffer[i];
     	i++;
     }
+    name[i] = '\0';
 }
 
 static void update_datos(void)
@@ -529,17 +531,19 @@ static void update_datos(void)
 	uint32_t Humedad_tierra = Hum_tierra;
 	uint32_t Temperatura = Temp;
 
-	datos_enviar_buffer[4]= (Humedad_tierra/10 +'0');
-	Humedad_tierra%=10;
-	datos_enviar_buffer[5]=(Humedad_tierra + '0');
+	datos_enviar_buffer[0]= (Temperatura/10 +'0');
+	Temperatura%=10;
+	datos_enviar_buffer[1]=(Temperatura + '0');
 
 	datos_enviar_buffer[2]= (Humedad/10 +'0');
 	Humedad%=10;
 	datos_enviar_buffer[3]=(Humedad + '0');
 
-	datos_enviar_buffer[0]= (Temperatura/10 +'0');
-	Temperatura%=10;
-	datos_enviar_buffer[1]=(Temperatura + '0');
+	datos_enviar_buffer[4]= (Humedad_tierra/10 +'0');
+	Humedad_tierra%=10;
+	datos_enviar_buffer[5]=(Humedad_tierra + '0');
+
+	datos_enviar_buffer[6]= Status + '0';
 }
 
 void EnviarDatos(void)

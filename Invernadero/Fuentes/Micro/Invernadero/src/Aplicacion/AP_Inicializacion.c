@@ -40,8 +40,6 @@ static void Inicializar_Temperatura( void ) ;
 */
 static void Inicializar_Control( void )
 {
-    //!< Coloque aqui su codigo
-	F_DatosListos = 0 ;
 
     return ;
 }
@@ -57,9 +55,6 @@ static void Inicializar_Control( void )
 */
 static void Inicializar_LecturaDeDatos( void )
 {
-    //!< Coloque aqui su codigo
-	F_DatosListos = 0 ;
-
     return ;
 }
 

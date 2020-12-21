@@ -17,7 +17,7 @@
  **********************************************************************************************************************************/
 #define 	ON 			1
 #define 	OFF			0
-#define     EN_AGUA		1400
+#define     EN_AGUA		1300
 #define     EN_AIRE		4095
 #define 	i2c1		1
 
@@ -44,7 +44,7 @@ extern volatile uint8_t init_tx;
 volatile uint32_t Temp = 10;
 volatile uint32_t Pres = 0;
 volatile uint32_t Hum  = 8;//0;
-volatile uint8_t  Hum_tierra = 10;
+volatile uint32_t Hum_tierra = 10;
 
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
@@ -95,10 +95,14 @@ void Medir(void)
 	int8_t auxT[] = {"T:  C"};
 	int8_t auxHT[] = {"r:  %"};
 	int8_t auxHA[] = {"HA:  %"};
+
+	//Tomo las mediciones del adc y del BME280
 //	int32_t adc = ADC_get_average();
 //	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;
+//	if(Hum_tierra >= 100) Hum_tierra = 99;
 //	MeasureBME280(i2c1);
 
+	//Preparo las mediciones para escribirlas en el LCD
 	auxT[2] = Temp/10 + '0';
 	auxT[3] = Temp%10 + '0';
 
@@ -108,12 +112,15 @@ void Medir(void)
 	auxHA[3] = Hum/10 + '0';
 	auxHA[4] = Hum%10 + '0';
 
+	//Escribo en el LCD los valores de las mediciones
 	Display_LCD( auxT , RENGLON_2 , 0 );
 	Display_LCD( auxHT , RENGLON_2 , 5 );
 	Display_LCD( auxHA , RENGLON_2 , 10 );
 
+	//Envio los datos medidos por UART
 	EnviarDatos();
 
+	//En 1 seg vuelvo a llamar a esta misma funcion
 	TimerStart( TM_MEDICION, MEDICION_TIME_SEG, Medir, SEG );
 }
 
@@ -132,12 +139,9 @@ void LeerTeclado(void)
 	switch (Tecla)
 	{
 		case 5:
-//				Display(Temp);
 				Hum_tierra++;
 				break;
 		case 4:
-//				Display(Pres);
-
 				Hum_tierra--;
 				break;
 
@@ -158,42 +162,6 @@ void LeerTeclado(void)
 				 break;
 	}
 }
-
-
-/**
-	\fn  	Alarma
-	\brief 	Toma las acciones necesarias en caso de que el tanque este vacio
- 	\author Taurozzi, Nicolás
- 	\date 	24/11/20
- 	\params [in] activar: ON u OFF según se prenda o no
-	\return No hay retorno
-*/
-//void Alarma(uint8_t activar)
-//{
-//	static uint8_t flag = 0;
-//	static uint8_t contador = 0;
-//
-//	/*Los valores de los tiempos de funcionamiento estan divididos por 2
-//	  porque el programa tarda aproximadamente dos segundo en aumentar en 1
-//	  El valor de contador, por lo que reduciendo a la mitad los valores se
-//	  consiguen tiempos aproximados a los que se necesitan */
-//	if (activar && (contador == 0 ||contador == 5))//Solo prendo el buzzer durante 1 segundo si modo es 1 y cada 10 segundos
-//	{
-////		RelayON(0);
-//		TimedBuzzer(5,DEC);
-//		flag = 1;
-//	}
-//	else if (!activar)
-//	{
-//		BuzzerOFF();
-////		RelaysOFF();
-//		flag = 0;
-//		contador = 0;
-//	}
-//	if(flag) contador ++;
-//	if(contador == 11) contador = 0; //Reinicio el contador si llega a 10
-//
-//}
 
 /**
 	\fn  	LeerTeclado(void)
