@@ -130,14 +130,14 @@ static uint8_t ControlInvernadero ( uint8_t  Estado )
                 name_lng = strlen(name);
 
                 //Valores recibidos
-                AmbienteMin = get_hum_amb();
+                AmbienteMin = get_hum_amb();					//AmbienteMax
 				HumedadMin  = get_hum_tierra();
 				TempBajaMax = get_temp_min();
 				TempAltaMax = get_temp_max();
 				Suministro = get_suministro();
 
 				//Valores de referencia
-				AmbienteMax = AmbienteMin + 5;
+				AmbienteMax = AmbienteMin + 5;			//AmbienteMin= AmbienteMax-5
 				TempBajaMin = TempBajaMax + 5;
 				TempAltaMin = TempAltaMax - 5;
 
