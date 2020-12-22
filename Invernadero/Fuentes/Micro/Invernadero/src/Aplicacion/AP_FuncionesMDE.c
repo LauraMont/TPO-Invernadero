@@ -25,82 +25,12 @@
 
 /*-------------------------------------------- EVENTOS ----------------------------------------------------*/
 
-/**
-*	\fn      int STOP ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
-*	\author  Grupo3
-*	\date    17-12-2020 18:28:30
-*   \param   void
-*	\return  int : TRUE y FALSE
-*/
-int STOP1 ( void )
-{
-    int res = 0 ;
-
-    // Coloque aqui su codigo
-
-    return res ;
-}
-
-/**
-*	\fn      int S_Nivel ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
-*	\author  Grupo3
-*	\date    17-12-2020 18:28:30
-*   \param   void
-*	\return  int : TRUE y FALSE
-*/
-int S_Nivel ( void )
-{
-    int res = 0 ;
-
-    // Coloque aqui su codigo
-
-    return res ;
-}
-
-/**
-*	\fn      int TimerError ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
-*	\author  Grupo3
-*	\date    17-12-2020 18:28:30
-*   \param   void
-*	\return  int : TRUE y FALSE
-*/
-int TimerError ( void )
-{
-    int res = 0 ;
-
-    // Coloque aqui su codigo
-
-    return res ;
-}
-
 /*-------------------------------------------- ACCIONES ----------------------------------------------------*/
 
-/**
-*	\fn      void MostrarDatos ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
-*	\author  Grupo3
-*	\date    17-12-2020 18:28:30
-*   \param   void
-*	\return  void
-*/
-void MostrarDatos ( void )
-{
-    // Coloque aqui su codigo
-
-    return ;
-}
 
 /**
 *	\fn      void VentilarON ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Enciende el relay del cooler
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -113,8 +43,7 @@ void VentilarON ( void )
 
 /**
 *	\fn      void VentilarOFF ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Apaga el relay del cooler
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -127,8 +56,7 @@ void VentilarOFF ( void )
 
 /**
 *	\fn      void ValvulaON ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Enciende el relay de la valvula
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -141,8 +69,7 @@ void ValvulaON ( void )
 
 /**
 *	\fn      void ValvulaOFF ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Apaga el relay de la valvula
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -155,8 +82,7 @@ void ValvulaOFF ( void )
 
 /**
 *	\fn      void DispTimerValvula ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Inicia el timer de la valvula
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -167,6 +93,14 @@ void DispTimerValvula ( void )
 	TimerStart(TM_VALVULA, VALVULA_TIME_SEG, ValvulaCallback ,SEG);
 }
 
+/**
+*	\fn      void ValvulaCallback (void)
+*	\brief   Funcion callback que pone un flag en 1
+*	\author  Grupo3
+*	\date    17-12-2020 18:28:30
+*   \param   void
+*	\return  void
+*/
 void ValvulaCallback (void)
 {
 	TimerValvula = 1;
@@ -174,8 +108,7 @@ void ValvulaCallback (void)
 
 /**
 *	\fn      void ApagarTimerEspera ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Detiene el timer de la valvula
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -188,8 +121,7 @@ void ApagarTimerValvula ( void )
 
 /**
 *	\fn      void DispTimerEspera ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Inicia el timer de espera
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -200,6 +132,14 @@ void DispTimerEspera ( void )
 	TimerStart(TM_ESPERA, ESPERA_TIME_SEG, EsperaCallback ,SEG);
 }
 
+/**
+*	\fn      void EsperaCallback (void)
+*	\brief   Funcion callback que pone un flag en 1
+*	\author  Grupo3
+*	\date    17-12-2020 18:28:30
+*   \param   void
+*	\return  void
+*/
 void EsperaCallback (void)
 {
 	TimerEspera = 1;
@@ -207,8 +147,7 @@ void EsperaCallback (void)
 
 /**
 *	\fn      void ApagarTimerEspera ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Detiene el timer de espera
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -219,6 +158,14 @@ void ApagarTimerEspera ( void )
 	TimerStop(TM_ESPERA);
 }
 
+/**
+*	\fn      void AlarmaON(void)
+*	\brief   Inicia la alarma con un ciclo de 1/10 seg
+*	\author  Grupo3
+*	\date    17-12-2020 18:28:30
+*   \param   void
+*	\return  void
+*/
 void AlarmaON(void)
 {
 	TimedBuzzer(1,SEG);
@@ -226,6 +173,14 @@ void AlarmaON(void)
 	TimerStart(TM_ALARMA, ALARMA_TIME_SEG, AlarmaON ,SEG);
 }
 
+/**
+*	\fn      void AlarmaOFF(void)
+*	\brief   Apaga la alarma
+*	\author  Grupo3
+*	\date    17-12-2020 18:28:30
+*   \param   void
+*	\return  void
+*/
 void AlarmaOFF(void)
 {
 	TimerStop(TM_ALARMA);
@@ -233,8 +188,7 @@ void AlarmaOFF(void)
 
 /**
 *	\fn      void EncenderLampar ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Enciende el raly de la lampara
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -247,8 +201,7 @@ void EncenderLampar ( void )
 
 /**
 *	\fn      void ApagarLampara ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
+*	\brief   Apaga el relay de la lampara
 *	\author  Grupo3
 *	\date    17-12-2020 18:28:30
 *   \param   void
@@ -259,19 +212,5 @@ void ApagarLampara ( void )
 	RelayOFF(2);
 }
 
-/**
-*	\fn      void STOP ( void )
-*	\brief   Coloque aqui su descripcion
-*	\details Amplie la descripcion
-*	\author  Grupo3
-*	\date    17-12-2020 18:28:30
-*   \param   void
-*	\return  void
-*/
-void STOP ( void )
-{
-    // Coloque aqui su codigo
 
-    return ;
-}
 

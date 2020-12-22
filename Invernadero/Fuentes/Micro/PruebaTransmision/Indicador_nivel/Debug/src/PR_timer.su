@@ -1,3 +1,0 @@
-PR_timer.c:11:6:timer_event	16	static
-PR_timer.c:21:6:timer_start	24	static
-PR_timer.c:28:6:timer_stop	16	static

@@ -80,7 +80,6 @@ static int32_t temp;
 
 void BME280_init(uint32_t portNum)
 {
-	/* Write SLA(W), register configuration, SLA(R), and read one byte back. */
 	I2CWriteLength[portNum] = 8; //Cantidad de veces a escribir
 
 	I2CReadLength[portNum] = CANT_CALIB_PARAMS_TP; //Cantidad de veces que voy a leer
@@ -208,7 +207,7 @@ void parse_humidity_calib_data(void)
 
 void BME280_get_meas_values(uint32_t portNum)
 {
-	I2CWriteLength[portNum] = 6; //Voy a enviar 4 datos de escritura
+	I2CWriteLength[portNum] = 4;
 
 	I2CReadLength[portNum] = CANT_DATA_REGS;
 
@@ -218,15 +217,11 @@ void BME280_get_meas_values(uint32_t portNum)
 
 	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | FORCED_MODE; //Configuro sobremuestreo normal y modo forzado
 
-	I2CMasterBuffer[portNum][3] = CTRL_HUM;	 //Dirección del registro a escribir
+	I2CMasterBuffer[portNum][3] = 0xF7; //Registro del que comenzar a leer
 
-	I2CMasterBuffer[portNum][4] = MIN_OSRS_H; //Configuro sobremuestreo normal
+	I2CMasterBuffer[portNum][4] = BME280_RD;  //Dirección en modo de lectura
 
-	I2CMasterBuffer[portNum][5] = 0xF7; //Registro del que comenzar a leer
-
-	I2CMasterBuffer[portNum][6] = BME280_RD;  //Dirección en modo de lectura
-
-	I2CEngine(1); //Va a escribir y leer tantas veces como se configuro en las líneas anteriores
+	I2CEngine(1);
 
 	for(int i=0; i < CANT_DATA_REGS; i++) //Guardo los parámetros de las medidas
 		{meas_data[i] = I2CSlaveBuffer[1][i];}
@@ -333,7 +328,7 @@ uint32_t get_hum(uint32_t portNum)
 {
 	BME280_get_meas_values(portNum);
 	compensate_hum(&hum, uncomp_data.humidity);
-	return hum;
+	return hum;	/* Write SLA(W), register configuration, SLA(R), and read one byte back. */
 }
 
 /*
@@ -431,7 +426,7 @@ void compensate_pres(uint32_t *comp_pres, uint32_t uncomp_pres)
 void compensate_hum(uint32_t *comp_hum,  uint32_t uncomp_hum)
 {
     double humidity_min = 0.0;
-    double humidity_max = 99.0; //Originalmente es 100.0
+    double humidity_max = 99.0; //Originalmente es 100.0 pero para el LCD es mejor 99
     double var1;
     double var2;
     double var3;

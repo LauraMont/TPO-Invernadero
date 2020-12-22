@@ -17,8 +17,10 @@
 /************************************************************************************************************
  *** DEFINES GLOBALES
  ************************************************************************************************************/
-#define 	RED		1
-#define 	TANQUE  0
+#define 	RED			1
+#define 	TANQUE  	0
+#define 	CANT_TAREAS	6
+#define		HUM_LIMITE  10
 
 //Macros de los mensajes a escribir en la pantalla LCD
 #define 	MSG_ESPERANDO 		"ESPERANDO..." , RENGLON_1 , 2
@@ -44,6 +46,17 @@ typedef enum
 	VENTILATE,
 	ALARM
 } estado_invernadero;
+
+typedef struct
+{
+	uint8_t esperando;
+	uint8_t cuidando;
+	uint8_t regando;
+	uint8_t	calentando;
+	uint8_t enfriando;
+	uint8_t ventilando;
+	uint8_t alarma;
+}estados;
 
 /************************************************************************************************************
  *** VARIABLES GLOBALES PUBLICAS
@@ -71,5 +84,6 @@ extern volatile uint8_t name_lng;
  *** PROTOTIPO DE FUNCIONES GLOBALES
  ************************************************************************************************************/
 void MaquinaDeEstados ( void );
+void Mostrar_Estados(void);
 
 #endif /* INC_AP_MDEE_H_ */

@@ -22,6 +22,7 @@ void main(void)
 	Inicializar();
 	ApagarLuces();
 	Medir();
+	Mostrar_Estados();
 	while(1)
 	{
 		TimerEvent();

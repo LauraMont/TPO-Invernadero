@@ -10,7 +10,7 @@
 /***********************************************************************************************************************************
  *** INCLUDES
  **********************************************************************************************************************************/
-#include "rx_trama.h"
+#include <AP_trama_UART.h>
 
  /***********************************************************************************************************************************
  *** FUNCIONES GLOBALES AL MODULO
@@ -79,7 +79,7 @@ static void stop_datos_timeout(void);
 
 static void err_func(void);
 
-static void update_datos(void);				//Funcion que actualiza los datos a enviar
+static void update_datos(void);
 
 static int32_t check_if_data_valid(int32_t dato_rx);
 static int32_t check_if_name_valid(int32_t dato_rx);
@@ -87,12 +87,20 @@ static int32_t check_if_name_valid(int32_t dato_rx);
 /***********************************************************************************************************************************
 *** FUNCIONES PRIVADAS AL MODULO
 **********************************************************************************************************************************/
-/*	TRAMA Vieja
- * $17%20%3&#
+
+/* TRAMA RX
+ *
+ * $CTMTmHTHAS%Nombre&#
+ *
+ * C: Comando, TM: temperatura maxima, Tm: temperatura minima, HT:Humedad de la tierra
+ * HA: humedad ambiente, S: Suministro
  */
 
-/* Trama nueva
- * $17203%Nombre&#
+/* TRAMA TX
+ *
+ * $TEHTHAS#
+ *
+ * TE: temperatura HT:Humedad de la tierra HA: humedad ambiente, S: Status
  */
 
 /**
@@ -461,70 +469,13 @@ static void stop_datos_timeout(void)
 	TimerStop(TIMER_ID_DATOS);
 }
 
-
-uint32_t get_temp_min(void)
-{
-	uint32_t temperatura = (data_buffer[1]-'0');
-
-	temperatura += (data_buffer[0]-'0')*10;
-
-	return temperatura;
-}
-
-uint32_t get_temp_max(void)
-{
-    uint32_t temperatura = (data_buffer[3]-'0');
-
-	temperatura += (data_buffer[2]-'0')*10;
-
-	return temperatura;
-}
-
-uint32_t get_hum_tierra(void)
-{
-    uint32_t hum = (data_buffer[5]-'0');
-
-    hum += (data_buffer[4]-'0')*10;
-
-	return hum;
-}
-
-uint32_t get_hum_amb(void)
-{
-    uint32_t hum = (data_buffer[7]-'0');
-
-    hum += (data_buffer[6]-'0')*10;
-
-	return hum;
-}
-
-uint32_t get_suministro(void)
-{
-	uint32_t suministro = (data_buffer[8]-'0');
-
-	return suministro;
-}
-
-uint8_t is_ready(void){
-
-	if(rx_trama_current_state()==WAITING_END) {
-		return 1;
-	}
-	else return 0;
-}
-
-void get_name(char * name)
-{
-    int32_t i = 0;
-
-    while(name_buffer[i] != '&')
-    {
-    	name[i]=name_buffer[i];
-    	i++;
-    }
-    name[i] = '\0';
-}
-
+/**
+	\fn    	static void update_datos(void)
+	\brief  Guarda en el buffer de envio el status y los datos medidos en tiempo real
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\return no hay retorno
+*/
 static void update_datos(void)
 {
 	uint32_t Humedad = Hum;
@@ -546,6 +497,13 @@ static void update_datos(void)
 	datos_enviar_buffer[6]= Status + '0';
 }
 
+/**
+	\fn    	void EnviarDatos(void)
+	\brief  Transmite por la UART los datos de las mediciones y el estado
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\return no hay retorno
+*/
 void EnviarDatos(void)
 {
 	if(init_tx)
@@ -555,4 +513,102 @@ void EnviarDatos(void)
 		UART0_transmitir(datos_enviar_buffer);
 		UART0_push_tx(END_CHAR);
 	}
+}
+
+/**
+	\fn    	uint32_t get_temp_min(void)
+	\brief  Toma el valor de la temperatura minima de los datos recibidos
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\return temperatura: el valor de la temperatura recibida
+*/
+uint32_t get_temp_min(void)
+{
+	uint32_t temperatura = (data_buffer[1]-'0');
+
+	temperatura += (data_buffer[0]-'0')*10;
+
+	return temperatura;
+}
+
+/**
+	\fn    	uint32_t get_temp_max(void)
+	\brief  Toma el valor de la temperatura maxima de los datos recibidos
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\return temperatura: el valor de la temperatura recibida
+*/
+uint32_t get_temp_max(void)
+{
+    uint32_t temperatura = (data_buffer[3]-'0');
+
+	temperatura += (data_buffer[2]-'0')*10;
+
+	return temperatura;
+}
+
+/**
+	\fn    	uint32_t get_hum_tierra(void)
+	\brief  Toma el valor de la humedad de la tierra de los datos recibidos
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\return hum: el valor de la humedad recibida
+*/
+uint32_t get_hum_tierra(void)
+{
+    uint32_t hum = (data_buffer[5]-'0');
+
+    hum += (data_buffer[4]-'0')*10;
+
+	return hum;
+}
+
+/**
+	\fn    	uint32_t get_hum_amb(void)
+	\brief  Toma el valor de la humedad de ambiente de los datos recibidos
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\return hum: el valor de la humedad recibida
+*/
+uint32_t get_hum_amb(void)
+{
+    uint32_t hum = (data_buffer[7]-'0');
+
+    hum += (data_buffer[6]-'0')*10;
+
+	return hum;
+}
+
+/**
+	\fn    	uint32_t get_suministro(void)
+	\brief  Toma el valor del suministro de los datos recibidos
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\return suministro: el valor del suministro recibido
+*/
+uint32_t get_suministro(void)
+{
+	uint32_t suministro = (data_buffer[8]-'0');
+
+	return suministro;
+}
+
+/**
+	\fn    	void get_name(char * name)
+	\brief  Toma el nombre de los datos recibidos
+ 	\author Nicolás Taurozzi
+ 	\date   22/07/2020
+	\params [out] name
+	\return no hay retorno
+*/
+void get_name(char * name)
+{
+    int32_t i = 0;
+
+    while(name_buffer[i] != '&')
+    {
+    	name[i]=name_buffer[i];
+    	i++;
+    }
+    name[i] = '\0';
 }

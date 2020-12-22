@@ -1,5 +1,0 @@
-DR_UART0.c:29:6:UART0_dr_init	8	static
-DR_UART0.c:83:6:UART0_push_rx	16	static
-DR_UART0.c:93:9:UART0_pop_tx	16	static
-DR_UART0.c:109:6:UART0_write_tx_reg	16	static
-DR_UART0.c:114:6:UART0_IRQHandler	24	static

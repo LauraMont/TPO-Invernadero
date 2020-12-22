@@ -29,6 +29,7 @@
 #define		RX_TIMEOUT_MSECS	50
 #define		ERR_TIMEOUT_MSECS	250
 #define		DATOS_TIMEOUT_SECS	5
+#define		MOSTRAR_ESTADO_SEG   1
 
 /***********************************************************************************************************************************
  *** MACROS GLOBALES
@@ -46,7 +47,8 @@ typedef enum
 	TIMER_ID_RX,
 	TIMER_ID_ERR,
 	TIMER_ID_DATOS,
-	TM_BUZZER
+	TM_BUZZER,
+	TM_MOSTAR_ESTADO
 } Timers_ID;
 
 /***********************************************************************************************************************************

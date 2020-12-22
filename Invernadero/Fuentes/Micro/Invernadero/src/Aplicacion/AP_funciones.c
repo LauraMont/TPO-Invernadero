@@ -44,7 +44,7 @@ extern volatile uint8_t init_tx;
 volatile uint32_t Temp = 10;
 volatile uint32_t Pres = 0;
 volatile uint32_t Hum  = 8;//0;
-volatile uint32_t Hum_tierra = 10;
+volatile uint32_t Hum_tierra = 15;
 
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
@@ -97,10 +97,10 @@ void Medir(void)
 	int8_t auxHA[] = {"HA:  %"};
 
 	//Tomo las mediciones del adc y del BME280
-//	int32_t adc = ADC_get_average();
-//	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;
-//	if(Hum_tierra >= 100) Hum_tierra = 99;
-//	MeasureBME280(i2c1);
+	int32_t adc = ADC_get_average();
+	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;
+	if(Hum_tierra >= 100) Hum_tierra = 99;
+	MeasureBME280(i2c1);
 
 	//Preparo las mediciones para escribirlas en el LCD
 	auxT[2] = Temp/10 + '0';

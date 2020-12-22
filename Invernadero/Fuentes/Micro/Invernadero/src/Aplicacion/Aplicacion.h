@@ -31,10 +31,10 @@
 #include "PR_Entradas.h"
 #include "PR_Display.h"
 #include "PR_LCD.h"
-#include "rx_trama.h"
 #include "PR_Temporizadores.h"
 
 #include "Infotronic.h"
+#include "AP_trama_UART.h"
 #include "AP_Temporizadores.h"
 #include "AP_funciones.h"
 #include "AP_Buzzer.h"

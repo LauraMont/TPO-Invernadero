@@ -72,6 +72,7 @@ volatile uint8_t AmbienteMin ;
 //Variables  y flags para la maquina de control de riego
 volatile uint8_t HumedadMedida ;
 volatile uint8_t HumedadMin;
+volatile uint8_t HumedadLimite = HUM_LIMITE;
 volatile uint8_t TimerValvula = 0;
 volatile uint8_t TimerEspera = 0;
 
@@ -83,10 +84,10 @@ volatile uint8_t TempAltaMin ;
 volatile uint8_t TempAltaMax ;
 
 //Variables de uso general
-volatile uint8_t Status = 0;	//Estado para enviar a la aplicacion
+volatile uint8_t Status = 0;	     //Estado para enviar a la aplicacion
 static char name[DATA_BUFNAME_SIZE]; //Nombre recibido desde la aplicacion
-volatile uint8_t name_lng = 0;		//Largo del nombre
-volatile uint8_t enfriando = 0, ventilando = 0;//Flags para indicar un estado en particular
+volatile uint8_t name_lng = 0;		 //Largo del nombre
+static estados tarea;				 //Estructura para indicar la tarea en procso
 
 //Valores medidos por los sensores
 extern volatile uint32_t Temp;
@@ -110,7 +111,6 @@ extern volatile uint32_t Hum_tierra;
 
 static uint8_t ControlInvernadero ( uint8_t  Estado )
 {
-	static uint8_t i = 0;
     switch ( Estado )
     {
 
@@ -122,13 +122,7 @@ static uint8_t ControlInvernadero ( uint8_t  Estado )
             break;
 
         case ESPERA :	//Estoy esperando a que se reciban los datos que sucede cuando cuidado sea TRUE
-        	if(!i)
-        	{
-        		CleanLCD(RENGLON_1);
-      			Display_LCD( MSG_ESPERANDO );
-            	Status = WAITING;
-      			i++;
-        	}
+        	tarea.esperando = TRUE;
         	if ( Cuidando == TRUE )
             {
                 Control = TRUE;
@@ -148,23 +142,18 @@ static uint8_t ControlInvernadero ( uint8_t  Estado )
 				TempAltaMin = TempAltaMax - 5;
 
 				Display_LCD( name , RENGLON_1 , 0 );
-                i=0;
                 Estado = CUIDANDO;
+                tarea.cuidando = TRUE;
+            	tarea.esperando = FALSE;
             }
 
             break;
 
         case CUIDANDO :
-        	if(!i)
-        	{
-            	Status = CARING;
-            	i++;
-        	}
         	if ( Cuidando == FALSE )
             {
-        		i=0;
-                Control = FALSE;
-
+                tarea.cuidando = FALSE;
+        		Control = FALSE;
                 Estado = ESPERA;
             }
 
@@ -195,8 +184,7 @@ static uint8_t ControlInvernadero ( uint8_t  Estado )
 static uint8_t ControlRiego ( uint8_t  Estado )
 {
 	static uint8_t TanqueVacio = 0;
-	static uint8_t i = 0;
-/*
+	/*
  * Desde la aplicacion se indica si el suministro sera por red o por un tanque,
  * si es por red se trunca TanqueVacio a cero y no se evalua el sensor de
  * nivel, pero si el suministro es de tanque si se evalua el sensor cada vez que
@@ -222,54 +210,36 @@ static uint8_t ControlRiego ( uint8_t  Estado )
         case ESPERA :
 
             if ( Control == TRUE )
-            {
                 Estado = REGADO;
-            }
             break;
 
         case REGADO :
-        	if(!i)
-        	{
-            	Display_LCD( MSG_CUIDANDO );
-            	Status = CARING;
-            	i++;
-        	}
-            if ( HumedadMedida < HumedadMin && !TanqueVacio )
+            if ( HumedadMedida < HumedadLimite && !TanqueVacio )
             {
                 ValvulaON();
                 DispTimerValvula();
-                i = 0;
+                tarea.regando = TRUE;
                 Estado = REGANDO;
             }
 
             if ( TanqueVacio )
             {
             	AlarmaON();
-            	i = 0;
-                Estado = ALARMA;
+            	tarea.alarma = TRUE;
+            	Estado = ALARMA;
             }
 
             if ( Control == FALSE )
-            {
-            	i = 0;
                 Estado = ESPERA;
-            }
 
             break;
 
-        case REGANDO :
-        	if(!i)
-        	{
-            	Display_LCD( MSG_REGANDO );
-            	Status = WATERING;
-            	i++;
-        	}
+        case REGANDO :	//La maquina seguira regando hasta que se alcance la humedad soportada por la plana
             if ( TimerValvula )
             {
             	TimerValvula = 0;
                 DispTimerEspera();
                 ValvulaOFF();
-            	i = 0;
                 Estado = REGANDO;
             }
 
@@ -279,7 +249,7 @@ static uint8_t ControlRiego ( uint8_t  Estado )
                 ApagarTimerEspera();
                 ApagarTimerValvula();
                 AlarmaON();
-            	i = 0;
+            	tarea.alarma = TRUE;
                 Estado = ALARMA;
             }
 
@@ -288,17 +258,8 @@ static uint8_t ControlRiego ( uint8_t  Estado )
                 ValvulaOFF();
                 ApagarTimerEspera();
                 ApagarTimerValvula();
-                i = 0;
+                tarea.regando = FALSE;
                 Estado = REGADO;
-            }
-
-            if ( Control == FALSE )
-            {
-                ValvulaOFF();
-                ApagarTimerEspera();
-                ApagarTimerValvula();
-            	i = 0;
-                Estado = ESPERA;
             }
 
             if ( TimerEspera && HumedadMedida <= HumedadMin )
@@ -306,30 +267,31 @@ static uint8_t ControlRiego ( uint8_t  Estado )
             	TimerEspera = 0;
                 ValvulaON();
                 DispTimerValvula();
-            	i = 0;
                 Estado = REGANDO;
             }
 
+            if ( Control == FALSE )
+            {
+                ValvulaOFF();
+                ApagarTimerEspera();
+                ApagarTimerValvula();
+                tarea.regando = FALSE;
+                Estado = ESPERA;
+            }
             break;
 
         case ALARMA :
-//        	if(!i)
-//        	{
-//            	Display_LCD( MSG_TVACIO );
-//            	Status = ALARM;
-//            	i++;
-//        	}
             if ( !TanqueVacio )
             {
                 AlarmaOFF();
-                i = 0;
+                tarea.alarma = FALSE;
                 Estado = REGADO;
             }
 
             if ( Control == FALSE )
             {
-                AlarmaOFF();
-                i = 0;
+            	AlarmaOFF();
+                tarea.alarma = FALSE;
                 Estado = ESPERA;
             }
 
@@ -356,7 +318,6 @@ static uint8_t ControlRiego ( uint8_t  Estado )
 
 static uint8_t ControlHumedad ( uint8_t  Estado )
 {
-	static uint8_t i = 0;
 	AmbienteMedido = Hum;
 
     switch ( Estado )
@@ -371,71 +332,36 @@ static uint8_t ControlHumedad ( uint8_t  Estado )
 
         case ESPERA :
             if ( Control == TRUE )
-            {
-
                 Estado = VENTILADO;
-            }
 
             break;
 
         case VENTILADO :
-/*
- * Al terimar de ventilar la maquina vuelve a ventilado, pero si
- * en ese mismo momento se encontraba enfriando, el lugar de cambiar
- * status a cuidando lo cambia a enfriando. Esta precaucion se debe a
- * que ambos parametros se reducen con el mismo cooler, y caso contrario
- * al detenerse el ventilado también se detendria enfriando
- * */
-        	if(!i)
-        	{
-        		if(enfriando)
-        		{
-                	Display_LCD( MSG_ENFRIANDO );
-                	Status = COOLING;
-        		}
-        		else
-        		{
-                	Display_LCD( MSG_CUIDANDO );
-                	Status = CARING;
-        		}
-            	i++;
-        	}
             if ( AmbienteMedido >= AmbienteMax )
             {
                 VentilarON();
-                ventilando = 1;
-                i = 0;
+            	tarea.ventilando = TRUE;
                 Estado = VENTILANDO;
             }
 
             if ( Control == FALSE )
-            {
-                i = 0;
                 Estado = ESPERA;
-            }
 
             break;
 
         case VENTILANDO :
-        	if(!i)
-        	{
-            	Display_LCD( MSG_VENTILANDO );
-            	Status = VENTILATE;
-            	i++;
-        	}
             if ( AmbienteMedido <= AmbienteMin )
             {
-            	if(!enfriando) //Si el invernadero esta enfriando no apago el ventilador
+            	if(!tarea.enfriando) //Si el invernadero esta enfriando no apago el ventilador
             		VentilarOFF();
-            	ventilando = 0;
-                i = 0;
+            	tarea.ventilando = FALSE;
                 Estado = VENTILADO;
             }
 
             if ( Control == FALSE )
             {
                 VentilarOFF();
-                i = 0;
+            	tarea.ventilando = FALSE;
                 Estado = ESPERA;
             }
 
@@ -463,7 +389,6 @@ static uint8_t ControlHumedad ( uint8_t  Estado )
 
 static uint8_t ControlTemperatura ( uint8_t  Estado )
 {
-	static uint8_t i = 0;
 	TempMedida  = Temp;
 
     switch ( Estado )
@@ -480,97 +405,66 @@ static uint8_t ControlTemperatura ( uint8_t  Estado )
         case ESPERA :
             if ( Control == TRUE )
             {
-
                 Estado = ESTABLE;
             }
 
             break;
 
         case ESTABLE :
-//Se tiene la misma precaución que en la máquina de control
-//de humedad para evitar que se solapen los estados
-        	if(!i)
-        	{
-        		if(ventilando)
-        		{
-                	Display_LCD( MSG_VENTILANDO );
-                	Status = VENTILATE;
-        		}
-        		else
-        		{
-                	Display_LCD( MSG_CUIDANDO );
-                	Status = CARING;
-        		}
-            	i++;
-        	}
             if ( TempMedida <= TempBajaMax )
             {
                 EncenderLampar();
-            	i = 0;
+            	tarea.calentando = TRUE;
                 Estado = CALENTANDO;
             }
 
             if ( TempMedida >= TempAltaMax )
             {
-            	enfriando = 1;
                 VentilarON();
-            	i = 0;
-                Estado = REFRESCANDO;
+            	tarea.enfriando = TRUE;
+            	Estado = REFRESCANDO;
             }
 
             if ( Control == FALSE )
             {
-
+            	tarea.calentando = FALSE;
+            	tarea.enfriando = FALSE;
                 Estado = ESPERA;
             }
 
             break;
 
         case CALENTANDO :
-        	if(!i)
-        	{
-            	Display_LCD( MSG_CALENTANDO );
-            	Status = WARMING;
-            	i++;
-        	}
             if ( TempMedida >= TempBajaMin )
             {
                 ApagarLampara();
-                i = 0;
+            	tarea.calentando = FALSE;
                 Estado = ESTABLE;
             }
 
             if ( Control == FALSE )
             {
                 ApagarLampara();
-                i = 0;
+            	tarea.calentando = FALSE;
                 Estado = ESPERA;
             }
 
             break;
 
         case REFRESCANDO :
-        	if(!i)
-        	{
-				Display_LCD( MSG_ENFRIANDO );
-				Status = COOLING;
-            	i++;
-        	}
             if ( TempMedida <= TempAltaMin )
             {
-            	if(!ventilando) //Si en el mismo momento se esta ventilando no apago el cooler
+            	if(!tarea.ventilando) //Si en el mismo momento se esta ventilando no apago el cooler
             		VentilarOFF();
-            	i = 0;
-                enfriando = 0;
+            	tarea.enfriando = FALSE;
                 Estado = ESTABLE;
             }
 
             if ( Control == FALSE )
             {
           		VentilarOFF();
-                enfriando = 0;
-                i = 0;
-                Estado = ESPERA;
+                tarea.enfriando = FALSE;
+            	Estado = ESPERA;
             }
 
             break;
@@ -610,7 +504,29 @@ void MaquinaDeEstados ( void )
     estados_ControlRiego       = ControlRiego( estados_ControlRiego );
     estados_ControlHumedad     = ControlHumedad( estados_ControlHumedad );
     estados_ControlTemperatura = ControlTemperatura( estados_ControlTemperatura );
-
-    return ;
 }
+
+/**
+*	\fn      void Mostrar_Estados(void)
+*	\brief   Función para mostrar los estados en el LCD y en la aplicación
+*	\details Siguiendo a la struct tarea se fija que tareas se estan ejecutando
+*			 y según su importancia las ira mostrando en la pantalla LCD y en la aplicacion
+*	\author  Grupo3
+*	\date    17-12-2020 18:28:30
+*   \param   void
+*	\return  void
+*/
+void Mostrar_Estados(void)
+{
+    if(tarea.esperando) 		{ CleanLCD(RENGLON_1); Display_LCD(MSG_ESPERANDO);  Status = WAITING; }
+    else if(tarea.alarma) 		{ Display_LCD(MSG_TVACIO);     Status = ALARM; }
+    else if(tarea.regando) 		{ Display_LCD(MSG_REGANDO);    Status = WATERING; }
+    else if(tarea.calentando) 	{ Display_LCD(MSG_CALENTANDO); Status = WARMING; }
+    else if(tarea.enfriando) 	{ Display_LCD(MSG_ENFRIANDO);  Status = COOLING; }
+    else if(tarea.ventilando)	{ Display_LCD(MSG_VENTILANDO); Status = VENTILATE; }
+    else if(tarea.cuidando) 	{ Display_LCD(MSG_CUIDANDO);   Status = CARING; }
+
+    TimerStart(TM_MOSTAR_ESTADO, MOSTRAR_ESTADO_SEG, Mostrar_Estados, SEG);
+}
+
 
