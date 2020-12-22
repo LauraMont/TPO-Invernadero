@@ -15,7 +15,7 @@
 #include <QtSerialPort/QSerialPort> // Para conectar el puerto
 #include "tabla.h"
 
-#define RUTA_FOTOS "../QPLANTAS/Recursos/"
+#define RUTA_FOTOS "../prueba_DB-Plantas/Recursos/"
 #define DATA_BUFFER_SIZE 7
 
 #define INICIO_WIDTH    381

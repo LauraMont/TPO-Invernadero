@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 /**
     \fn  	MainWindow::~MainWindow()
-    \brief	Destructor
+    \brief	Desctructor
 */
 MainWindow::~MainWindow()
 {
