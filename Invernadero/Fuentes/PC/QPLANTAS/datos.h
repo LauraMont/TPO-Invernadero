@@ -11,7 +11,8 @@
 #include "mainwindow.h"
 #include <QIntValidator>
 
-namespace Ui {
+namespace Ui
+{
 class Datos;
 }
 
@@ -22,13 +23,15 @@ class Datos : public QDialog
 public:
     explicit Datos(QWidget *parent = nullptr);
     ~Datos();
-    void insertarPlanta();
+    bool insertarPlanta();
 private slots:
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();
 
     void on_pushButton_3_clicked();
+
+    bool YaExiste(QString nombre);
 
 private:
     Ui::Datos *ui;

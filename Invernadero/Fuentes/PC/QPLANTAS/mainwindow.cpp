@@ -98,9 +98,7 @@ void MainWindow::crearTablaPlantas()
    QSqlQuery crear(db);
    if(!crear.prepare(consulta))
        QMessageBox::critical(NULL, "Base de Datos", "No se pudo preparar la consulta de nombres");
-   if (crear.exec()) //Devuelte un booleano
-       qDebug()<<"La tabla usuarios existe o se ha creado correctamente";
-   else
+   if (!crear.exec()) //Devuelve un booleano
        qDebug()<<"ERROR!"<<crear.lastError();
 }
 
@@ -240,7 +238,6 @@ void MainWindow::on_configuraciones_clicked()
         eleccion = elijaPlanta;
     ui->comboBox->setCurrentText(eleccion);
     emit on_comboBox_activated(eleccion);//Envio la señal para que cargue los datos
-    qDebug() << "Te mando el elemento: " << ui->comboBox->currentIndex();
 }
 
 /**
@@ -286,7 +283,10 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->ignore();
     }
     else
+    {
         event->accept();
+        qDebug() << "Hasta luego, vuelva prontos";
+    }
 }
 /**
     \fn  enable_gui

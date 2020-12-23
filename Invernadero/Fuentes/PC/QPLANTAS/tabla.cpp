@@ -39,11 +39,9 @@ void Tabla::MostrarDatos()
     QSqlQuery consultar(db);
     consultar.prepare(consulta);
 
-    if(consultar.exec()) //Devuelve un booleano
-        qDebug()<<"Se ha consultado correctamente";
-    else
+    if(!consultar.exec()) //Devuelve un booleano
     {
-        qDebug()<<"No se ha consultado correctamente";
+        qDebug()<<"Error al mostrar los datos";
         qDebug()<<"ERROR!"<<consultar.lastError();
     }
     ui->tableWidget_Datos->setRowCount(0);
@@ -102,7 +100,6 @@ void Tabla::on_tableWidget_Datos_cellChanged(int row, int column)
         QString campo = columnas[column-1];//Resto dos por el id y el nombre
         QString ID = ui->tableWidget_Datos->item(row,0)->text(); //Obtengo el id
         QString value = ui->tableWidget_Datos->item(row, column)->text();//Contenido de la celda
-        qDebug() << campo;
 
         QSqlQuery qry;
         qry.prepare( "UPDATE plantas SET "+campo+" = '"+value+"' WHERE id ="+ID+"");
@@ -123,7 +120,6 @@ void Tabla::on_tableWidget_Datos_cellChanged(int row, int column)
 void Tabla::on_tableWidget_Datos_itemSelectionChanged()
 {
     static QModelIndex IndiceAnterior;
-    //qDebug() << ui->tableWidget_Datos->currentIndex();
 
     if (IndiceAnterior==ui->tableWidget_Datos->currentIndex())
         ui->pushButton_Borrar->setEnabled(isEnabled=false);

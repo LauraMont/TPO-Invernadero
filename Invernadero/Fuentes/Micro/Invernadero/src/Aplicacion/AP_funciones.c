@@ -97,10 +97,10 @@ void Medir(void)
 	int8_t auxHA[] = {"HA:  %"};
 
 	//Tomo las mediciones del adc y del BME280
-	int32_t adc = ADC_get_average();
-	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;
-	if(Hum_tierra >= 100) Hum_tierra = 99;
-	MeasureBME280(i2c1);
+//	int32_t adc = ADC_get_average();
+//	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;
+//	if(Hum_tierra >= 100) Hum_tierra = 99;
+//	MeasureBME280(i2c1);
 
 	//Preparo las mediciones para escribirlas en el LCD
 	auxT[2] = Temp/10 + '0';
