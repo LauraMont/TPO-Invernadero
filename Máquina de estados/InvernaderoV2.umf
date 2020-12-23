@@ -4,8 +4,8 @@
         <nombre>Invernadero</nombre>
         <autores>Grupo3</autores>
         <creacion>13-12-2020 12:47:42</creacion>
-        <modificacion>18-12-2020 21:23:59</modificacion>
-        <carpeta>/home/nico/Nico/UTN/Info2/TPO-Invernadero/Máquina de estados</carpeta>
+        <modificacion>23-12-2020 05:38:07</modificacion>
+        <carpeta>/home/javier/UTN/Info2/UmodelFactory</carpeta>
     </general>
     <configuracion>
         <hardware/>
@@ -89,8 +89,8 @@
                         <idEvento>Dato_rx == PESOS</idEvento>
                         <idAcciones></idAcciones>
                         <idProxEstado>estado1</idProxEstado>
-                        <midPos>-699.9,-512.1</midPos>
-                        <textPos>15,-11</textPos>
+                        <midPos>-666,-526</midPos>
+                        <textPos>7,-13</textPos>
                     </tr0>
                 </transiciones>
             </estado0>
@@ -98,91 +98,65 @@
                 <diagrama>
                     <nombre>COMANDO</nombre>
                     <color>#4169e1</color>
-                    <pos_x>-708</pos_x>
-                    <pos_y>-424</pos_y>
+                    <pos_x>-705</pos_x>
+                    <pos_y>-465</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>Dato_rx == DETENER</idEvento>
-                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
-                        <idProxEstado>estado2</idProxEstado>
-                        <midPos>-583,-430</midPos>
-                        <textPos>0,-42</textPos>
-                    </tr0>
-                    <tr1>
                         <idEvento>Dato_rx == INICIAR</idEvento>
                         <idAcciones></idAcciones>
-                        <idProxEstado>estado3</idProxEstado>
-                        <midPos>-828,-433</midPos>
-                        <textPos>-121,-35</textPos>
+                        <idProxEstado>estado2</idProxEstado>
+                        <midPos>-846,-452</midPos>
+                        <textPos>-125,-29</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>Dato_rx != INICIAR &amp;&amp; Dato_rx != DETENER</idEvento>
+                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
+                        <idProxEstado>estado4</idProxEstado>
+                        <midPos>-706,-392</midPos>
+                        <textPos>9,-31</textPos>
                     </tr1>
                     <tr2>
-                        <idEvento>DataValid == FALSE</idEvento>
+                        <idEvento>Dato_rx == DETENER</idEvento>
                         <idAcciones>F_RecibiDatos = FALSE</idAcciones>
-                        <idProxEstado>estado5</idProxEstado>
-                        <midPos>-696.3,-376.5</midPos>
-                        <textPos>-92,-22</textPos>
+                        <idProxEstado>estado3</idProxEstado>
+                        <midPos>-368,-355</midPos>
+                        <textPos>-76,55</textPos>
                     </tr2>
                 </transiciones>
             </estado1>
             <estado2>
                 <diagrama>
-                    <nombre>DETENER</nombre>
-                    <color>#d2b48c</color>
-                    <pos_x>-467</pos_x>
-                    <pos_y>-357</pos_y>
+                    <nombre>WAITING_DATA</nombre>
+                    <color>#90ee90</color>
+                    <pos_x>-970</pos_x>
+                    <pos_y>-409</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>F_RecibiDatos == FALSE</idEvento>
-                        <idAcciones>F_DatosListos = FALSE</idAcciones>
-                        <idProxEstado>estado4</idProxEstado>
-                        <midPos>-497,-248</midPos>
-                        <textPos>-171,15</textPos>
-                    </tr0>
-                    <tr1>
                         <idEvento>DataValid == FALSE</idEvento>
                         <idAcciones>F_RecibiDatos = FALSE</idAcciones>
+                        <idProxEstado>estado4</idProxEstado>
+                        <midPos>-805,-381</midPos>
+                        <textPos>-124,14</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>DataValid == TRUE</idEvento>
+                        <idAcciones></idAcciones>
                         <idProxEstado>estado5</idProxEstado>
-                        <midPos>-575,-346</midPos>
-                        <textPos>-108,18</textPos>
+                        <midPos>-983,-330</midPos>
+                        <textPos>-178,-27</textPos>
                     </tr1>
                 </transiciones>
             </estado2>
             <estado3>
                 <diagrama>
-                    <nombre>WAITING_DATA</nombre>
-                    <color>#90ee90</color>
-                    <pos_x>-904</pos_x>
-                    <pos_y>-358</pos_y>
-                    <ancho>110</ancho>
-                    <alto>65</alto>
-                </diagrama>
-                <transiciones>
-                    <tr0>
-                        <idEvento>DataValid == TRUE</idEvento>
-                        <idAcciones>F_RecibiDatos = TRUE</idAcciones>
-                        <idProxEstado>estado4</idProxEstado>
-                        <midPos>-897,-235</midPos>
-                        <textPos>-56,-2</textPos>
-                    </tr0>
-                    <tr1>
-                        <idEvento>DataValid == FALSE</idEvento>
-                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
-                        <idProxEstado>estado5</idProxEstado>
-                        <midPos>-799.4,-355</midPos>
-                        <textPos>-142,34</textPos>
-                    </tr1>
-                </transiciones>
-            </estado3>
-            <estado4>
-                <diagrama>
                     <nombre>WAITING_END</nombre>
-                    <color>#e0ffff</color>
+                    <color>#ffa500</color>
                     <pos_x>-698</pos_x>
                     <pos_y>-53</pos_y>
                     <ancho>110</ancho>
@@ -193,24 +167,31 @@
                         <idEvento>F_RecibiDatos == TRUE &amp;&amp; Dato_rx == Numeral</idEvento>
                         <idAcciones>F_DatosListos = TRUE</idAcciones>
                         <idProxEstado>estado0</idProxEstado>
-                        <midPos>-1143,-356</midPos>
-                        <textPos>-45.5625,-229</textPos>
+                        <midPos>-1474,-361</midPos>
+                        <textPos>82.4375,-231</textPos>
                     </tr0>
                     <tr1>
-                        <idEvento>F_DatosListos == FALSE &amp;&amp; Dato_rx == Numeral</idEvento>
-                        <idAcciones>STOP()</idAcciones>
+                        <idEvento>F_RecibiDatos == FALSE &amp;&amp; Dato_rx == Numeral</idEvento>
+                        <idAcciones>F_DatosListos = FALSE</idAcciones>
                         <idProxEstado>estado0</idProxEstado>
                         <midPos>-162,-385</midPos>
-                        <textPos>-105.375,17</textPos>
+                        <textPos>-105.375,-11</textPos>
                     </tr1>
+                    <tr2>
+                        <idEvento>Dato_rx != Numeral</idEvento>
+                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
+                        <idProxEstado>estado4</idProxEstado>
+                        <midPos>-701,-190</midPos>
+                        <textPos>5.9375,-52</textPos>
+                    </tr2>
                 </transiciones>
-            </estado4>
-            <estado5>
+            </estado3>
+            <estado4>
                 <diagrama>
                     <nombre>ERROR</nombre>
                     <color>#ff0000</color>
-                    <pos_x>-704</pos_x>
-                    <pos_y>-312</pos_y>
+                    <pos_x>-706</pos_x>
+                    <pos_y>-335</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
@@ -219,9 +200,35 @@
                         <idEvento>TimerError</idEvento>
                         <idAcciones></idAcciones>
                         <idProxEstado>estado0</idProxEstado>
-                        <midPos>-770,-489</midPos>
-                        <textPos>-82.5156,-13</textPos>
+                        <midPos>-791,-486</midPos>
+                        <textPos>-91.5156,-58</textPos>
                     </tr0>
+                </transiciones>
+            </estado4>
+            <estado5>
+                <diagrama>
+                    <nombre>WAITING_NAME</nombre>
+                    <color>#d2b48c</color>
+                    <pos_x>-969</pos_x>
+                    <pos_y>-261</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>NameValid == TRUE</idEvento>
+                        <idAcciones>F_RecibiDatos = TRUE</idAcciones>
+                        <idProxEstado>estado3</idProxEstado>
+                        <midPos>-828,-150</midPos>
+                        <textPos>-224,-61</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>NameValid == FALSE</idEvento>
+                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
+                        <idProxEstado>estado4</idProxEstado>
+                        <midPos>-816,-281</midPos>
+                        <textPos>-72.0625,22</textPos>
+                    </tr1>
                 </transiciones>
             </estado5>
         </maquina1>
@@ -565,6 +572,7 @@
         <ev2>TimerEspera</ev2>
         <ev3>S_Nivel</ev3>
         <ev4>TimerError</ev4>
+        <ev5>TimerDatos</ev5>
     </eventos>
     <acciones>
         <acc0>MostrarDatos()</acc0>
@@ -604,6 +612,7 @@
         <var18>Dato_rx</var18>
         <var19>F_RecibiDatos</var19>
         <var20>DataValid</var20>
+        <var21>NameValid</var21>
     </variables>
     <constantes>
         <cons0>TRUE,X</cons0>

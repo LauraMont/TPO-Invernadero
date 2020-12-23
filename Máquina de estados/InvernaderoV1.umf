@@ -2,10 +2,10 @@
 <proyecto>
     <general>
         <nombre>Invernadero</nombre>
-        <autores>Nico</autores>
-        <creacion>16-08-2020 16:33:12</creacion>
-        <modificacion>17-08-2020 13:15:55</modificacion>
-        <carpeta>/home/nicolas/Documentos/Facultad/Informatica 2/TPO</carpeta>
+        <autores>Grupo3</autores>
+        <creacion>13-12-2020 12:47:42</creacion>
+        <modificacion>18-12-2020 21:23:59</modificacion>
+        <carpeta>/home/nico/Nico/UTN/Info2/TPO-Invernadero/Máquina de estados</carpeta>
     </general>
     <configuracion>
         <hardware/>
@@ -19,261 +19,374 @@
         <maquina0>
             <nombre>Control</nombre>
             <estadoInicial>
-                <pos_x>-1013</pos_x>
-                <pos_y>-708.5</pos_y>
-                <idAcciones></idAcciones>
+                <pos_x>-935</pos_x>
+                <pos_y>-685.5</pos_y>
+                <idAcciones>Control = FALSE,F_DatosListos = FALSE</idAcciones>
                 <idProxEstado>estado0</idProxEstado>
-                <midPos>-986.4,-688.2</midPos>
-                <textPos>0,-23</textPos>
+                <midPos>-908.4,-665.2</midPos>
+                <textPos>0,-59</textPos>
             </estadoInicial>
             <estado0>
                 <diagrama>
                     <nombre>ESPERA</nombre>
                     <color>#4169e1</color>
-                    <pos_x>-920</pos_x>
-                    <pos_y>-638</pos_y>
-                    <ancho>110</ancho>
-                    <alto>65</alto>
-                </diagrama>
-                <transiciones>
-                    <tr0>
-                        <idEvento>F_NuevaPlanta == TRUE</idEvento>
-                        <idAcciones>F_LeerDatos = TRUE</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-757,-597</midPos>
-                        <textPos>0,-38</textPos>
-                    </tr0>
-                </transiciones>
-            </estado0>
-            <estado1>
-                <diagrama>
-                    <nombre>LECTURA DATOS</nombre>
-                    <color>#ff0000</color>
-                    <pos_x>-697</pos_x>
-                    <pos_y>-472</pos_y>
+                    <pos_x>-840</pos_x>
+                    <pos_y>-613</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
                         <idEvento>F_DatosListos == TRUE</idEvento>
-                        <idAcciones>ControlRiego = TRUE,ControlHumedad = TRUE,F_LeerDatos = FALSE</idAcciones>
-                        <idProxEstado>estado2</idProxEstado>
-                        <midPos>-744,-341</midPos>
-                        <textPos>13,-3</textPos>
+                        <idAcciones>Control = TRUE</idAcciones>
+                        <idProxEstado>estado1</idProxEstado>
+                        <midPos>-625,-477</midPos>
+                        <textPos>0,-42</textPos>
                     </tr0>
                 </transiciones>
-            </estado1>
-            <estado2>
+            </estado0>
+            <estado1>
                 <diagrama>
                     <nombre>CUIDANDO</nombre>
                     <color>#9acd32</color>
-                    <pos_x>-908</pos_x>
-                    <pos_y>-288</pos_y>
+                    <pos_x>-830</pos_x>
+                    <pos_y>-330</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>STOP</idEvento>
-                        <idAcciones>ControlRiego = FALSE,ControlHumedad = FALSE,F_NuevaPlanta = FALSE</idAcciones>
+                        <idEvento>F_DatosListos == FALSE</idEvento>
+                        <idAcciones>Control = FALSE</idAcciones>
                         <idProxEstado>estado0</idProxEstado>
-                        <midPos>-1061,-459</midPos>
-                        <textPos>-162,0</textPos>
+                        <midPos>-1006,-473</midPos>
+                        <textPos>-177.5,-35</textPos>
                     </tr0>
                 </transiciones>
-            </estado2>
+            </estado1>
         </maquina0>
         <maquina1>
             <nombre>LecturaDeDatos</nombre>
             <estadoInicial>
-                <pos_x>-857</pos_x>
-                <pos_y>-681.5</pos_y>
-                <idAcciones></idAcciones>
+                <pos_x>-810</pos_x>
+                <pos_y>-657.5</pos_y>
+                <idAcciones>F_DatosListos = FALSE</idAcciones>
                 <idProxEstado>estado0</idProxEstado>
-                <midPos>-830.4,-661.2</midPos>
-                <textPos>0,-23</textPos>
+                <midPos>-803,-637</midPos>
+                <textPos>32,-58</textPos>
             </estadoInicial>
             <estado0>
                 <diagrama>
-                    <nombre>ESPERA</nombre>
+                    <nombre>WAITING_START</nombre>
                     <color>#4169e1</color>
-                    <pos_x>-762</pos_x>
-                    <pos_y>-609</pos_y>
+                    <pos_x>-715</pos_x>
+                    <pos_y>-585</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>F_LeerDatos == TRUE</idEvento>
-                        <idAcciones>LeerBaseDatos()</idAcciones>
+                        <idEvento>Dato_rx == PESOS</idEvento>
+                        <idAcciones></idAcciones>
                         <idProxEstado>estado1</idProxEstado>
-                        <midPos>-594,-581</midPos>
-                        <textPos>0,-38</textPos>
+                        <midPos>-699.9,-512.1</midPos>
+                        <textPos>15,-11</textPos>
                     </tr0>
                 </transiciones>
             </estado0>
             <estado1>
                 <diagrama>
-                    <nombre>LEYENDO</nombre>
-                    <color>#90ee90</color>
-                    <pos_x>-550</pos_x>
-                    <pos_y>-465</pos_y>
+                    <nombre>COMANDO</nombre>
+                    <color>#4169e1</color>
+                    <pos_x>-708</pos_x>
+                    <pos_y>-424</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>F_DatosObtenidos == TRUE</idEvento>
-                        <idAcciones>EnviarDatos()</idAcciones>
+                        <idEvento>Dato_rx == DETENER</idEvento>
+                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
                         <idProxEstado>estado2</idProxEstado>
-                        <midPos>-611,-365</midPos>
-                        <textPos>-1,8</textPos>
+                        <midPos>-583,-430</midPos>
+                        <textPos>0,-42</textPos>
                     </tr0>
+                    <tr1>
+                        <idEvento>Dato_rx == INICIAR</idEvento>
+                        <idAcciones></idAcciones>
+                        <idProxEstado>estado3</idProxEstado>
+                        <midPos>-828,-433</midPos>
+                        <textPos>-121,-35</textPos>
+                    </tr1>
+                    <tr2>
+                        <idEvento>DataValid == FALSE</idEvento>
+                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
+                        <idProxEstado>estado5</idProxEstado>
+                        <midPos>-696.3,-376.5</midPos>
+                        <textPos>-92,-22</textPos>
+                    </tr2>
                 </transiciones>
             </estado1>
             <estado2>
                 <diagrama>
-                    <nombre>GUARDANDO</nombre>
-                    <color>#ffa500</color>
-                    <pos_x>-760</pos_x>
-                    <pos_y>-340</pos_y>
+                    <nombre>DETENER</nombre>
+                    <color>#d2b48c</color>
+                    <pos_x>-467</pos_x>
+                    <pos_y>-357</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>F_DatosEnviados == TRUE</idEvento>
-                        <idAcciones>F_DatosListos = TRUE</idAcciones>
-                        <idProxEstado>estado0</idProxEstado>
-                        <midPos>-873,-476</midPos>
-                        <textPos>-183,0</textPos>
+                        <idEvento>F_RecibiDatos == FALSE</idEvento>
+                        <idAcciones>F_DatosListos = FALSE</idAcciones>
+                        <idProxEstado>estado4</idProxEstado>
+                        <midPos>-497,-248</midPos>
+                        <textPos>-171,15</textPos>
                     </tr0>
+                    <tr1>
+                        <idEvento>DataValid == FALSE</idEvento>
+                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
+                        <idProxEstado>estado5</idProxEstado>
+                        <midPos>-575,-346</midPos>
+                        <textPos>-108,18</textPos>
+                    </tr1>
                 </transiciones>
             </estado2>
+            <estado3>
+                <diagrama>
+                    <nombre>WAITING_DATA</nombre>
+                    <color>#90ee90</color>
+                    <pos_x>-904</pos_x>
+                    <pos_y>-358</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>DataValid == TRUE</idEvento>
+                        <idAcciones>F_RecibiDatos = TRUE</idAcciones>
+                        <idProxEstado>estado4</idProxEstado>
+                        <midPos>-897,-235</midPos>
+                        <textPos>-56,-2</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>DataValid == FALSE</idEvento>
+                        <idAcciones>F_RecibiDatos = FALSE</idAcciones>
+                        <idProxEstado>estado5</idProxEstado>
+                        <midPos>-799.4,-355</midPos>
+                        <textPos>-142,34</textPos>
+                    </tr1>
+                </transiciones>
+            </estado3>
+            <estado4>
+                <diagrama>
+                    <nombre>WAITING_END</nombre>
+                    <color>#e0ffff</color>
+                    <pos_x>-698</pos_x>
+                    <pos_y>-53</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>F_RecibiDatos == TRUE &amp;&amp; Dato_rx == Numeral</idEvento>
+                        <idAcciones>F_DatosListos = TRUE</idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-1143,-356</midPos>
+                        <textPos>-45.5625,-229</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>F_DatosListos == FALSE &amp;&amp; Dato_rx == Numeral</idEvento>
+                        <idAcciones>STOP()</idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-162,-385</midPos>
+                        <textPos>-105.375,17</textPos>
+                    </tr1>
+                </transiciones>
+            </estado4>
+            <estado5>
+                <diagrama>
+                    <nombre>ERROR</nombre>
+                    <color>#ff0000</color>
+                    <pos_x>-704</pos_x>
+                    <pos_y>-312</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>TimerError</idEvento>
+                        <idAcciones></idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-770,-489</midPos>
+                        <textPos>-82.5156,-13</textPos>
+                    </tr0>
+                </transiciones>
+            </estado5>
         </maquina1>
         <maquina2>
             <nombre>ControlRiego</nombre>
             <estadoInicial>
-                <pos_x>-958</pos_x>
-                <pos_y>-713.5</pos_y>
-                <idAcciones></idAcciones>
+                <pos_x>-988</pos_x>
+                <pos_y>-703.5</pos_y>
+                <idAcciones>ValvulaOFF()</idAcciones>
                 <idProxEstado>estado0</idProxEstado>
-                <midPos>-931.4,-693.2</midPos>
-                <textPos>0,-23</textPos>
+                <midPos>-961.4,-683.2</midPos>
+                <textPos>2,-44</textPos>
             </estadoInicial>
             <estado0>
                 <diagrama>
                     <nombre>ESPERA</nombre>
                     <color>#4169e1</color>
-                    <pos_x>-863</pos_x>
-                    <pos_y>-639</pos_y>
+                    <pos_x>-893</pos_x>
+                    <pos_y>-631</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>ControlRiego == TRUE</idEvento>
+                        <idEvento>Control == TRUE</idEvento>
                         <idAcciones></idAcciones>
-                        <idProxEstado>estado2</idProxEstado>
-                        <midPos>-1000,-575</midPos>
-                        <textPos>-167,-47</textPos>
+                        <idProxEstado>estado1</idProxEstado>
+                        <midPos>-1177,-615</midPos>
+                        <textPos>-63,-47</textPos>
                     </tr0>
                 </transiciones>
             </estado0>
             <estado1>
                 <diagrama>
-                    <nombre>REGANDO</nombre>
-                    <color>#ffa500</color>
-                    <pos_x>-765</pos_x>
-                    <pos_y>-298</pos_y>
+                    <nombre>REGADO</nombre>
+                    <color>#9acd32</color>
+                    <pos_x>-1066</pos_x>
+                    <pos_y>-364</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>TimerBomba</idEvento>
-                        <idAcciones>BombaOFF(),DispararTimerEspera()</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-767,-226</midPos>
-                        <textPos>-77.5,0</textPos>
+                        <idEvento>HumedadMedida &lt;= HumedadMin &amp;&amp; S_Nivel</idEvento>
+                        <idAcciones>ValvulaON(),DispTimerValvula()</idAcciones>
+                        <idProxEstado>estado2</idProxEstado>
+                        <midPos>-940,-238</midPos>
+                        <textPos>-204,10</textPos>
                     </tr0>
                     <tr1>
-                        <idEvento>TimerEspera &amp;&amp; HumedadMedida &lt;= HumedadMin</idEvento>
-                        <idAcciones>BombaON(),DispararTimerBomba()</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-655,-318</midPos>
-                        <textPos>3,4</textPos>
+                        <idEvento>!S_Nivel</idEvento>
+                        <idAcciones>EncenderLed()</idAcciones>
+                        <idProxEstado>estado3</idProxEstado>
+                        <midPos>-964,-499</midPos>
+                        <textPos>8,-66</textPos>
                     </tr1>
                     <tr2>
-                        <idEvento>HumedadMedida >= HumedadMin || ControlRiego == FALSE</idEvento>
-                        <idAcciones>BombaOFF(),ApagarTimerBomba(),ApagarTimerEspera()</idAcciones>
-                        <idProxEstado>estado2</idProxEstado>
-                        <midPos>-815,-439</midPos>
-                        <textPos>38,-19</textPos>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones></idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-1025,-556</midPos>
+                        <textPos>-108.063,-34</textPos>
                     </tr2>
                 </transiciones>
             </estado1>
             <estado2>
                 <diagrama>
-                    <nombre>REGADO</nombre>
-                    <color>#9acd32</color>
-                    <pos_x>-1018</pos_x>
-                    <pos_y>-455</pos_y>
+                    <nombre>REGANDO</nombre>
+                    <color>#ffa500</color>
+                    <pos_x>-669</pos_x>
+                    <pos_y>-270</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>HumedadMedida &lt;= HumedadMin</idEvento>
-                        <idAcciones>BombaON(),DispararTimerBomba(),CerrarDrenaje()</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-982,-326</midPos>
-                        <textPos>-166,23</textPos>
+                        <idEvento>TimerValvula</idEvento>
+                        <idAcciones>DispTimerEspera(),ValvulaOFF()</idAcciones>
+                        <idProxEstado>estado2</idProxEstado>
+                        <midPos>-649,-181</midPos>
+                        <textPos>-70.4063,0</textPos>
                     </tr0>
                     <tr1>
-                        <idEvento>HumedadMedida >= HumedadMax</idEvento>
-                        <idAcciones>AbrirDrenaje()</idAcciones>
-                        <idProxEstado>estado2</idProxEstado>
-                        <midPos>-1115,-411</midPos>
-                        <textPos>-119.5,3</textPos>
+                        <idEvento>!S_Nivel</idEvento>
+                        <idAcciones>ValvulaOFF(),ApagarTimerEspera(),EncenderLed()</idAcciones>
+                        <idProxEstado>estado3</idProxEstado>
+                        <midPos>-619,-407</midPos>
+                        <textPos>-48.4375,-124</textPos>
                     </tr1>
                     <tr2>
-                        <idEvento>ControlRiego == FALSE</idEvento>
-                        <idAcciones>BombaOFF(),ApagarTimerBomba(),ApagarTimerEspera(),CerrarDrenaje()</idAcciones>
-                        <idProxEstado>estado0</idProxEstado>
-                        <midPos>-858,-529</midPos>
-                        <textPos>21,-21</textPos>
+                        <idEvento>HumedadMedida >= HumedadMin &amp;&amp; TimerEspera</idEvento>
+                        <idAcciones>ValvulaOFF(),ApagarTimerEspera(),ApagarTimerValvula()</idAcciones>
+                        <idProxEstado>estado1</idProxEstado>
+                        <midPos>-821,-339</midPos>
+                        <textPos>-96.5625,-90</textPos>
                     </tr2>
+                    <tr3>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones>ValvulaOFF(),ApagarTimerEspera()</idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-298,-566</midPos>
+                        <textPos>-156.438,-77</textPos>
+                    </tr3>
+                    <tr4>
+                        <idEvento>TimerEspera &amp;&amp; HumedadMedida &lt;= HumedadMin</idEvento>
+                        <idAcciones>ValvulaON(),DispTimerValvula()</idAcciones>
+                        <idProxEstado>estado2</idProxEstado>
+                        <midPos>-571,-288</midPos>
+                        <textPos>-15.875,19</textPos>
+                    </tr4>
                 </transiciones>
             </estado2>
+            <estado3>
+                <diagrama>
+                    <nombre>Alarma</nombre>
+                    <color>#ff0000</color>
+                    <pos_x>-795</pos_x>
+                    <pos_y>-516</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>S_Nivel</idEvento>
+                        <idAcciones>ApagarLed()</idAcciones>
+                        <idProxEstado>estado1</idProxEstado>
+                        <midPos>-924,-445</midPos>
+                        <textPos>-64.9375,-42</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones>ApagarLed()</idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-754,-598</midPos>
+                        <textPos>18.375,-5</textPos>
+                    </tr1>
+                </transiciones>
+            </estado3>
         </maquina2>
         <maquina3>
             <nombre>ControlHumedad</nombre>
             <estadoInicial>
-                <pos_x>-946</pos_x>
-                <pos_y>-722.5</pos_y>
-                <idAcciones></idAcciones>
+                <pos_x>-674</pos_x>
+                <pos_y>-615.5</pos_y>
+                <idAcciones>VentilarOFF()</idAcciones>
                 <idProxEstado>estado0</idProxEstado>
-                <midPos>-919.4,-702.2</midPos>
-                <textPos>0,-23</textPos>
+                <midPos>-647.4,-595.2</midPos>
+                <textPos>0,-42</textPos>
             </estadoInicial>
             <estado0>
                 <diagrama>
                     <nombre>ESPERA</nombre>
                     <color>#4169e1</color>
-                    <pos_x>-851</pos_x>
-                    <pos_y>-650</pos_y>
+                    <pos_x>-579</pos_x>
+                    <pos_y>-543</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>ControlHumedad == TRUE</idEvento>
+                        <idEvento>Control == TRUE</idEvento>
                         <idAcciones></idAcciones>
                         <idProxEstado>estado1</idProxEstado>
-                        <midPos>-1002,-568</midPos>
-                        <textPos>-174,-39</textPos>
+                        <midPos>-760,-500</midPos>
+                        <textPos>-165,-13</textPos>
                     </tr0>
                 </transiciones>
             </estado0>
@@ -281,8 +394,8 @@
                 <diagrama>
                     <nombre>VENTILADO</nombre>
                     <color>#9acd32</color>
-                    <pos_x>-1044</pos_x>
-                    <pos_y>-467</pos_y>
+                    <pos_x>-804</pos_x>
+                    <pos_y>-352</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
@@ -291,190 +404,183 @@
                         <idEvento>AmbienteMedido >= AmbienteMax</idEvento>
                         <idAcciones>VentilarON()</idAcciones>
                         <idProxEstado>estado2</idProxEstado>
-                        <midPos>-1003,-325</midPos>
-                        <textPos>-133,39</textPos>
+                        <midPos>-715,-211</midPos>
+                        <textPos>-152,13</textPos>
                     </tr0>
                     <tr1>
-                        <idEvento>ControlHumedad == FALSE</idEvento>
-                        <idAcciones>VentilarOFF(),HumedecerOFF(),ApagarTimerHumedecer()</idAcciones>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones></idAcciones>
                         <idProxEstado>estado0</idProxEstado>
-                        <midPos>-879,-522</midPos>
-                        <textPos>17,-12</textPos>
+                        <midPos>-517,-428</midPos>
+                        <textPos>-187.063,-23</textPos>
                     </tr1>
-                    <tr2>
-                        <idEvento>AmbienteMedido &lt;= AmbienteMin</idEvento>
-                        <idAcciones>HumedecerON(),DispararTimerHumedecer()</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-1145,-426</midPos>
-                        <textPos>-88.5,32</textPos>
-                    </tr2>
-                    <tr3>
-                        <idEvento>TimerHumedecer</idEvento>
-                        <idAcciones>HumedecerOFF()</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-1148.5,-451.5</midPos>
-                        <textPos>-111,-28</textPos>
-                    </tr3>
                 </transiciones>
             </estado1>
             <estado2>
                 <diagrama>
                     <nombre>VENTILANDO</nombre>
                     <color>#ffa500</color>
-                    <pos_x>-773</pos_x>
-                    <pos_y>-289</pos_y>
+                    <pos_x>-482</pos_x>
+                    <pos_y>-217</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>AmbienteMedido &lt;= AmbienteMax || ControlHumedad == FALSE</idEvento>
+                        <idEvento>AmbienteMedido &lt;= AmbienteMin</idEvento>
                         <idAcciones>VentilarOFF()</idAcciones>
                         <idProxEstado>estado1</idProxEstado>
-                        <midPos>-846,-411</midPos>
-                        <textPos>23,-23</textPos>
+                        <midPos>-493,-336</midPos>
+                        <textPos>-233.188,11</textPos>
                     </tr0>
+                    <tr1>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones>VentilarOFF()</idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-308,-405</midPos>
+                        <textPos>-17.625,-11</textPos>
+                    </tr1>
                 </transiciones>
             </estado2>
         </maquina3>
         <maquina4>
-            <nombre>ControlIluminacion</nombre>
+            <nombre>Temperatura</nombre>
             <estadoInicial>
-                <pos_x>-1102</pos_x>
-                <pos_y>-263.5</pos_y>
-                <idAcciones>LamparaOFF(),ApagarTimerLampara()</idAcciones>
-                <idProxEstado>estado1</idProxEstado>
-                <midPos>-1017,-321</midPos>
+                <pos_x>-922</pos_x>
+                <pos_y>-723.5</pos_y>
+                <idAcciones>ApagarLampara(),VentilarOFF()</idAcciones>
+                <idProxEstado>estado0</idProxEstado>
+                <midPos>-851,-710</midPos>
                 <textPos>0,-59</textPos>
             </estadoInicial>
             <estado0>
                 <diagrama>
-                    <nombre>ENCENDIDO</nombre>
-                    <color>#ffa500</color>
-                    <pos_x>-1109</pos_x>
-                    <pos_y>-612</pos_y>
-                    <ancho>110</ancho>
-                    <alto>65</alto>
-                </diagrama>
-                <transiciones>
-                    <tr0>
-                        <idEvento>TimerLampara</idEvento>
-                        <idAcciones>LamparaOFF(),ApagarTimerLampara()</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-989,-509</midPos>
-                        <textPos>0,-59</textPos>
-                    </tr0>
-                </transiciones>
-            </estado0>
-            <estado1>
-                <diagrama>
-                    <nombre>APAGADO</nombre>
-                    <color>#4169e1</color>
-                    <pos_x>-1103</pos_x>
-                    <pos_y>-406</pos_y>
-                    <ancho>110</ancho>
-                    <alto>65</alto>
-                </diagrama>
-                <transiciones>
-                    <tr0>
-                        <idEvento>F_Lampara == TRUE</idEvento>
-                        <idAcciones>DisparadorTimerLampara(),LamparaON()</idAcciones>
-                        <idProxEstado>estado0</idProxEstado>
-                        <midPos>-1187,-512</midPos>
-                        <textPos>-200.5,-28</textPos>
-                    </tr0>
-                </transiciones>
-            </estado1>
-        </maquina4>
-        <maquina5>
-            <nombre>ControlAspersor</nombre>
-            <estadoInicial>
-                <pos_x>-833</pos_x>
-                <pos_y>-393.5</pos_y>
-                <idAcciones>ApagarTimerAspersor(),HumedadAmbiente = FALSE</idAcciones>
-                <idProxEstado>estado1</idProxEstado>
-                <midPos>-896,-396</midPos>
-                <textPos>108.313,-42</textPos>
-            </estadoInicial>
-            <estado0>
-                <diagrama>
-                    <nombre>ABIERTO</nombre>
-                    <color>#ffa500</color>
-                    <pos_x>-898</pos_x>
-                    <pos_y>-652</pos_y>
-                    <ancho>110</ancho>
-                    <alto>65</alto>
-                </diagrama>
-                <transiciones>
-                    <tr0>
-                        <idEvento>HumedadAmbiente == TRUE</idEvento>
-                        <idAcciones>ApagarTimerAspersor()</idAcciones>
-                        <idProxEstado>estado1</idProxEstado>
-                        <midPos>-801,-570</midPos>
-                        <textPos>29,-24</textPos>
-                    </tr0>
-                    <tr1>
-                        <idEvento>TimerAspersor &amp;&amp; HumedadAmbiente == FALSE</idEvento>
-                        <idAcciones>DispararSpray(),DisparadorTimerAspersor()</idAcciones>
-                        <idProxEstado>estado0</idProxEstado>
-                        <midPos>-921,-751</midPos>
-                        <textPos>56.0313,-1</textPos>
-                    </tr1>
-                </transiciones>
-            </estado0>
-            <estado1>
-                <diagrama>
                     <nombre>ESPERA</nombre>
                     <color>#4169e1</color>
-                    <pos_x>-896</pos_x>
-                    <pos_y>-468</pos_y>
+                    <pos_x>-773</pos_x>
+                    <pos_y>-638</pos_y>
                     <ancho>110</ancho>
                     <alto>65</alto>
                 </diagrama>
                 <transiciones>
                     <tr0>
-                        <idEvento>HumedadAmbiente == FALSE</idEvento>
-                        <idAcciones>DisparadorTimerAspersor(),DispararSpray()</idAcciones>
-                        <idProxEstado>estado0</idProxEstado>
-                        <midPos>-987,-566</midPos>
-                        <textPos>-224.125,-10</textPos>
+                        <idEvento>Control == TRUE</idEvento>
+                        <idAcciones></idAcciones>
+                        <idProxEstado>estado1</idProxEstado>
+                        <midPos>-719,-527</midPos>
+                        <textPos>-5,-53</textPos>
                     </tr0>
                 </transiciones>
+            </estado0>
+            <estado1>
+                <diagrama>
+                    <nombre>ESTABLE</nombre>
+                    <color>#9acd32</color>
+                    <pos_x>-773</pos_x>
+                    <pos_y>-437</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>TempMedida &lt;= TempBajaMin</idEvento>
+                        <idAcciones>EncenderLampar()</idAcciones>
+                        <idProxEstado>estado2</idProxEstado>
+                        <midPos>-1019,-438</midPos>
+                        <textPos>-76,-50</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>TempMedida >= TempAltaMin</idEvento>
+                        <idAcciones>VentilarON()</idAcciones>
+                        <idProxEstado>estado3</idProxEstado>
+                        <midPos>-506,-441</midPos>
+                        <textPos>-185,-46</textPos>
+                    </tr1>
+                    <tr2>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones></idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-823,-539</midPos>
+                        <textPos>-144.063,-36</textPos>
+                    </tr2>
+                </transiciones>
             </estado1>
-        </maquina5>
+            <estado2>
+                <diagrama>
+                    <nombre>CALENTANDO</nombre>
+                    <color>#ffa500</color>
+                    <pos_x>-1079</pos_x>
+                    <pos_y>-311</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>TempMedida >= TempBajaMax</idEvento>
+                        <idAcciones>ApagarLampara()</idAcciones>
+                        <idProxEstado>estado1</idProxEstado>
+                        <midPos>-923,-330</midPos>
+                        <textPos>-93.9375,25</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones>ApagarLampara()</idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-1101,-608</midPos>
+                        <textPos>-97.625,-22</textPos>
+                    </tr1>
+                </transiciones>
+            </estado2>
+            <estado3>
+                <diagrama>
+                    <nombre>REFRESCANDO</nombre>
+                    <color>#f0ffff</color>
+                    <pos_x>-441</pos_x>
+                    <pos_y>-340</pos_y>
+                    <ancho>110</ancho>
+                    <alto>65</alto>
+                </diagrama>
+                <transiciones>
+                    <tr0>
+                        <idEvento>TempMedida &lt;= TempAltaMax</idEvento>
+                        <idAcciones>VentilarOFF()</idAcciones>
+                        <idProxEstado>estado1</idProxEstado>
+                        <midPos>-648,-336</midPos>
+                        <textPos>-79.9375,14</textPos>
+                    </tr0>
+                    <tr1>
+                        <idEvento>Control == FALSE</idEvento>
+                        <idAcciones>VentilarOFF()</idAcciones>
+                        <idProxEstado>estado0</idProxEstado>
+                        <midPos>-397,-570</midPos>
+                        <textPos>-60.625,-44</textPos>
+                    </tr1>
+                </transiciones>
+            </estado3>
+        </maquina4>
     </maquinas>
     <eventos>
         <ev0>STOP</ev0>
-        <ev1>TimerBomba</ev1>
+        <ev1>TimerValvula</ev1>
         <ev2>TimerEspera</ev2>
-        <ev3>TimerHumedecer</ev3>
-        <ev4>TimerLampara</ev4>
-        <ev5>TimerAspersor</ev5>
+        <ev3>S_Nivel</ev3>
+        <ev4>TimerError</ev4>
     </eventos>
     <acciones>
-        <acc0>LeerBaseDatos()</acc0>
-        <acc1>EnviarDatos()</acc1>
-        <acc2>BombaON()</acc2>
-        <acc3>DispararTimerBomba()</acc3>
-        <acc4>BombaOFF()</acc4>
-        <acc5>DispararTimerEspera()</acc5>
-        <acc6>ApagarTimerBomba()</acc6>
-        <acc7>ApagarTimerEspera()</acc7>
-        <acc8>AbrirDrenaje()</acc8>
-        <acc9>CerrarDrenaje()</acc9>
-        <acc10>VentilarON()</acc10>
-        <acc11>VentilarOFF()</acc11>
-        <acc12>HumedecerON()</acc12>
-        <acc13>DispararTimerHumedecer()</acc13>
-        <acc14>HumedecerOFF()</acc14>
-        <acc15>ApagarTimerHumedecer()</acc15>
-        <acc16>DisparadorTimerLampara()</acc16>
-        <acc17>ApagarTimerLampara()</acc17>
-        <acc18>LamparaON()</acc18>
-        <acc19>LamparaOFF()</acc19>
-        <acc20>DisparadorTimerAspersor()</acc20>
-        <acc21>DispararSpray()</acc21>
-        <acc22>ApagarTimerAspersor()</acc22>
+        <acc0>MostrarDatos()</acc0>
+        <acc1>VentilarON()</acc1>
+        <acc2>VentilarOFF()</acc2>
+        <acc3>ValvulaON()</acc3>
+        <acc4>DispTimerValvula()</acc4>
+        <acc5>ValvulaOFF()</acc5>
+        <acc6>DispTimerEspera()</acc6>
+        <acc7>EncenderLed()</acc7>
+        <acc8>ApagarLed()</acc8>
+        <acc9>ApagarTimerEspera()</acc9>
+        <acc10>EncenderLampar()</acc10>
+        <acc11>ApagarLampara()</acc11>
+        <acc12>STOP()</acc12>
+        <acc13>ApagarTimerValvula()</acc13>
     </acciones>
     <variables>
         <var0>F_NuevaPlanta</var0>
@@ -482,19 +588,25 @@
         <var2>F_DatosListos</var2>
         <var3>ControlRiego</var3>
         <var4>ControlHumedad</var4>
-        <var5>F_DatosObtenidos</var5>
-        <var6>F_DatosEnviados</var6>
-        <var7>HumedadMax</var7>
-        <var8>HumedadMin</var8>
-        <var9>HumedadMedida</var9>
-        <var10>AmbienteMedido</var10>
-        <var11>AmbienteMax</var11>
-        <var12>AmbienteMin</var12>
-        <var13>F_Lampara</var13>
-        <var14>HumedadAmbiente</var14>
+        <var5>AmbienteMedido</var5>
+        <var6>AmbienteMax</var6>
+        <var7>AmbienteMin</var7>
+        <var8>HumedadMedida</var8>
+        <var9>HumedadMin</var9>
+        <var10>Control</var10>
+        <var11>TempMedida</var11>
+        <var12>TempMax</var12>
+        <var13>TempMin</var13>
+        <var14>TempBajaMin</var14>
+        <var15>TempBajaMax</var15>
+        <var16>TempAltaMin</var16>
+        <var17>TempAltaMax</var17>
+        <var18>Dato_rx</var18>
+        <var19>F_RecibiDatos</var19>
+        <var20>DataValid</var20>
     </variables>
     <constantes>
-        <cons0>TRUE</cons0>
-        <cons1>FALSE</cons1>
+        <cons0>TRUE,X</cons0>
+        <cons1>FALSE,X</cons1>
     </constantes>
 </proyecto>
