@@ -29,7 +29,7 @@
 #define		RX_TIMEOUT_MSECS	50
 #define		ERR_TIMEOUT_MSECS	250
 #define		DATOS_TIMEOUT_SECS	5
-#define		MOSTRAR_ESTADO_SEG   1
+#define		MOSTRAR_ESTADO_SEG  1
 
 /***********************************************************************************************************************************
  *** MACROS GLOBALES

@@ -33,6 +33,7 @@ private slots:
 
     bool YaExiste(QString nombre);
 
+    bool DatosVacios();
 private:
     Ui::Datos *ui;
 };

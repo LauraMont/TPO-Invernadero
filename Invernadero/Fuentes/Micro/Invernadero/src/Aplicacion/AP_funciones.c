@@ -42,9 +42,9 @@ extern volatile uint8_t init_tx;
  *** VARIABLES GLOBALES PRIVADAS AL MODULO
  **********************************************************************************************************************************/
 volatile uint32_t Temp = 10;
-volatile uint32_t Pres = 0;
-volatile uint32_t Hum  = 8;//0;
+volatile uint32_t Hum  = 8;
 volatile uint32_t Hum_tierra = 15;
+volatile uint32_t Pres = 0;
 
 /***********************************************************************************************************************************
  *** PROTOTIPO DE FUNCIONES PRIVADAS AL MODULO
@@ -98,7 +98,7 @@ void Medir(void)
 
 	//Tomo las mediciones del adc y del BME280
 //	int32_t adc = ADC_get_average();
-//	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;
+//	Hum_tierra = 100 - (adc - EN_AGUA) * 0.03710575139;// 100/(4095 - 1300)
 //	if(Hum_tierra >= 100) Hum_tierra = 99;
 //	MeasureBME280(i2c1);
 
@@ -173,20 +173,12 @@ void LeerTeclado(void)
 void ApagarLuces(void)
 {
 	SetDIR(led0, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(led1, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(led2, SALIDA);//Seteo el relay 0 como salida
-
-	SetDIR(RELAY0, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(RELAY1, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(RELAY2, SALIDA);//Seteo el relay 0 como salida
-	SetDIR(RELAY3, SALIDA);//Seteo el relay 0 como salida
+	SetDIR(led1, SALIDA);
+	SetDIR(led2, SALIDA);
 
 	SetPIN(led0, OFF);
 	SetPIN(led1, OFF);
 	SetPIN(led2, OFF);
 
-	SetPIN(RELAY0, OFF);
-	SetPIN(RELAY1, OFF);
-	SetPIN(RELAY2, OFF);
-	SetPIN(RELAY3, OFF);
+	RelaysOFF();
 }

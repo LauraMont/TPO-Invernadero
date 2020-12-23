@@ -88,7 +88,7 @@ void BME280_init(uint32_t portNum)
 
 	//Configuración para las mediciones
 	I2CMasterBuffer[portNum][1] = CTRL_MEAS;//Dirección del registro de configuracion de mediciones
-	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | SLEEP_MODE; //Configuro sobremuestreo normal y modo normal
+	I2CMasterBuffer[portNum][2] = MIN_OSRS_T | MIN_OSRS_P | SLEEP_MODE; //Configuro sobremuestreo normal y modo sleep
 
 	I2CMasterBuffer[portNum][3] = CTRL_HUM;	 //Dirección del registro a escribir
 	I2CMasterBuffer[portNum][4] = MIN_OSRS_H; //Configuro sobremuestreo normal

@@ -36,10 +36,11 @@ bool Datos::insertarPlanta()
 {
     QSqlQuery insertar;
     QString consulta;
-    bool repetido;
+    bool repetido, sinDatos;
     bool insertada = true;
     repetido = YaExiste(ui->lineEdit_planta->text()); //Corroboro que el nombre de la planta no se repita
-    if(!repetido)
+    sinDatos = DatosVacios();
+    if(!repetido && !sinDatos)
     {
         consulta.append("INSERT INTO  plantas  (   "
                         "planta ,"
@@ -70,15 +71,43 @@ bool Datos::insertarPlanta()
        }
 
     }
-    else
+    else if(repetido)
     {
         insertar.clear();
         insertada = false;
         QMessageBox::critical(this,"Error", "Nombre de planta repetido");
     }
+    else if(sinDatos)
+    {
+        insertar.clear();
+        insertada = false;
+        QMessageBox::critical(this,"Error", "Falta completar un campo");
+    }
+
     return insertada;
 }
 
+/**
+    \fn  	bool Datos::DatosVacios(void)
+    \brief	Funcion para indicar si algun line edit esta vacio
+*/
+bool Datos::DatosVacios(void)
+{
+    bool vacio = false;
+
+    if(!ui->lineEdit_planta->text().length()) vacio = true;
+    if(!ui->lineEdit_t_max->text().length()) vacio = true;
+    if(!ui->lineEdit_t_min->text().length()) vacio = true;
+    if(!ui->lineEdit_h_tierra->text().length()) vacio = true;
+    if(!ui->lineEdit_h_amb->text().length()) vacio = true;
+
+    return vacio;
+}
+
+/**
+    \fn  	bool Datos::YaExiste(QString nombre)
+    \brief	Funcion para indicar true o false si la planta ya existe o no
+*/
 bool Datos::YaExiste(QString nombre)
 {
     QSqlQuery consultar, cantidad;
@@ -110,28 +139,28 @@ bool Datos::YaExiste(QString nombre)
     \fn  	void Datos::on_pushButton_clicked()
     \brief  Slot del botón de agregar planta clickeado
 */
-void Datos::on_pushButton_clicked()
+void Datos::on_pushButton_clicked()//Botón de aceptar
 {
     bool insertada = false;
     insertada = insertarPlanta();
     if(insertada)
-        this->hide();
+        this->close();
 }
 
 /**
     \fn  	void Datos::on_pushButton_2_clicked()
     \brief  Slot del botón de cancelar clickeado
 */
-void Datos::on_pushButton_2_clicked()
+void Datos::on_pushButton_2_clicked() //Botón de cancelar
 {
-    this->hide();
+        this->close();
 }
 
 /**
     \fn  	void Datos::on_pushButton_3_clicked()
     \brief  Carga en el line edit la dirección de la imagen seleccionada
 */
-void Datos::on_pushButton_3_clicked()
+void Datos::on_pushButton_3_clicked()//Boton de cargar foto
 {
     QString String_PathFoto = QFileDialog::getOpenFileName(this, "Select a file to open...", rutaFotos);
     ui->lineEdit_foto->setText(String_PathFoto);

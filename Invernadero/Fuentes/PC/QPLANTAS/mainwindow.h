@@ -27,6 +27,8 @@
 #define WARNING_WIDTH   381
 #define WARNING_HEIGTH  500
 
+#define PUERTO  "/dev/ttyUSB0"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     rx_state= RX_SM_WAITING_START;
 
+    //Inicializacion de los label
     ui->label_TACTUAL->setVisible(false);
     ui->label_tactual->setVisible(false);
     ui->label_HUM_AMB->setVisible(false);
@@ -37,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->radioButton_Red->toggle();
     iniciado = 0;
 
+
+
     Inicio.setWidth(INICIO_WIDTH); //Seteo los tamaños en los Qsize
     Inicio.setHeight(INICIO_HEIGTH);
 
@@ -46,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     Warning.setWidth(WARNING_WIDTH);
     Warning.setWidth(WARNING_HEIGTH);
 
-    this->resize(Inicio); // Seteo el tamaño inicial
+    this->setFixedSize(Inicio); // Seteo el tamaño inicial
     timerId = startTimer(1000);
 
     qDebug()<<"Aplicacion iniciada..."; // Creacion de la base de datos...
@@ -250,7 +253,7 @@ void MainWindow::on_iniciar_clicked()
     {
         if(!puerto->isOpen())
         {
-            puerto->setPortName("/dev/ttyUSB0");
+            puerto->setPortName(PUERTO);
 
             if(puerto->open(QSerialPort::ReadWrite))
             {
@@ -295,7 +298,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::enable_gui()
 {
     iniciado = 1;
-    this->resize(Datos); //Agrando el tamaño para que entren los datos
+    this->setFixedSize(Datos); //Agrando el tamaño para que entren los datos
     ui->radioButton_Red->setEnabled(false);
     ui->radioButton_Tanque->setEnabled(false);
     ui->comboBox->setEnabled(false);
@@ -316,7 +319,7 @@ void MainWindow::enable_gui()
 void MainWindow::disable_gui()
 {
     iniciado  = 0;
-    this->resize(Inicio);//Achico el tamaño para sacar los datos
+    this->setFixedSize(Inicio);//Achico el tamaño para sacar los datos
     ui->radioButton_Red->setEnabled(true);
     ui->radioButton_Tanque->setEnabled(true);
     ui->comboBox->setEnabled(true);
@@ -366,10 +369,10 @@ void MainWindow::enviar_datos()
     data.append(valor/10 + '0');
     valor%= 10;
     data.append(valor + '0');
-    valor = ui->radioButton_Red->isChecked();
+    valor = ui->radioButton_Red->isChecked(); //Suministro
     data.append(valor + '0');
     data.append('%');
-    data.append(consultar.value(1).toString());
+    data.append(consultar.value(1).toString());//Nombre
     data.append('&');
     data.append('#');
     puerto->write(data);
@@ -427,7 +430,7 @@ void MainWindow::rx_SM(QByteArray byte_in)
         }
 
         if(check_data_result == -1) {
-            ;
+
             rx_state = RX_SM_ERR;
         }
 
@@ -554,7 +557,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
 
                     if(puerto->open(QSerialPort::ReadWrite))
                     {
-                        this->resize(Datos);
+                        this->setFixedSize(Datos);
                         ui->label_datos->setText("                   Datos en tiempo real");
                     }
                 }
@@ -565,7 +568,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
         {
             desconexion = true;
             puerto->close();
-            this->resize(381, 500);
+            this->setFixedSize(381, 500);
             ui->label_datos->setText("Pérdida de conexión, reconectando...");
          }
 

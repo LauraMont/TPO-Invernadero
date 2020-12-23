@@ -97,7 +97,7 @@ void Tabla::on_tableWidget_Datos_cellChanged(int row, int column)
     {
         QString columnas[] = {"planta","temp_min", "temp_max", "hum_tierra", "hum_amb", "precaucion",};
         //Nombres reales de las columnas en la base de datos
-        QString campo = columnas[column-1];//Resto dos por el id y el nombre
+        QString campo = columnas[column-1];//Resto uno por el id
         QString ID = ui->tableWidget_Datos->item(row,0)->text(); //Obtengo el id
         QString value = ui->tableWidget_Datos->item(row, column)->text();//Contenido de la celda
 
